@@ -11,6 +11,7 @@ import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
 
+    
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DbKindAccessWorker dataSource;
