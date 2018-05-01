@@ -8,8 +8,10 @@ public class MainActivity extends AppCompatActivity {
     /*
         Jannis und Frieza, maskuline Schläger,
         Körper definierter als der von Kollegah.
+        Wann kriege ich meinen Echo?
      */
-    
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
