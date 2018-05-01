@@ -14,11 +14,14 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DbKindAccessWorker dataSource;
+<<<<<<< HEAD
     
+=======
     /*
         Jannis und Frieza, maskuline Schläger,
         Körper definierter als der von Kollegah.
      */
+>>>>>>> 84982b3cb181261f8b1dfd4d1777cb790687af4e
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
