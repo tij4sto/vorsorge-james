@@ -9,6 +9,7 @@ public class MainActivity extends AppCompatActivity {
         Jannis und Frieza, maskuline Schläger,
         Körper definierter als der von Kollegah.
      */
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
