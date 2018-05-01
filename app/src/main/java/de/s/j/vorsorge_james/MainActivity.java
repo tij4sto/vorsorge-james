@@ -11,19 +11,9 @@ import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
 
-<<<<<<< HEAD
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DbKindAccessWorker dataSource;
-=======
-    /*
-        Jannis und Frieza, maskuline Schläger,
-        Körper definierter als der von Kollegah.
-        Wann kriege ich meinen Echo?
-     */
->>>>>>> dev-frieder
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
