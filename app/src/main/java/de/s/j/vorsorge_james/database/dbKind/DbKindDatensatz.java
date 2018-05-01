@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class DbKindDatensatz {
 
-    private long id;
+    private int id;
     private String name;
     private Date datum;
 

@@ -9,6 +9,10 @@ public class DbKindAccessHelper extends SQLiteOpenHelper {
 
     private static final String LOG_TAG = DbKindAccessHelper.class.getSimpleName();
 
+    public static final String SQL_CREATE = "CREATE TABLE " + TABLE_KIND +
+            "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_NAME + " TEXT NOT NULL, "
+            + COLUMN_GEBURTSTAG
+
 
     public DbKindAccessHelper(Context context) {
         super(context, "PLATZHALTER_DATENBANKNAME", null, 1);
