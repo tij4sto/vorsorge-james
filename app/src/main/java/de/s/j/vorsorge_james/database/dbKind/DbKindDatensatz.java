@@ -1,0 +1,40 @@
+package de.s.j.vorsorge_james.database.dbKind;
+
+import java.util.Date;
+
+public class DbKindDatensatz {
+
+    private int id;
+    private String name;
+    private Date datum;
+
+    public DbKindDatensatz(long id, String name, Date datum){
+        this.id = id;
+        this.name = name;
+        this.datum = datum;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getDatum() {
+        return datum;
+    }
+
+    public void setDatum(Date datum) {
+        this.datum = datum;
+    }
+}

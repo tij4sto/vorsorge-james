@@ -5,11 +5,14 @@ import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
+<<<<<<< HEAD
     /*
         Jannis und Frieza, maskuline Schläger,
         Körper definierter als der von Kollegah.
         Wann kriege ich meinen Echo?
      */
+=======
+>>>>>>> origin/Dev-Jannis
 
 
 
