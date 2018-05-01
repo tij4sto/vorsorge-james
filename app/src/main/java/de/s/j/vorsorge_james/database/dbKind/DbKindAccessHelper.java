@@ -23,7 +23,6 @@ public class DbKindAccessHelper extends SQLiteOpenHelper {
             + COLUMN_NAME + " TEXT NOT NULL, "
             + COLUMN_GEBURTSTAG +  " TEXT NOT NULL);";
 
-
     public DbKindAccessHelper(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         Log.d(LOG_TAG, "DbHelper hat die Datenbank: " + getDatabaseName() + " erzeugt.");
