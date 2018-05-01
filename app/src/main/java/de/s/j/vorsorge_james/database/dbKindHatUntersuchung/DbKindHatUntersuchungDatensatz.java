@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.db;
+package de.s.j.vorsorge_james.database.dbKindHatUntersuchung;
 
 import java.util.Date;
 

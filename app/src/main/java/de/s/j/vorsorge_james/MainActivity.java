@@ -6,14 +6,14 @@ import android.util.Log;
 
 import java.util.Date;
 
-import de.s.j.vorsorge_james.db.DbAccessWorker;
-import de.s.j.vorsorge_james.db.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKind.DbKindAccessWorker;
+import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
 
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    private DbAccessWorker dataSource;
+    private DbKindAccessWorker dataSource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,6 @@ public class MainActivity extends AppCompatActivity {
         DbKindDatensatz testMemo = new DbKindDatensatz(120, "Jannis", new Date(04/07/1989));
         Log.d(LOG_TAG, "Inhalt der Testmemo: " + testMemo.toString());
 
-        dataSource = new DbAccessWorker(this);
+        dataSource = new DbKindAccessWorker(this);
     }
 }

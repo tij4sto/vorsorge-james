@@ -1,6 +1,4 @@
-package de.s.j.vorsorge_james.db;
-
-import java.util.Date;
+package de.s.j.vorsorge_james.database.dbUntersuchung;
 
 public class DbUntersuchungDatensatz {
 
