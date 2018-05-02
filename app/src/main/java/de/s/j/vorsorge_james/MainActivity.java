@@ -1,10 +1,17 @@
 package de.s.j.vorsorge_james;
 
+import android.app.DatePickerDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindAccessWorker;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
@@ -30,5 +37,10 @@ public class MainActivity extends AppCompatActivity {
 
         Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
         dataSource.close();
+    }
+
+    public void createKindOnButtonClick(){
+        EditText name = findViewById(R.id.editTextName);
+        EditText alter = findViewById(R.id.editTextGeburtstag);
     }
 }
