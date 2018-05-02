@@ -14,7 +14,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DbKindAccessWorker dataSource;
+
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
+
     private DbKindAccessWorker dataSource;
 
     @Override
