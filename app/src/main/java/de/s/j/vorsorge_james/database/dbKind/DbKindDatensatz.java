@@ -8,7 +8,7 @@ public class DbKindDatensatz {
     private String name;
     private Date datum;
 
-    public DbKindDatensatz(long id, String name, Date datum){
+    public DbKindDatensatz(int id, String name, Date datum){
         this.id = id;
         this.name = name;
         this.datum = datum;
@@ -18,7 +18,7 @@ public class DbKindDatensatz {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -36,5 +36,9 @@ public class DbKindDatensatz {
 
     public void setDatum(Date datum) {
         this.datum = datum;
+    }
+
+    public String toString(){
+        return "\nid: " + this.id + "\nname: " + this.name + "\ndatum: " + this.datum;
     }
 }

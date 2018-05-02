@@ -24,5 +24,11 @@ public class MainActivity extends AppCompatActivity {
         Log.d(LOG_TAG, "Inhalt der Testmemo: " + testMemo.toString());
 
         dataSource = new DbKindAccessWorker(this);
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geöffnet.");
+        dataSource.open();
+
+        Log.d(LOG_TAG, "Die Datenquelle wird geschlossen.");
+        dataSource.close();
     }
 }
