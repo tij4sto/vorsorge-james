@@ -15,10 +15,6 @@ public class MainActivity extends AppCompatActivity {
 
     private DbKindAccessWorker dataSource;
 
-    public static final String LOG_TAG = MainActivity.class.getSimpleName();
-
-    private DbKindAccessWorker dataSource;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
