@@ -30,7 +30,14 @@ public class DbKindAccessHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        try {
+            db.execSQL(SQL_CREATE);
+            Log.d(LOG_TAG,"\nDie Tabelle mit Befehl: \n" + SQL_CREATE + " \nwurde angelegt");
+        }
 
+        catch (Exception e){
+            Log.e(LOG_TAG, "Ein Fehler ist aufgetreten: " + e.getMessage());
+        }
     }
 
     @Override
