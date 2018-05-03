@@ -1,8 +1,11 @@
 package de.s.j.vorsorge_james.database.dbKind;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+
+import java.util.Date;
 
 public class DbKindAccessWorker {
     private static final String LOG_TAG = DbKindAccessWorker.class.getSimpleName();
@@ -24,5 +27,15 @@ public class DbKindAccessWorker {
     public void close(){
         dbHelper.close();
         Log.d(LOG_TAG, "Verbindung mittels Access-Worker zur Datenbank geschlossen.");
+    }
+
+    public void createKindDatensatz(String name, String geburtstag){
+        ContentValues values = new ContentValues();
+        values.put(this.dbHelper.COLUMN_NAME, name);
+        values.put(this.dbHelper.COLUMN_GEBURTSTAG, geburtstag);
+
+        Log.d(LOG_TAG, "Worker versucht Insert in DB!");
+        long l = db.insert(dbHelper.TABLE_KIND, null, values);
+        Log.d(LOG_TAG, "Insert geklappt: " + l);
     }
 }
