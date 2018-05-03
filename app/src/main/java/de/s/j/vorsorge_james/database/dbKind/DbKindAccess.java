@@ -2,20 +2,25 @@ package de.s.j.vorsorge_james.database.dbKind;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
-import java.util.Date;
-
-public class DbKindAccessWorker {
-    private static final String LOG_TAG = DbKindAccessWorker.class.getSimpleName();
+public class DbKindAccess {
+    private static final String LOG_TAG = DbKindAccess.class.getSimpleName();
 
     private SQLiteDatabase db;
-    private DbKindAccessHelper dbHelper;
+    private DbKindHelper dbHelper;
 
-    public DbKindAccessWorker(Context context) {
+    private String[] columns = {
+            this.dbHelper.COLUMN_ID,
+            this.dbHelper.COLUMN_NAME,
+            this.dbHelper.COLUMN_GEBURTSTAG
+    };
+
+    public DbKindAccess(Context context) {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
-        this.dbHelper = new DbKindAccessHelper(context);
+        this.dbHelper = new DbKindHelper(context);
     }
 
     public  void open(){
@@ -35,7 +40,9 @@ public class DbKindAccessWorker {
         values.put(this.dbHelper.COLUMN_GEBURTSTAG, geburtstag);
 
         Log.d(LOG_TAG, "Worker versucht Insert in DB!");
-        long l = db.insert(dbHelper.TABLE_KIND, null, values);
+        long l = db.insert(dbHelper.TABLE_NAME, null, values);
         Log.d(LOG_TAG, "Insert geklappt: " + l);
+
+        Cursor cursor = db.query(this.dbHelper.TABLE_NAME, columns, this.dbHelper.COLUMN_ID + "=" + l, null, null, null, null);
     }
 }
