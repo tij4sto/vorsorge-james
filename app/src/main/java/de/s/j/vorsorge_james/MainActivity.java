@@ -79,6 +79,5 @@ public class MainActivity extends AppCompatActivity {
                 dataSource.createKindDatensatz(name.getText().toString(), geburtstag.getText().toString());
             }
         }
-
     }
 }
