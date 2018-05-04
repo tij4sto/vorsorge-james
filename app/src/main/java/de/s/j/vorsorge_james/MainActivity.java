@@ -1,7 +1,6 @@
 package de.s.j.vorsorge_james;
 
 import android.app.DatePickerDialog;
-import android.content.ContentValues;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,21 +9,15 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
-import de.s.j.vorsorge_james.database.dbKind.DbKindAccessHelper;
-import de.s.j.vorsorge_james.database.dbKind.DbKindAccessWorker;
-import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKind.DbKindAccess;
 
 public class MainActivity extends AppCompatActivity {
     
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    private DbKindAccessWorker dataSource;
-    private DbKindAccessHelper dbHelper;
+    private DbKindAccess dataSource;
 
 
     @Override
@@ -32,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataSource = new DbKindAccessWorker(this);
+        dataSource = new DbKindAccess(this);
         initDateSetter();
 
         Button button = findViewById(R.id.button);
