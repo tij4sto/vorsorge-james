@@ -11,13 +11,13 @@ import android.widget.EditText;
 
 import java.util.Calendar;
 
-import de.s.j.vorsorge_james.database.dbKind.DbKindAccess;
+import de.s.j.vorsorge_james.database.dbAccess;
 
 public class MainActivity extends AppCompatActivity {
     
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    private DbKindAccess dataSource;
+    private dbAccess dataSource;
 
 
     @Override
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataSource = new DbKindAccess(this);
+        dataSource = new dbAccess(this);
         initDateSetter();
 
         Button button = findViewById(R.id.button);
