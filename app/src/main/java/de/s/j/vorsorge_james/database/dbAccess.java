@@ -29,14 +29,20 @@ public class dbAccess {
     }
 
     public void createKindDatensatz(String name, String geburtstag){
+        this.open();
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("geburtstag", geburtstag);
 
         Log.d(LOG_TAG, "Worker versucht Insert in DB!");
-        long l = db.insert("Kind", null, values);
-        Log.d(LOG_TAG, "Insert geklappt: " + l);
+        try {
+            long l = db.insert("Kind", null, values);
+            Log.d(LOG_TAG, "Insert geklappt: " + l);
+            Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
+        }
 
-        Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
+        catch (Exception e){
+            Log.d(LOG_TAG, e.getMessage());
+        }
     }
 }
