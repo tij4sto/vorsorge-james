@@ -10,8 +10,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbAccess;
+import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -70,6 +72,8 @@ public class MainActivity extends AppCompatActivity {
             if(!(geburtstag.getText().toString().equals(""))){
                 Log.d(LOG_TAG, "Main Activity versucht Insert zu machen!");
                 dataSource.createKindDatensatz(name.getText().toString(), geburtstag.getText().toString());
+                List<DbKindDatensatz> l = dataSource.getKindListe();
+                Log.d(LOG_TAG, l.toString());
             }
         }
     }
