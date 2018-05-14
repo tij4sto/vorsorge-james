@@ -19,7 +19,9 @@ public class ChildSelectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.dataSource = new dbAccess(this);
         List<DbKindDatensatz> kinderListe = dataSource.getKindListe();
-        
+        for(DbKindDatensatz kindDatensatz : kinderListe){
+
+        }
     }
 
 
