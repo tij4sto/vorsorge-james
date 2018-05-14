@@ -30,7 +30,6 @@ public class dbHelper extends SQLiteOpenHelper {
         catch (Exception e){
             Log.e(LOG_TAG, "Ein Fehler ist aufgetreten: " + e.getMessage());
         }
-
     }
 
     @Override

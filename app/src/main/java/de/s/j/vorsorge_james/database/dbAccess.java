@@ -21,6 +21,7 @@ public class dbAccess {
     public dbAccess(Context context) {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
         this.dbHelper = new dbHelper(context);
+        this.db = this.dbHelper.getWritableDatabase();
     }
 
     public  void open(){

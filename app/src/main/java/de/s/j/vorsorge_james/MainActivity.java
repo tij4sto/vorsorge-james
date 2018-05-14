@@ -1,13 +1,16 @@
 package de.s.j.vorsorge_james;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ListView;
 
 import java.util.Calendar;
 import java.util.List;
@@ -28,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         dataSource = new dbAccess(this);
-        initDateSetter();
+        this.initDateSetter();
 
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
@@ -74,7 +77,21 @@ public class MainActivity extends AppCompatActivity {
                 dataSource.createKindDatensatz(name.getText().toString(), geburtstag.getText().toString());
                 List<DbKindDatensatz> l = dataSource.getKindListe();
                 Log.d(LOG_TAG, l.toString());
+                kindAuswahlActivity();
             }
         }
+    }
+
+    private void zeigeKinder(){
+        List<DbKindDatensatz> kinder = dataSource.getKindListe();
+        ArrayAdapter<DbKindDatensatz> kinderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, kinder);
+
+        //ListView kinderListe = (ListView) findViewById(R.id.listview_kinder);
+        //kinderListe.setAdapter(kinderAdapter);
+    }
+
+    public void kindAuswahlActivity(){
+        Intent intent = new Intent(MainActivity.this, ChildSelectionActivity.class);
+        MainActivity.this.startActivity(intent);
     }
 }
