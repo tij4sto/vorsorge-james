@@ -82,14 +82,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void zeigeKinder(){
-        List<DbKindDatensatz> kinder = dataSource.getKindListe();
-        ArrayAdapter<DbKindDatensatz> kinderAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_multiple_choice, kinder);
-
-        //ListView kinderListe = (ListView) findViewById(R.id.listview_kinder);
-        //kinderListe.setAdapter(kinderAdapter);
-    }
-
     public void kindAuswahlActivity(){
         Intent intent = new Intent(MainActivity.this, ChildSelectionActivity.class);
         MainActivity.this.startActivity(intent);
