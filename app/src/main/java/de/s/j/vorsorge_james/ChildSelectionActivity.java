@@ -17,6 +17,7 @@ public class ChildSelectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_child_selection);
         this.dataSource = new dbAccess(this);
         List<DbKindDatensatz> kinderListe = dataSource.getKindListe();
         for(DbKindDatensatz kindDatensatz : kinderListe){
