@@ -35,10 +35,11 @@
     </style>
 
     <style name="AltButton">
-        <item name="android:textSize">14dp</item>
+        <item name="android:textSize">24dp</item>
         <item name="android:width">300dp</item>
         <item name="android:height">100dp</item>
         <item name="android:background">@drawable/button_background</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

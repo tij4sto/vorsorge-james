@@ -53,7 +53,7 @@ class ListViewChildren {
             // ChildButton buttonKind = new ChildButton(kindDatensatz, context);
            // ChildButton2 buttonKind = new ChildButton2(idGen++, kindDatensatz, context);
             //Button buttonKind = new Button(context, null, R.style.altButton);
-            Button buttonKind = new Button(new ContextThemeWrapper(context, R.style.AltButton), null, -1);
+            Button buttonKind = new Button(new ContextThemeWrapper(context, R.style.AltButton), null, 0);
             buttonKind.setId(idGen++);
             buttonKind.setText(kindDatensatz.getName());
 
