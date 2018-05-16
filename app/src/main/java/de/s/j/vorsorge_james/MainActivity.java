@@ -6,15 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 
 import java.util.Calendar;
 import java.util.List;
 
+import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.dbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
@@ -40,6 +39,13 @@ public class MainActivity extends AppCompatActivity {
                 createOnButtonClick();
             }
         });
+
+        ////
+
+        kindAuswahlActivity();
+
+        ///
+
     }
 
     public void initDateSetter(){

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context=".ChildSelectionActivity">
+    tools:context=".childSelectionActivity.ChildSelectionActivity">
 
     <!-- Title Bar -->
 
@@ -50,7 +50,7 @@
 
 
             <android.support.constraint.ConstraintLayout
-                android:id="@+id/ChildrenList_Container"
+                android:id="@+id/childrenList_Container"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="32dp"
@@ -62,54 +62,77 @@
 
                 <TextView
                     style="@style/ActivityTitle"
-                    android:id="@+id/Activity_Title"
+                    android:id="@+id/ChildSelectionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:text="@string/childSelection_title"
+
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
-                <Button
+      <!--         <android.support.v7.widget.AppCompatButton
                     android:id="@+id/childselection_sampleChildButton1"
                     style="@style/ChildSelectionButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="@string/child_sampleName"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/Activity_Title" />
+                    app:layout_constraintTop_toBottomOf="@+id/ChildSelectionTitle" />
 
-                <Button
+                <android.support.v7.widget.AppCompatButton
                     android:id="@+id/button5"
                     style="@style/ChildSelectionButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@string/child_sampleName2"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/childselection_sampleChildButton1" />
+
+                <android.support.constraint.ConstraintLayout
+                    android:id="@+id/sampleContraintButton"
+                    style="@style/ChildSelectionButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/button5">
+
+                    <TextView
+                        android:id="@+id/buttonTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="24dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="24dp"
+                        android:text="TextView"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
+-->
 
             </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
 
 
     </ScrollView>
-
+<!--
     <ListView
         android:id="@+id/listview_kinder"
         android:layout_width="269dp"
         android:layout_height="129dp"
         tools:layout_editor_absoluteX="66dp"
         tools:layout_editor_absoluteY="430dp" />
-
+-->
 </android.support.constraint.ConstraintLayout>
