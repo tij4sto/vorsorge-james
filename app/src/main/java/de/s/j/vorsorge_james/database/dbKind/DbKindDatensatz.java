@@ -14,7 +14,7 @@ public class DbKindDatensatz {
         this.datum = datum;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
