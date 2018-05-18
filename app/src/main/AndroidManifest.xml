@@ -22,7 +22,6 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
 
         <activity
             android:name=".childActivity.ChildActivity"
@@ -31,8 +30,6 @@
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-=======
->>>>>>> parent of aaa47ac... Merge branch 'Dev-Jannis' into dev-frieder
     </application>
 
 </manifest>
