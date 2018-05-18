@@ -11,11 +11,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -40,15 +43,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //Log.d(LOG_TAG, "Löschen \n" + dataSource.getKindListe().toString());
-
-
-        ////
-
-        // kindAuswahlActivity();
-
-        ///
-
+        Calendar c = new GregorianCalendar();
+        c.set(2018,1,18);
+        DbKindDatensatz kind = new DbKindDatensatz(1, "Jannis", c.getTime());
+        List<DbUntersuchungTyp> l = DbUntersuchungTyp.checkKindBrauchtUntersuchung(kind);
     }
 
     public void initDateSetter(){

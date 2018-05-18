@@ -1,5 +1,6 @@
 package de.s.j.vorsorge_james.database.dbKind;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class DbKindDatensatz {
@@ -15,7 +16,7 @@ public class DbKindDatensatz {
     }
 
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {
@@ -23,7 +24,7 @@ public class DbKindDatensatz {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String name) {
@@ -31,7 +32,7 @@ public class DbKindDatensatz {
     }
 
     public Date getDatum() {
-        return datum;
+        return this.datum;
     }
 
     public void setDatum(Date datum) {

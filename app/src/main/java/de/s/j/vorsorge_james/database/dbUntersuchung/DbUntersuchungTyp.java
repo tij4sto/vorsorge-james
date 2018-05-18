@@ -1,6 +1,10 @@
 package de.s.j.vorsorge_james.database.dbUntersuchung;
 
+import android.util.Log;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
@@ -37,7 +41,24 @@ public enum DbUntersuchungTyp {
     public int getTageVon() { return this.tageVon; }
     public int getTageBis() { return this.tageBis; }
 
-    //public List<DbUntersuchungTyp> checkKindBrauchtUntersuchung(DbKindDatensatz kind){
+    public static List<DbUntersuchungTyp> checkKindBrauchtUntersuchung(DbKindDatensatz kind){
+        List<DbUntersuchungTyp> untersuchungen = new ArrayList<>();
 
-    //}
+        Date geburtstag = kind.getDatum();
+        Date heute = new Date();
+        long alter = heute.getTime() - geburtstag.getTime();
+        alter = alter/ 1000 / 60 / 60 / 24;
+
+        Log.d("Liste", "" + alter);
+
+        for(DbUntersuchungTyp typ : DbUntersuchungTyp.values()){
+            if(alter <= typ.tageVon){
+                if((alter + 20) >= typ.tageVon){
+                    untersuchungen.add(typ);
+                }
+            }
+        }
+
+        return untersuchungen;
+    }
 }
