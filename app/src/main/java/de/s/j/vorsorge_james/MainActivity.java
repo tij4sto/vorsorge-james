@@ -45,9 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
         ////
 
-        // kindAuswahlActivity();
+         kindAuswahlActivity();
 
         ///
+
+
 
     }
 

@@ -23,7 +23,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".childActivity.ChildActivity">
+        <activity
+            android:name=".childActivity.ChildActivity"
+            android:launchMode="singleInstance">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
