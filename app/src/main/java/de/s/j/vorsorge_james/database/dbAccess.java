@@ -35,6 +35,19 @@ public class dbAccess {
         Log.d(LOG_TAG, "Verbindung mittels Access-Worker zur Datenbank geschlossen.");
     }
 
+    public boolean deleteKindDatensatz(int id){
+        try {
+            Log.d(LOG_TAG, "Löschen funktioniert "+ this.db.delete("kind",  "_id="+id, null));
+            return true;
+        }
+
+        catch (Exception e) {
+            Log.d(LOG_TAG, "Löschen nicht geklappt! " + e.getMessage());
+            return false;
+        }
+
+    }
+
     public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
         this.open();
         ContentValues values = new ContentValues();

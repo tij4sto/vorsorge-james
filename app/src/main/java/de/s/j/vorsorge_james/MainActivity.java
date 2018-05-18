@@ -40,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Log.d(LOG_TAG, "Löschen \n" + dataSource.getKindListe().toString());
+
+
         ////
 
         // kindAuswahlActivity();

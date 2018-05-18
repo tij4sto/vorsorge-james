@@ -1,6 +1,6 @@
 package de.s.j.vorsorge_james.database;
 
-public enum Typ {
+public enum DbTyp {
     KIND(
             "CREATE TABLE Kind(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, geburtstag TEXT NOT NULL);"
     ),
@@ -13,7 +13,7 @@ public enum Typ {
 
     private String s;
 
-    Typ(String s){
+    DbTyp(String s){
         this.s = s;
     }
 
