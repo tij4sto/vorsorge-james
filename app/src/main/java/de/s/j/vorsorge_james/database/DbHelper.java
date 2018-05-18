@@ -5,13 +5,13 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class dbHelper extends SQLiteOpenHelper {
+public class DbHelper extends SQLiteOpenHelper {
 
-    public static final String LOG_TAG = dbHelper.class.getSimpleName();
+    public static final String LOG_TAG = DbHelper.class.getSimpleName();
     public static final String DB_NAME = "vorsorge-james.db";
     public static final int DB_VERSION = 1;
 
-    public dbHelper(Context context){
+    public DbHelper(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
 

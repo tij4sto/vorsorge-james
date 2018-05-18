@@ -3,16 +3,14 @@ package de.s.j.vorsorge_james.childSelectionActivity;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-import android.text.Layout;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.database.dbAccess;
+import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 /**
@@ -23,7 +21,7 @@ import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 class ListViewChildren {
 
-    private dbAccess dataSource;
+    private DbAccess dataSource;
     private Context context;
     private ConstraintLayout layout;
 
@@ -34,7 +32,7 @@ class ListViewChildren {
      * @param context
      * @param layout
      */
-    ListViewChildren(dbAccess dataSource, Context context, ConstraintLayout layout){
+    ListViewChildren(DbAccess dataSource, Context context, ConstraintLayout layout){
         this.dataSource = dataSource;
         this.context = context;
         this.layout = layout;
