@@ -3,9 +3,12 @@ package de.s.j.vorsorge_james.childSelectionActivity;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+<<<<<<< HEAD
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
+=======
+>>>>>>> parent of aaa47ac... Merge branch 'Dev-Jannis' into dev-frieder
 
 import java.util.List;
 

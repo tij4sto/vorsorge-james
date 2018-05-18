@@ -14,14 +14,14 @@ import java.util.Calendar;
 import java.util.List;
 
 import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
-import de.s.j.vorsorge_james.database.DbAccess;
+import de.s.j.vorsorge_james.database.dbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
     
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
-    private DbAccess dataSource;
+    private dbAccess dataSource;
 
 
     @Override
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dataSource = new DbAccess(this);
+        dataSource = new dbAccess(this);
         this.initDateSetter();
 
         Button button = findViewById(R.id.button);
@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
                 createOnButtonClick();
             }
         });
-
-        //Log.d(LOG_TAG, "Löschen \n" + dataSource.getKindListe().toString());
-
 
         ////
 

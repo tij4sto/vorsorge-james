@@ -12,40 +12,27 @@ import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
-public class DbAccess {
-    private static final String LOG_TAG = DbAccess.class.getSimpleName();
+public class dbAccess {
+    private static final String LOG_TAG = dbAccess.class.getSimpleName();
 
     private SQLiteDatabase db;
-    private DbHelper DbHelper;
+    private dbHelper dbHelper;
 
-    public DbAccess(Context context) {
-        Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den DbHelper.");
-        this.DbHelper = new DbHelper(context);
-        this.db = this.DbHelper.getWritableDatabase();
+    public dbAccess(Context context) {
+        Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den dbHelper.");
+        this.dbHelper = new dbHelper(context);
+        this.db = this.dbHelper.getWritableDatabase();
     }
 
     public  void open(){
         Log.d(LOG_TAG, "Datenbank Instanz wird angefragt.");
-        this.db = this.DbHelper.getWritableDatabase();
+        this.db = this.dbHelper.getWritableDatabase();
         Log.d(LOG_TAG, "Datenbank Referenz erhalten. Pfad: " + this.db.getPath());
     }
 
     public void close(){
-        DbHelper.close();
+        dbHelper.close();
         Log.d(LOG_TAG, "Verbindung mittels Access-Worker zur Datenbank geschlossen.");
-    }
-
-    public boolean deleteKindDatensatz(int id){
-        try {
-            Log.d(LOG_TAG, "Löschen funktioniert "+ this.db.delete("kind",  "_id="+id, null));
-            return true;
-        }
-
-        catch (Exception e) {
-            Log.d(LOG_TAG, "Löschen nicht geklappt! " + e.getMessage());
-            return false;
-        }
-
     }
 
     public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
