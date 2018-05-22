@@ -6,6 +6,7 @@ import android.support.constraint.ConstraintSet;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
+import android.view.View;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ class ListViewChildren {
             ChildButton buttonKind = new ChildButton(kindDatensatz, context);
             buttonKind.setId(idGen++);
            /* Button buttonKind = new Button(new ContextThemeWrapper(context, R.style.AltButton), null, 0);
+
             buttonKind.setId(idGen++);
             buttonKind.setText(kindDatensatz.getName());*/
             addToLayout(viewToConnectTo, buttonKind);
