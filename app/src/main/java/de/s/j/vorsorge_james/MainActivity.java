@@ -43,10 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Calendar c = new GregorianCalendar();
-        c.set(2018,1,18);
-        DbKindDatensatz kind = new DbKindDatensatz(1, "Jannis", c.getTime());
-        List<DbUntersuchungTyp> l = DbUntersuchungTyp.checkKindBrauchtUntersuchung(kind);
+        Log.d("Hallo", dataSource.getKindListe().toString());
     }
 
     public void initDateSetter(){

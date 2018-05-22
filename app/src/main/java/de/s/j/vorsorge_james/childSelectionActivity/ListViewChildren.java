@@ -3,13 +3,10 @@ package de.s.j.vorsorge_james.childSelectionActivity;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
-<<<<<<< HEAD
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.widget.Button;
-=======
 import android.view.View;
->>>>>>> dev-frieder
 
 import java.util.List;
 
@@ -51,7 +48,7 @@ class ListViewChildren {
 
         int idGen = 1000;
         for(DbKindDatensatz kindDatensatz : listKinder){
-             ChildButton buttonKind = new ChildButton(kindDatensatz, context);
+            ChildButton buttonKind = new ChildButton(kindDatensatz, context);
             buttonKind.setId(idGen++);
             addToLayout(viewToConnectTo, buttonKind);
             viewToConnectTo = buttonKind;
