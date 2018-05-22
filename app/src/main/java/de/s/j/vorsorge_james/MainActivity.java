@@ -10,20 +10,14 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 
 import de.s.j.vorsorge_james.addChildActivity.AddChildActivity;
 import de.s.j.vorsorge_james.childActivity.ChildActivity;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -39,14 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         dataSource = new DbAccess(this);
         this.initDateSetter();
-      //  setListener();
-        kindAuswahlActivity();
 
-
-        Log.d("Hallo", dataSource.getKindListe().toString());
-    }
-
-    private void setListener(){
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,45 +49,28 @@ public class MainActivity extends AppCompatActivity {
         ///
 
 
-        Button button2 = findViewById(R.id.uebersicht);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                kindAuswahlActivity();
-            }
-        });
     }
 
     public void initDateSetter(){
-        final Calendar c = Calendar.getInstance();
-        final EditText et = (EditText) findViewById(R.id.geburtstag);
-        final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                c.set(Calendar.YEAR, year);
-                c.set(Calendar.MONTH, month);
-                c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel(et, c);
-            }
-        };
+        final EditText alter = findViewById(R.id.geburtstag);
+        int year, month, day;
+        final Calendar kalendar = Calendar.getInstance();
 
-        et.setOnClickListener(new View.OnClickListener() {
+        alter.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                new DatePickerDialog(
-                        MainActivity.this, date,
-                        c.get(Calendar.YEAR),
-                        c.get(Calendar.MONTH),
-                        c.get(Calendar.DAY_OF_MONTH)).show();
+                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        alter.setText(dayOfMonth + "/" + month + "/" + year);
+                    }
+
+                }, kalendar.get(Calendar.YEAR) , kalendar.get(Calendar.MONTH), kalendar.get(Calendar.DAY_OF_MONTH));
+                datePickerDialog.show();
             }
         });
-    }
-
-    private void updateLabel(EditText et, Calendar c) {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
-
-        et.setText(sdf.format(c.getTime()));
     }
 
     public void createOnButtonClick(){
@@ -122,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void kindAuswahlActivity(){
-        Intent intent = new Intent(MainActivity.this, ChildListViewActivity.class);
+        Intent intent = new Intent(MainActivity.this, ChildSelectionActivity.class);
         MainActivity.this.startActivity(intent);
 
       /*  Intent openIntent = new Intent(MainActivity.this, AddChildActivity.class);

@@ -17,12 +17,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".childListViewActivity.ChildListViewActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <activity android:name=".childSelectionActivity.ChildSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
