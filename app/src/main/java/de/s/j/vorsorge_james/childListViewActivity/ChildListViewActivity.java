@@ -34,7 +34,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         int i = lv.getId();
 
         ArrayAdapter<DbKindDatensatz> kinderAdapter = new ArrayAdapter<>(
-                this, android.R.layout.activity_list_item, kinder
+                this, android.R.layout.simple_list_item_1, kinder
         );
 
         lv.setAdapter(kinderAdapter);
