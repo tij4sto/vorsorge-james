@@ -3,7 +3,9 @@ package de.s.j.vorsorge_james.childSelectionActivity;
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
 import android.support.constraint.ConstraintSet;
+import android.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Button;
 
 import java.util.List;
 
@@ -27,8 +29,8 @@ class ListViewChildren {
      *
      * @param dataSource Access to a database from which the List View will
      *                   get children to display.
-     * @param context Context of the ListView to be run in
-     * @param layout Constraint Layout containing the ListView
+     * @param context
+     * @param layout
      */
     ListViewChildren(DbAccess dataSource, Context context, ConstraintLayout layout){
         this.dataSource = dataSource;
@@ -39,7 +41,7 @@ class ListViewChildren {
     /**
      *  Gets children from the connected database and displays them in the List View
      */
-    void loadChildren(){
+    final void loadChildren(){
         List<DbKindDatensatz> listKinder = dataSource.getKindListe();
         View viewToConnectTo = layout.getViewById(R.id.ChildSelectionTitle);
 
@@ -47,6 +49,9 @@ class ListViewChildren {
         for(DbKindDatensatz kindDatensatz : listKinder){
             ChildButton buttonKind = new ChildButton(kindDatensatz, context);
             buttonKind.setId(idGen++);
+           /* Button buttonKind = new Button(new ContextThemeWrapper(context, R.style.AltButton), null, 0);
+            buttonKind.setId(idGen++);
+            buttonKind.setText(kindDatensatz.getName());*/
             addToLayout(viewToConnectTo, buttonKind);
             viewToConnectTo = buttonKind;
         }
@@ -57,7 +62,7 @@ class ListViewChildren {
      * @param viewToConnectTo View on top of the button, which the button is to connect to
      * @param buttonKind ChildButton that is to be added to the layout
      */
-    private void addToLayout(View viewToConnectTo, ChildButton buttonKind) {
+    private void addToLayout(View viewToConnectTo, Button buttonKind) {
         ConstraintSet constraintSet = new ConstraintSet();
         layout.addView(buttonKind);
         constraintSet.clone(layout);
