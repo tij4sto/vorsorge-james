@@ -29,6 +29,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".hallo.Hallo">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".childActivity.ChildActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
