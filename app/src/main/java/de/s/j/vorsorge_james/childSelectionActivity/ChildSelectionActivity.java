@@ -1,5 +1,6 @@
 package de.s.j.vorsorge_james.childSelectionActivity;
 
+import android.content.Intent;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.addChildActivity.AddChildActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
@@ -32,22 +35,32 @@ public class ChildSelectionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_child_selection);
         this.dataSource = new DbAccess(this);
 
-        ArrayList<DbKindDatensatz> listChildren = new ArrayList<>(dataSource.getKindListe());
+     /*   ArrayList<DbKindDatensatz> listChildren = new ArrayList<>(dataSource.getKindListe());
         CustomAdapter adapter = new CustomAdapter(listChildren);
         ListView listView = findViewById(R.id.sample);
-        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);*/
 
 
 
       /*  ArrayAdapter<DbKindDatensatz> adapter = new ArrayAdapter<DbKindDatensatz>(this, R.layout.sample, R.id.sample, listChildren);
         ListView listView = findViewById(R.id.sample);
         listView.setAdapter(adapter);
+*/
 
-/*
         ConstraintLayout layout = findViewById(R.id.childrenList_Container);
         listViewChildren = new ListViewChildren(dataSource, this, layout);
         listViewChildren.loadChildren();
-*/
+
+        Button addChildButton = findViewById(R.id.addChildButton);
+        addChildButton.setOnClickListener(new Button.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent openIntent = new Intent(ChildSelectionActivity.this, AddChildActivity.class);
+                ChildSelectionActivity.this.startActivity(openIntent);
+            }
+        });
+
 
       //  zeigeKinder();
     }

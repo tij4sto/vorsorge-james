@@ -13,6 +13,8 @@ import android.widget.EditText;
 import java.util.Calendar;
 import java.util.List;
 
+import de.s.j.vorsorge_james.addChildActivity.AddChildActivity;
+import de.s.j.vorsorge_james.childActivity.ChildActivity;
 import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
@@ -42,10 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
         ////
 
-         kindAuswahlActivity();
+        kindAuswahlActivity();
 
         ///
-
 
 
     }
@@ -93,5 +94,8 @@ public class MainActivity extends AppCompatActivity {
     public void kindAuswahlActivity(){
         Intent intent = new Intent(MainActivity.this, ChildSelectionActivity.class);
         MainActivity.this.startActivity(intent);
+
+      /*  Intent openIntent = new Intent(MainActivity.this, AddChildActivity.class);
+        MainActivity.this.startActivity(openIntent);*/
     }
 }
