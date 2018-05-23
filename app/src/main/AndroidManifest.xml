@@ -32,12 +32,18 @@
             </intent-filter>
         </activity>
 
+
+        <!-- ADD CHILD ACTIVITY -->
         <activity
             android:name=".addChildActivity.AddChildActivity">
+        </activity>
+
+        <activity android:name=".hallo.Hallo">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
+
     </application>
 
 </manifest>
