@@ -26,7 +26,7 @@ public class Hallo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-     /*   setContentView(R.layout.child_list_view);*/
+        setContentView(R.layout.child_list_view);
         Intent i = getIntent();
         String id = i.getStringExtra("id");
 
