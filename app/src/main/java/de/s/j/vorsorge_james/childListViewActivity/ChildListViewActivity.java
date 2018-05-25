@@ -14,7 +14,7 @@ import java.util.List;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.hallo.Hallo;
+import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -46,7 +46,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), Hallo.class);
+                Intent intent = new Intent(getApplicationContext(), SingleChildView.class);
                 intent.putExtra("id", lv.getItemAtPosition(position).toString());
                 Log.d("LEL1: ", ""+id);
                 getApplicationContext().startActivity(intent);

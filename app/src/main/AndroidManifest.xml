@@ -29,7 +29,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".hallo.Hallo">
+        <activity android:name=".singleChildView.SingleChildView">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
