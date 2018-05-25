@@ -65,10 +65,11 @@ public class DbAccess {
             Log.d(LOG_TAG, "Insert geklappt: " + l);
 
             //Gibt Zeiger von Eintrag zurück (_id = l)
-            Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
-
+            Cursor cursor = db.query("Kind", new String[]{"_id", "name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
+            cursor.moveToFirst();
             //Erstelle Kind-Instanz und gebe sie zurück
             DbKindDatensatz kind = findeKindDatensatz(cursor);
+            cursor.close();
             return kind;
         }
 
@@ -106,8 +107,10 @@ public class DbAccess {
     public DbKindDatensatz findKindById(long i){
         try {
             Log.d(LOG_TAG, "findKindByID: Versuche kind mit ID=" + i + " zu finden");
-            Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + i, null, null, null, null);
+            Cursor cursor = db.query("Kind", new String[]{"_id", "name", "geburtstag"}, "_id" + "=" + i, null, null, null, null);
+            cursor.moveToFirst();
             DbKindDatensatz kind = findeKindDatensatz(cursor);
+            cursor.close();
             if(kind == null) throw new NullPointerException();
             Log.d(LOG_TAG, "Hat geklappt");
             return kind;
