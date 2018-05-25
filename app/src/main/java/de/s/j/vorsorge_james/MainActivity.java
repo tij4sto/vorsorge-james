@@ -12,16 +12,12 @@ import android.widget.EditText;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 
 import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
-import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 public class MainActivity extends AppCompatActivity {
     
@@ -29,27 +25,22 @@ public class MainActivity extends AppCompatActivity {
 
     private DbAccess dataSource;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
-
         dataSource = new DbAccess(this);
-        this.initDateSetter();
-        setListener();
-
-
-
-        Log.d("Hallo", dataSource.getKindListe().toString());
+        this.init();
     }
 
-    private void setListener(){
+    private void init(){
+        this.setCalenderFunctions();
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createOnButtonClick();
+                writeKindIntoDbAfterButtonClick();
             }
         });
 
@@ -57,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                kindAuswahlActivity();
+                changeActivityToAuswahlKind();
             }
         });
     }
 
-    public void initDateSetter(){
+    public void setCalenderFunctions(){
         final Calendar c = Calendar.getInstance();
         final EditText et = (EditText) findViewById(R.id.geburtstag);
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -94,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
         et.setText(sdf.format(c.getTime()));
     }
 
-    public void createOnButtonClick(){
+    public void writeKindIntoDbAfterButtonClick(){
         Log.d(LOG_TAG, "Die Datenquelle wird in CreateButton() geöffnet.");
         dataSource.open();
 
@@ -107,12 +98,12 @@ public class MainActivity extends AppCompatActivity {
                 dataSource.createKindDatensatz(name.getText().toString(), geburtstag.getText().toString());
                 List<DbKindDatensatz> l = dataSource.getKindListe();
                 Log.d(LOG_TAG, l.toString());
-                kindAuswahlActivity();
+                changeActivityToAuswahlKind();
             }
         }
     }
 
-    public void kindAuswahlActivity(){
+    public void changeActivityToAuswahlKind(){
         Intent intent = new Intent(MainActivity.this, ChildListViewActivity.class);
         MainActivity.this.startActivity(intent);
     }

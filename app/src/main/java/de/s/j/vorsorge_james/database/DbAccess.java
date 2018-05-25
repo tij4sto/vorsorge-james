@@ -49,16 +49,25 @@ public class DbAccess {
     }
 
     public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
+        //Zugriff auf Datenbank öffnen
         this.open();
+
+        //zu speichernde Werte als Paket zusammenfassen
         ContentValues values = new ContentValues();
         values.put("name", name);
         values.put("geburtstag", geburtstag);
 
-        Log.d(LOG_TAG, "Worker versucht Insert in DB!");
+        Log.d(LOG_TAG, " createKindDatensatz() versucht Insert in DB!");
+
         try {
+            //Versuche Werte in DB eintragen. Gibt _id zurück.
             long l = db.insert("Kind", null, values);
             Log.d(LOG_TAG, "Insert geklappt: " + l);
+
+            //Gibt Zeiger von Eintrag zurück (_id = l)
             Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
+
+            //Erstelle Kind-Instanz und gebe sie zurück
             DbKindDatensatz kind = findeKindDatensatz(cursor);
             return kind;
         }
@@ -72,10 +81,13 @@ public class DbAccess {
     private DbKindDatensatz findeKindDatensatz(Cursor c){
         try {
             Log.d(LOG_TAG, "findeKindDatensatz() versucht Eintrag mit Cursor zu finden.");
+
+            //Cursor holt sich ID, Name und Geburtstag aus Tabelle als Indizes
             int idId = c.getColumnIndex("_id");
             int idName = c.getColumnIndex("name");
             int idGeburtstag = c.getColumnIndex("geburtstag");
 
+            //Speichern von Cursor Daten als konkrete Daten
             String name = c.getString(idName);
             String geburtstag = c.getString(idGeburtstag);
             int id = c.getInt(idId);
