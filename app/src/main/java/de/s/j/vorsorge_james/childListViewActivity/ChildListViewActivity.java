@@ -3,6 +3,7 @@ package de.s.j.vorsorge_james.childListViewActivity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,10 +48,9 @@ public class ChildListViewActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), Hallo.class);
                 intent.putExtra("id", lv.getItemAtPosition(position).toString());
+                Log.d("LEL1: ", ""+id);
                 getApplicationContext().startActivity(intent);
             }
         });
     }
-
-
 }

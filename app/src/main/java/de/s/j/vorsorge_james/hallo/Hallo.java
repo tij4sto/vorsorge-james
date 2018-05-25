@@ -7,7 +7,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -26,9 +28,12 @@ public class Hallo extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.child_list_view);
+        setContentView(R.layout.activity_single_child_view);
         Intent i = getIntent();
         String id = i.getStringExtra("id");
+
+        TextView et = (TextView) findViewById(R.id.name);
+        et.setText(id);
 
         Log.d("LEL", id);
     }
