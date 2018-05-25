@@ -19,20 +19,7 @@ public class ChildActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_selection);
         this.dataSource = new DbAccess(this);
-<<<<<<< HEAD
 
-=======
-        this.deleteChildButton = findViewById(R.id.deleteButton);
-        this.deleteChildButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dataSource.deleteKindDatensatz(currentChild.getId());
-                finish();
-            }
-        });
-        TextView t = findViewById(R.id.childActivityTitle);
-        t.setText(currentChild.getName());
->>>>>>> dev-frieder
     }
 
 

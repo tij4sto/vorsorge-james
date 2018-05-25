@@ -33,13 +33,7 @@ class ChildButton extends android.support.v7.widget.AppCompatButton {
     }
 
     private void openChildActivity(){
-<<<<<<< HEAD
         // TODO: OPEN THAT ACTIVITY!!!
-=======
-        ChildActivity.currentChild = datensatz;
-        Intent intent = new Intent(context, ChildActivity.class);
-        context.startActivity(intent);
->>>>>>> dev-frieder
     }
 
 }

@@ -18,15 +18,6 @@
         </activity>
 
         <activity android:name=".childListViewActivity.ChildListViewActivity">
-<<<<<<< HEAD
-=======
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-        <activity android:name=".childSelectionActivity.ChildSelectionActivity">
->>>>>>> dev-frieder
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
@@ -38,7 +29,6 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
         <activity android:name=".hallo.Hallo">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -46,20 +36,10 @@
         </activity>
 
         <activity android:name=".childActivity.ChildActivity">
-=======
-
-        <!-- ADD CHILD ACTIVITY -->
-        <activity
-            android:name=".addChildActivity.AddChildActivity">
-        </activity>
-
-        <activity android:name=".hallo.Hallo">
->>>>>>> dev-frieder
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

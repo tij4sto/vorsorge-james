@@ -20,7 +20,7 @@ import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 public class MainActivity extends AppCompatActivity {
-
+    
     public static final String LOG_TAG = MainActivity.class.getSimpleName();
 
     private DbAccess dataSource;
