@@ -103,6 +103,22 @@ public class DbAccess {
         }
     }
 
+    public DbKindDatensatz findKindById(long i){
+        try {
+            Log.d(LOG_TAG, "findKindByID: Versuche kind mit ID=" + i + " zu finden");
+            Cursor cursor = db.query("Kind", new String[]{"name", "geburtstag"}, "_id" + "=" + i, null, null, null, null);
+            DbKindDatensatz kind = findeKindDatensatz(cursor);
+            if(kind == null) throw new NullPointerException();
+            Log.d(LOG_TAG, "Hat geklappt");
+            return kind;
+        }
+
+        catch (Exception e){
+            Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
+            return null;
+        }
+    }
+
     public List<DbKindDatensatz> getKindListe(){
         List<DbKindDatensatz> kinder = new ArrayList<>();
 
