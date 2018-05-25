@@ -24,12 +24,15 @@
         </activity>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".childActivity.ChildActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
+=======
+>>>>>>> parent of 71814fa... u2d
         <activity android:name=".childSelectionActivity.ChildSelectionActivity">
 =======
         <activity
@@ -43,7 +46,11 @@
         </activity>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         <activity android:name=".singleChildActivity.singleChildActivity">
+=======
+        <activity android:name=".hallo.Hallo">
+>>>>>>> parent of 71814fa... u2d
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
