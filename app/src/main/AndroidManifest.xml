@@ -17,57 +17,25 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".childListViewActivity.ChildListViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".childSelectionActivity.ChildSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <activity android:name=".childActivity.ChildActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-=======
->>>>>>> parent of 71814fa... u2d
-=======
->>>>>>> parent of 71814fa... u2d
-        <activity android:name=".childSelectionActivity.ChildSelectionActivity">
-=======
-        <activity
-            android:name=".childActivity.ChildActivity">
-        <!--    android:launchMode="singleInstance"-->
-
->>>>>>> dev-frieder
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <activity android:name=".singleChildActivity.singleChildActivity">
-=======
         <activity android:name=".hallo.Hallo">
->>>>>>> parent of 71814fa... u2d
-=======
-        <activity android:name=".hallo.Hallo">
->>>>>>> parent of 71814fa... u2d
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity android:name=".childActivity.ChildActivity">
-=======
-        <activity
-            android:name=".addChildActivity.AddChildActivity">
->>>>>>> dev-frieder
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>

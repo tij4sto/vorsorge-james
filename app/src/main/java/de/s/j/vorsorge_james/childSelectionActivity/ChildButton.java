@@ -1,13 +1,13 @@
 package de.s.j.vorsorge_james.childSelectionActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.support.v7.view.ContextThemeWrapper;
 import android.view.View;
+import android.widget.Button;
 
-import de.s.j.vorsorge_james.MainActivity;
+import java.time.LocalDate;
+
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.childActivity.ChildActivity;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
 /**
@@ -18,14 +18,12 @@ class ChildButton extends android.support.v7.widget.AppCompatButton {
 
     private static int styleID = R.style.AltButton;
 
-    private DbKindDatensatz datensatz;
-    private Context context;
+    private int childID;
 
     ChildButton(DbKindDatensatz datensatz, Context context){
         super(new ContextThemeWrapper(context, styleID), null, 0);
         setText(datensatz.getName());
-        this.datensatz = datensatz;
-        this.context = context;
+        this.childID = datensatz.getId();
         setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -35,9 +33,6 @@ class ChildButton extends android.support.v7.widget.AppCompatButton {
     }
 
     private void openChildActivity(){
-        ChildActivity.currentChild = datensatz;
-        Intent intent = new Intent(context, ChildActivity.class);
-        context.startActivity(intent);
         // TODO: OPEN THAT ACTIVITY!!!
     }
 

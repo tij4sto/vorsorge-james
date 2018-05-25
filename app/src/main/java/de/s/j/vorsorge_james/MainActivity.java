@@ -10,13 +10,12 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
-import de.s.j.vorsorge_james.addChildActivity.AddChildActivity;
-import de.s.j.vorsorge_james.childActivity.ChildActivity;
-import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
@@ -37,8 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void init(){
         this.setCalenderFunctions();
-        this.initDateSetter();
-
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,32 +66,23 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        kindAuswahlActivity();
-
-
-    }
-
-    public void initDateSetter(){
-        final EditText alter = findViewById(R.id.geburtstag);
-        int year, month, day;
-        final Calendar kalendar = Calendar.getInstance();
-
-        alter.setOnClickListener(new View.OnClickListener() {
->>>>>>> dev-frieder
-
+        et.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        alter.setText(dayOfMonth + "/" + month + "/" + year);
-                    }
-
-                }, kalendar.get(Calendar.YEAR) , kalendar.get(Calendar.MONTH), kalendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
+                new DatePickerDialog(
+                        MainActivity.this, date,
+                        c.get(Calendar.YEAR),
+                        c.get(Calendar.MONTH),
+                        c.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
+    }
+
+    private void updateLabel(EditText et, Calendar c) {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
+
+        et.setText(sdf.format(c.getTime()));
     }
 
     public void writeKindIntoDbAfterButtonClick(){
@@ -117,11 +105,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void changeActivityToAuswahlKind(){
         Intent intent = new Intent(MainActivity.this, ChildListViewActivity.class);
-    public void kindAuswahlActivity(){
-        Intent intent = new Intent(MainActivity.this, ChildSelectionActivity.class);
         MainActivity.this.startActivity(intent);
-
-      /*  Intent openIntent = new Intent(MainActivity.this, AddChildActivity.class);
-        MainActivity.this.startActivity(openIntent);*/
     }
 }
