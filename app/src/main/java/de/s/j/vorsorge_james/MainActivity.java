@@ -35,16 +35,13 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         dataSource = new DbAccess(this);
-<<<<<<< HEAD
         this.init();
     }
 
     private void init(){
         this.setCalenderFunctions();
-=======
         this.initDateSetter();
 
->>>>>>> dev-frieder
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-<<<<<<< HEAD
         Button button2 = findViewById(R.id.uebersicht);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
