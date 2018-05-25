@@ -11,9 +11,9 @@ import android.widget.ListView;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.childActivity.ChildActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.hallo.Hallo;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -34,8 +34,9 @@ public class ChildListViewActivity extends AppCompatActivity {
     private void showChildren(){
         List<DbKindDatensatz> kinder = dataSource.getKindListe();
 
+        //Erzeuge ListView mit Kindereinträgen
         final ListView lv = (ListView) findViewById(R.id.children_list);
-        int i = lv.getId();
+        final int i = lv.getId();
 
         final ArrayAdapter<DbKindDatensatz> kinderAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, kinder
@@ -45,7 +46,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), Hallo.class);
+                Intent intent = new Intent(getApplicationContext(), ChildActivity.class);
                 intent.putExtra("id", lv.getItemAtPosition(position).toString());
                 getApplicationContext().startActivity(intent);
             }
