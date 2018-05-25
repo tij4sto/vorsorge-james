@@ -3,4 +3,8 @@
     <string name="childSelection_title">Ihre Kinder</string>
     <string name="child_sampleName">Name eines Kindes</string>
     <string name="child_sampleName2">Name eines anderen Kindes</string>
+    <string name="namePlaceholder">Name des Kindes</string>
+    <string name="birthdayPlaceholder">Geburtstag des Kindes</string>
+    <string name="submitChildLabel">Kind speichern</string>
+    <string name="deleteChildLabel">Kind löschen</string>
 </resources>

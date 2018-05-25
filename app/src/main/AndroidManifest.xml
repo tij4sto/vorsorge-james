@@ -17,12 +17,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".childListViewActivity.ChildListViewActivity">
+        <activity android:name=".childSelectionActivity.ChildSelectionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
         <activity android:name=".childActivity.ChildActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -30,11 +31,18 @@
         </activity>
 
         <activity android:name=".childSelectionActivity.ChildSelectionActivity">
+=======
+        <activity
+            android:name=".childActivity.ChildActivity">
+        <!--    android:launchMode="singleInstance"-->
+
+>>>>>>> dev-frieder
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
+<<<<<<< HEAD
         <activity android:name=".singleChildActivity.singleChildActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
@@ -42,6 +50,10 @@
         </activity>
 
         <activity android:name=".childActivity.ChildActivity">
+=======
+        <activity
+            android:name=".addChildActivity.AddChildActivity">
+>>>>>>> dev-frieder
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
