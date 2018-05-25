@@ -1,19 +1,17 @@
 package de.s.j.vorsorge_james.addChildActivity;
 
-import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.childSelectionActivity.ChildSelectionActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 
 /**
@@ -22,7 +20,8 @@ import de.s.j.vorsorge_james.database.DbAccess;
 
 public final class AddChildActivity extends AppCompatActivity {
 
-    private EditText nameTextField, birthdayTextField;
+    EditText nameTextField, birthdayTextField;
+    private CustomDatePickerDialog datePickerDialog;
 
     private DbAccess dbAccess;
 
@@ -35,64 +34,47 @@ public final class AddChildActivity extends AppCompatActivity {
     }
 
     private void setupFields(){
-        birthdayTextField = findViewById(R.id.inputBirthdayChild);
-        initDateSetter();
         nameTextField = findViewById(R.id.inputNameOfChild);
+        datePickerDialog = new CustomDatePickerDialog(this);
+        birthdayTextField = findViewById(R.id.inputBirthdayChild);
+        birthdayTextField.setOnClickListener(new EditText.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                datePickerDialog.show();
+            }
+        });
+
         Button submitButton = findViewById(R.id.submitChildButton);
         submitButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createOnButtonClick();
-            }
-        });
-
-
-        nameTextField.setOnFocusChangeListener(new EditText.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
+                submitChild();
             }
         });
     }
 
-    private void initDateSetter(){
-        final Calendar calendar = Calendar.getInstance();
-        birthdayTextField.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddChildActivity.this, new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                        birthdayTextField.setText(dayOfMonth + "/" + month + "/" + year);
-                    }
-
-                }, calendar.get(Calendar.YEAR) , calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
-                datePickerDialog.show();
-            }
-        });
+    /**
+     * Puts the value of a specified date into the birthday text area.
+     * @param calendar Date to put into birthday text field
+     */
+    void setDate(Calendar calendar) {
+        String myFormat = "MM/dd/yy"; //In which you need put here
+        SimpleDateFormat format = new SimpleDateFormat(myFormat, Locale.GERMAN);
+        birthdayTextField.setText(format.format(calendar.getTime()));
     }
 
-    public void createOnButtonClick(){
-        //   Log.d(LOG_TAG, "Die Datenquelle wird in CreateButton() geöffnet.");
+    /**
+     * Reads out the text fields and inserts a new dataset into the database.
+     * Closes the activity afterwards.
+     */
+    private void submitChild(){
         dbAccess.open();
-
-
-
         if(textFieldsAreFilled()){
-            //Log.d(LOG_TAG, "Main Activity versucht Insert zu machen!");
-            dbAccess.createKindDatensatz(nameTextField.getText().toString(), birthdayTextField.getText().toString());
-            // List<DbKindDatensatz> l = dataSource.getKindListe();
-            // Log.d(LOG_TAG, l.toString());
-            kindAuswahlActivity();
+            dbAccess.createKindDatensatz(
+                    nameTextField.getText().toString(),
+                    birthdayTextField.getText().toString());
+            finish();
         }
-
-    }
-
-    private void kindAuswahlActivity(){
-        Intent intent = new Intent(AddChildActivity.this, ChildSelectionActivity.class);
-        AddChildActivity.this.startActivity(intent);
     }
 
     /**

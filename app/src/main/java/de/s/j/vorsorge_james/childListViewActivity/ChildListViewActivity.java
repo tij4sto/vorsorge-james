@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -15,6 +16,7 @@ import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.singleChildView.SingleChildView;
+import de.s.j.vorsorge_james.utils.guiUtils.OnClickSetter;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -29,6 +31,15 @@ public class ChildListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.child_list_view);
         this.dataSource = new DbAccess(this);
+        showChildren();
+
+        Button addChildButton = findViewById(R.id.addChildButton);
+        OnClickSetter.openAddChildActivity(addChildButton);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         showChildren();
     }
 

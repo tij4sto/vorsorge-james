@@ -46,4 +46,8 @@
         <item name="android:background">@drawable/add_child_icon</item>
     </style>
 
+    <style name="footer">
+        <item name="android:background">@color/greenMedium</item>
+    </style>
+
 </resources>
