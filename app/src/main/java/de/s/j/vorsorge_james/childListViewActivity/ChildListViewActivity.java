@@ -9,11 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.hilfsklassen.CusomtArrayAdapter;
 import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 
 /**
@@ -38,15 +40,19 @@ public class ChildListViewActivity extends AppCompatActivity {
         final ListView lv = (ListView) findViewById(R.id.children_list);
         int i = lv.getId();
 
+        /*
         final ArrayAdapter<DbKindDatensatz> kinderAdapter = new ArrayAdapter<>(
                 this, android.R.layout.simple_list_item_1, kinder
         );
 
+        */
+
+        final CusomtArrayAdapter kinderAdapter = new CusomtArrayAdapter(this, kinder);
         lv.setAdapter(kinderAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), SingleChildView.class);
+                Intent intent = new Intent(ChildListViewActivity.this, SingleChildView.class);
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
                 ChildListViewActivity.this.startActivity(intent);
