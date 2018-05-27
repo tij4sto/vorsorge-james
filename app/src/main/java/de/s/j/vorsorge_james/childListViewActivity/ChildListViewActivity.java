@@ -6,16 +6,14 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.hilfsklassen.CusomtArrayAdapter;
+import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
 import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 
 /**
@@ -47,7 +45,7 @@ public class ChildListViewActivity extends AppCompatActivity {
 
         */
 
-        final CusomtArrayAdapter kinderAdapter = new CusomtArrayAdapter(this, kinder);
+        final KindArrayAdapter kinderAdapter = new KindArrayAdapter(this, kinder);
         lv.setAdapter(kinderAdapter);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -56,6 +54,7 @@ public class ChildListViewActivity extends AppCompatActivity {
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
                 ChildListViewActivity.this.startActivity(intent);
+                ChildListViewActivity.this.finish();
             }
         });
     }

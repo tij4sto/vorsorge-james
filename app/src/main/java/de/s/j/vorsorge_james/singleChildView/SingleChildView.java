@@ -13,10 +13,11 @@ import android.widget.Toast;
 
 import java.util.List;
 
-import de.s.j.vorsorge_james.MainActivity;
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 /**
@@ -71,6 +72,7 @@ public class SingleChildView extends AppCompatActivity {
     private boolean loescheKindOnButtonClick(DbKindDatensatz kind){
         try{
             this.dataSource.deleteKindDatensatzById(kind.getId());
+            SingleChildView.this.finish();
             return true;
         }
         catch (Exception e){
@@ -80,16 +82,15 @@ public class SingleChildView extends AppCompatActivity {
     }
 
     private void changeActivityToChildrenList(){
-        Intent intent = new Intent(SingleChildView.this, MainActivity.class);
+        Intent intent = new Intent(SingleChildView.this, ChildListViewActivity.class);
         SingleChildView.this.startActivity(intent);
     }
-
 
     private void showKindUntersuchungen(DbKindDatensatz kind){
         if(kind != null){
             ListView lv = findViewById(R.id.kind_untersuchungen);
-            List<DbUntersuchungTyp> untersuchungen = DbUntersuchungTyp.checkKindBrauchtUntersuchung(kind);
-            ArrayAdapter untersuchungenAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, untersuchungen);
+            List<DbUntersuchungDatensatz> noetigeUntersuchungen = DbUntersuchungTyp.getBenoetigteUntersuchungenByKind(kind);
+            ArrayAdapter untersuchungenAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noetigeUntersuchungen);
             lv.setAdapter(untersuchungenAdapter);
         }
     }

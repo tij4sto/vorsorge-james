@@ -6,15 +6,13 @@ public class DbUntersuchungDatensatz {
     private String name;
     private int vonTage;
     private int bisTage;
-    private String arzt;
 
 
-    public DbUntersuchungDatensatz(long id, String name, int vonTage, int bisTage, String arzt) {
+    public DbUntersuchungDatensatz(long id, String name, int vonTage, int bisTage) {
         this.id = id;
         this.name = name;
         this.vonTage = vonTage;
         this.bisTage = bisTage;
-        this.arzt = arzt;
     }
 
     public long getId() {
@@ -49,11 +47,4 @@ public class DbUntersuchungDatensatz {
         this.bisTage = bisTage;
     }
 
-    public String getArzt() {
-        return arzt;
-    }
-
-    public void setArzt(String arzt) {
-        this.arzt = arzt;
-    }
 }

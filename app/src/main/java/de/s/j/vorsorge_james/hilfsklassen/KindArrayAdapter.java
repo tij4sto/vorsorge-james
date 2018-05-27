@@ -21,12 +21,12 @@ import java.util.List;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 
-public class CusomtArrayAdapter extends ArrayAdapter<DbKindDatensatz> {
+public class KindArrayAdapter extends ArrayAdapter<DbKindDatensatz> {
 
     private Context mContext;
     private List<DbKindDatensatz> mList = new ArrayList<>();
 
-    public CusomtArrayAdapter(@NonNull Context context, List<DbKindDatensatz> list) {
+    public KindArrayAdapter(@NonNull Context context, List<DbKindDatensatz> list) {
         super(context, 0, list);
         mContext = context;
         mList = list;
