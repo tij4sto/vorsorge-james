@@ -35,7 +35,7 @@ public class DbAccess {
         Log.d(LOG_TAG, "Verbindung mittels Access-Worker zur Datenbank geschlossen.");
     }
 
-    public boolean deleteKindDatensatz(int id){
+    public boolean deleteKindDatensatzById(int id){
         try {
             Log.d(LOG_TAG, "Löschen funktioniert "+ this.db.delete("kind",  "_id="+id, null));
             return true;
@@ -68,7 +68,7 @@ public class DbAccess {
             Cursor cursor = db.query("Kind", new String[]{"_id", "name", "geburtstag"}, "_id" + "=" + l, null, null, null, null);
             cursor.moveToFirst();
             //Erstelle Kind-Instanz und gebe sie zurück
-            DbKindDatensatz kind = findeKindDatensatz(cursor);
+            DbKindDatensatz kind = getKindDatensatzByCursor(cursor);
             cursor.close();
             return kind;
         }
@@ -79,9 +79,9 @@ public class DbAccess {
         }
     }
 
-    private DbKindDatensatz findeKindDatensatz(Cursor c){
+    private DbKindDatensatz getKindDatensatzByCursor(Cursor c){
         try {
-            Log.d(LOG_TAG, "findeKindDatensatz() versucht Eintrag mit Cursor zu finden.");
+            Log.d(LOG_TAG, "getKindDatensatzByCursor() versucht Eintrag mit Cursor zu finden.");
 
             //Cursor holt sich ID, Name und Geburtstag aus Tabelle als Indizes
             int idId = c.getColumnIndex("_id");
@@ -99,17 +99,17 @@ public class DbAccess {
         }
 
         catch (Exception e){
-            Log.d(LOG_TAG, "findeKindDatensatz() meldet : " + e.getMessage());
+            Log.d(LOG_TAG, "getKindDatensatzByCursor() meldet : " + e.getMessage());
             return null;
         }
     }
 
-    public DbKindDatensatz findKindById(long i){
+    public DbKindDatensatz getKindDatensatzById(long i){
         try {
             Log.d(LOG_TAG, "findKindByID: Versuche kind mit ID=" + i + " zu finden");
             Cursor cursor = db.query("Kind", new String[]{"_id", "name", "geburtstag"}, "_id" + "=" + i, null, null, null, null);
             cursor.moveToFirst();
-            DbKindDatensatz kind = findeKindDatensatz(cursor);
+            DbKindDatensatz kind = getKindDatensatzByCursor(cursor);
             cursor.close();
             if(kind == null) throw new NullPointerException();
             Log.d(LOG_TAG, "Hat geklappt");
@@ -136,7 +136,7 @@ public class DbAccess {
         DbKindDatensatz kind;
 
         while(!(c.isAfterLast())){
-            kind = findeKindDatensatz(c);
+            kind = getKindDatensatzByCursor(c);
             kinder.add(kind);
             Log.d(LOG_TAG, "getKindListe() hat Kind " + kind.toString() +" in Liste eingetragen!");
             c.moveToNext();

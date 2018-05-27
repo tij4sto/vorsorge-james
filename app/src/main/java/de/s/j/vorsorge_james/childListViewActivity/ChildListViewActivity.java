@@ -49,7 +49,7 @@ public class ChildListViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), SingleChildView.class);
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
-                getApplicationContext().startActivity(intent);
+                ChildListViewActivity.this.startActivity(intent);
             }
         });
     }

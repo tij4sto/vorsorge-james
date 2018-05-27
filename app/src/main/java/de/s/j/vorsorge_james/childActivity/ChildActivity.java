@@ -36,7 +36,7 @@ public class ChildActivity extends AppCompatActivity {
         this.deleteChildButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataSource.deleteKindDatensatz(currentChild.getId());
+                dataSource.deleteKindDatensatzById(currentChild.getId());
                 finish();
             }
         });
