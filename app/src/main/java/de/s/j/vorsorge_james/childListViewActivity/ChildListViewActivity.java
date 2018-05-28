@@ -63,9 +63,6 @@ public class ChildListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ChildListViewActivity.this, SingleChildView.class);
-                intent.putExtra("id", lv.getItemAtPosition(position).toString());
-                Log.d("LEL1: ", ""+id);
-                ChildListViewActivity.this.startActivity(intent);
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
                 ChildListViewActivity.this.startActivity(intent);

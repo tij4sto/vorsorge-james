@@ -87,6 +87,5 @@ public final class AddChildActivity extends AppCompatActivity {
                         nameTextField.getText().toString().length() > 0 &&
                         birthdayTextField.getText() != null &&
                         birthdayTextField.getText().toString().length() > 0;
-
     }
 }
