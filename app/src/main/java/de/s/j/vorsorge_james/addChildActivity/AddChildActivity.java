@@ -13,6 +13,7 @@ import java.util.Locale;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
+import de.s.j.vorsorge_james.generalActivityElements.FooterHomeOnly;
 
 /**
  * Created by Frieza on 22.05.2018.
@@ -31,6 +32,7 @@ public final class AddChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child);
         setupFields();
         dbAccess = new DbAccess(this);
+        new FooterHomeOnly(this);
     }
 
     private void setupFields(){

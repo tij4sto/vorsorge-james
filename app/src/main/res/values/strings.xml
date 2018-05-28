@@ -7,4 +7,5 @@
     <string name="birthdayPlaceholder">Geburtstag des Kindes</string>
     <string name="submitChildLabel">Kind speichern</string>
     <string name="deleteChildLabel">Kind löschen</string>
+    <string name="homeButton">Home</string>
 </resources>
