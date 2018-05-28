@@ -19,7 +19,6 @@ public class ChildActivity extends AppCompatActivity {
 
     public static DbKindDatensatz currentChild = new DbKindDatensatz(0,"Kind", null);
     private DbAccess dataSource;
-
     private Button deleteChildButton;
 
     @Override
@@ -36,7 +35,7 @@ public class ChildActivity extends AppCompatActivity {
         this.deleteChildButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dataSource.deleteKindDatensatz(currentChild.getId());
+                dataSource.deleteKindDatensatzById(currentChild.getId());
                 finish();
             }
         });
