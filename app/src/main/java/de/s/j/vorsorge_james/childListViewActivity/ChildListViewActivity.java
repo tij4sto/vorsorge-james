@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-<<<<<<< HEAD
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-=======
->>>>>>> Dev-Jannis
 import android.widget.ListView;
 
 import java.util.List;
@@ -66,16 +63,13 @@ public class ChildListViewActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ChildListViewActivity.this, SingleChildView.class);
-<<<<<<< HEAD
                 intent.putExtra("id", lv.getItemAtPosition(position).toString());
                 Log.d("LEL1: ", ""+id);
                 ChildListViewActivity.this.startActivity(intent);
-=======
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
                 ChildListViewActivity.this.startActivity(intent);
                 ChildListViewActivity.this.finish();
->>>>>>> Dev-Jannis
             }
         });
     }
