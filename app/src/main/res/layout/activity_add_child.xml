@@ -65,7 +65,7 @@
 
     <include
         android:id="@+id/footer"
-        layout="@layout/footer"
+        layout="@layout/footer_home_only"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         app:layout_constraintBottom_toBottomOf="parent"

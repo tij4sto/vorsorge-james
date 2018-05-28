@@ -15,6 +15,7 @@ import java.util.List;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.generalActivityElements.Footer_insideListViewActivity;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
 import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 import de.s.j.vorsorge_james.utils.guiUtils.OnClickSetter;
@@ -34,8 +35,9 @@ public class ChildListViewActivity extends AppCompatActivity {
         this.dataSource = new DbAccess(this);
         showChildren();
 
-        Button addChildButton = findViewById(R.id.addChildButton);
-        OnClickSetter.openAddChildActivity(addChildButton);
+        new Footer_insideListViewActivity(this);
+     /*   Button addChildButton = findViewById(R.id.addChildButton);
+        OnClickSetter.openAddChildActivity(addChildButton);*/
     }
 
     @Override
@@ -65,8 +67,8 @@ public class ChildListViewActivity extends AppCompatActivity {
                 Intent intent = new Intent(ChildListViewActivity.this, SingleChildView.class);
                 intent.putExtra("id", "" + kinderAdapter.getItem(position).getId());
                 Log.d("LEL1: ", "" + id);
+                String s = intent.getStringExtra("id");
                 ChildListViewActivity.this.startActivity(intent);
-                ChildListViewActivity.this.finish();
             }
         });
     }
