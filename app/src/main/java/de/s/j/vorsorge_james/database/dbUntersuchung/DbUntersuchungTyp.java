@@ -78,7 +78,7 @@ public enum DbUntersuchungTyp {
         return untersuchungen;
     }
 
-    public static String getZeitraumString(DbUntersuchungDatensatz typ){
+    public static String getZeitraumString(DbUntersuchungDatensatz typ, DbKindDatensatz kind){
         if(typ.getBisTage() <= 10){
             return (int) typ.getVonTage() + " - " + (int) typ.getBisTage() + " Tage";
         }
