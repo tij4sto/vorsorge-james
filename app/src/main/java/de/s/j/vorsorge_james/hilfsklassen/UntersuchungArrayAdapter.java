@@ -3,6 +3,7 @@ package de.s.j.vorsorge_james.hilfsklassen;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,12 +23,14 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
     private Context mContext;
     private List<DbUntersuchungDatensatz> alleUntersuchungen = new ArrayList<>();
     private List<DbUntersuchungDatensatz> benoetigteUntersuchungen = new ArrayList<>();
+    DbKindDatensatz kind;
 
     public UntersuchungArrayAdapter(@NonNull Context context, List<DbUntersuchungDatensatz> list, DbKindDatensatz kind){
         super(context, 0, list);
         this.alleUntersuchungen = DbUntersuchungTyp.getAlleUntersuchungen();
         this.benoetigteUntersuchungen = DbUntersuchungTyp.getBenoetigteUntersuchungenByKind(kind);
         this.mContext = context;
+        this.kind = kind;
     }
 
     private boolean checkItemIsInNoetigeList(DbUntersuchungDatensatz u){
@@ -42,25 +45,43 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View listItem = convertView;
-
+        ViewHolder holder = null;
         DbUntersuchungDatensatz untersuchung = alleUntersuchungen.get(position);
-        boolean b = checkItemIsInNoetigeList(untersuchung);
 
-        if(listItem == null && b ){
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.adapter_untersuchung_orange, parent, false);
+        if(listItem == null || ((ViewHolder) listItem.getTag()).id != this.alleUntersuchungen.get(position).getId()){
+            boolean b = checkItemIsInNoetigeList(untersuchung);
+
+            if(b){
+                listItem = LayoutInflater.from(mContext).inflate(R.layout.adapter_untersuchung_orange, parent, false);
+            }
+
+            else{
+                listItem = LayoutInflater.from(mContext).inflate(R.layout.adapter_untersuchung_grey, parent, false);
+            }
+
+            holder = new ViewHolder();
+            holder.tvName = (TextView) listItem.findViewById(R.id.name);
+            holder.tvZeitraum = (TextView) listItem.findViewById(R.id.zeitraum);
+
+            holder.id = this.alleUntersuchungen.get(position).getId();
+
+            listItem.setTag(holder);
+            listItem.setTag(R.id.name, holder.tvName);
+            listItem.setTag(R.id.zeitraum, holder.tvZeitraum);
         }
 
-        else if(listItem == null){
-            listItem = LayoutInflater.from(mContext).inflate(R.layout.adapter_untersuchung_grey, parent, false);
-
+        else{
+            holder = (ViewHolder) listItem.getTag();
         }
 
-        TextView tvName = (TextView) listItem.findViewById(R.id.name);
-        tvName.setText("" + untersuchung.getId());
-        TextView tvZeitraum = (TextView) listItem.findViewById(R.id.zeitraum);
-        tvZeitraum.setText(DbUntersuchungTyp.getZeitraumString(untersuchung) + " nach  der Geburt");
-
-
+        holder.tvName.setText("" + untersuchung.getId());
+        holder.tvZeitraum.setText(DbUntersuchungTyp.getZeitraumString(untersuchung) + " nach  der Geburt");
         return listItem;
+    }
+
+    static class ViewHolder{
+        public long id;
+        public TextView tvName;
+        public TextView tvZeitraum;
     }
 }
