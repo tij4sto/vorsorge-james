@@ -19,6 +19,7 @@ import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
+import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -89,9 +90,9 @@ public class SingleChildView extends AppCompatActivity {
     private void showKindUntersuchungen(DbKindDatensatz kind){
         if(kind != null){
             ListView lv = findViewById(R.id.kind_untersuchungen);
-            List<DbUntersuchungDatensatz> noetigeUntersuchungen = DbUntersuchungTyp.getBenoetigteUntersuchungenByKind(kind);
-            ArrayAdapter untersuchungenAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noetigeUntersuchungen);
-            lv.setAdapter(untersuchungenAdapter);
+            List<DbUntersuchungDatensatz> untersuchungen = DbUntersuchungTyp.getAlleUntersuchungen();
+            UntersuchungArrayAdapter untersuchungArrayAdapter = new UntersuchungArrayAdapter(this, untersuchungen, kind);
+            lv.setAdapter(untersuchungArrayAdapter);
         }
     }
 }

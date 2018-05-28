@@ -13,7 +13,7 @@ public enum DbUntersuchungTyp {
 
     //Quelle: https://www.bundesgesundheitsministerium.de/themen/praevention/kindergesundheit/frueherkennungsuntersuchung-bei-kindern/?L=0
 
-    U1(1, "Erkennen von lebensbedrohlichen Komplikationen und sofort behandlungsbedürftigen Erkrankungen und Fehlbildungen, Schwangerschafts-, Geburts- und Familienanamnese, Kontrolle von Atmung, Herzschlag, Hautfarbe, Reifezeichen", 0, 0 ),
+    U1(1, "Erkennen von lebensbedrohlichen Komplikationen und sofort behandlungsbedürftigen Erkrankungen und Fehlbildungen, Schwangerschafts-, Geburts- und Familienanamnese, Kontrolle von Atmung, Herzschlag, Hautfarbe, Reifezeichen", 0, 1 ),
     U2(2, "Erkennen von angeborenen Erkrankungen und wesentlichen Gesundheitsrisiken, Vermeidung von Komplikationen: Anamnese und eingehende Untersuchung von Organen, Sinnesorganen und Reflexen", 3, 10),
     U3(3, "Prüfung der altersgemäßen Entwicklung der Reflexe, der Motorik, des Gewichts und der Reaktionen, Untersuchung der Organe, Abfrage des Trink-, Verdauungs- und Schlafverhaltens, Untersuchung der Hüftgelenke auf Hüftgelenksdysplasie und -luxation", 28, 35),
     U4(4, "Untersuchung der altersgerechten Entwicklung und Beweglichkeit des Säuglings, der Organe, Sinnesorgane, Geschlechtsorgane und der Haut, Untersuchung von Wachstum, Motorik und Nervensystem", 90, 120),
@@ -74,5 +74,23 @@ public enum DbUntersuchungTyp {
         }
 
         return untersuchungen;
+    }
+
+    public static String getZeitraumString(DbUntersuchungDatensatz typ){
+        if(typ.getBisTage() <= 10){
+            return (int) typ.getVonTage() + " - " + (int) typ.getBisTage() + " Tage";
+        }
+
+        if(typ.getBisTage() > 10 && typ.getBisTage() <= 35 ){
+            return (int) Math.floor(typ.getVonTage()/7) + " - " +  (int) Math.floor(typ.getBisTage()/7) + " Wochen";
+        }
+
+        if(typ.getBisTage() > 35 && typ.getBisTage() <= 360 ){
+            return (int) Math.floor(typ.getVonTage()/7/30.5) + " - " +  (int) Math.floor(typ.getBisTage()/7/30.5) + " Monate";
+        }
+
+        else{
+            return (int) Math.floor(typ.getVonTage()/7/30.5/12) + " - " +  (int) Math.floor(typ.getBisTage()/7/30.5/12) + " Jahre";
+        }
     }
 }
