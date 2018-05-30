@@ -61,7 +61,7 @@
         <item name="android:background">@drawable/standard_button_background</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
-        <item name="android:textColor">@color/sunnyGreenLightest</item>
+        <item name="android:textColor">@drawable/standard_button_text</item>
     </style>
 
 </resources>
