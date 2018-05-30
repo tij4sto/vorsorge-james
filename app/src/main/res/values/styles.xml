@@ -58,7 +58,7 @@
     </style>
 
     <style name="standardButton">
-        <item name="android:background">@color/greenMedium</item>
+        <item name="android:background">@drawable/standard_button_background</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:textColor">@color/sunnyGreenLightest</item>
