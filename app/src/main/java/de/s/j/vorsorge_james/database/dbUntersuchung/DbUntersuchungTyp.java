@@ -3,10 +3,12 @@ package de.s.j.vorsorge_james.database.dbUntersuchung;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.hilfsklassen.DateFormatter;
 
 public enum DbUntersuchungTyp {
 
@@ -78,21 +80,12 @@ public enum DbUntersuchungTyp {
         return untersuchungen;
     }
 
-    public static String getZeitraumString(DbUntersuchungDatensatz typ){
-        if(typ.getBisTage() <= 10){
-            return (int) typ.getVonTage() + " - " + (int) typ.getBisTage() + " Tage";
-        }
+    public static String getZeitraumString(DbUntersuchungDatensatz typ, DbKindDatensatz kind){
+        Calendar calendar = Calendar.getInstance();
+        Date geb = kind.getDatum();
+        Date von = new Date(geb.getTime() + (typ.getVonTage()*24*60*60*1000));
+        Date bis = new Date(geb.getTime() + (typ.getBisTage()*24*60*60*1000));
 
-        if(typ.getBisTage() > 10 && typ.getBisTage() <= 35 ){
-            return (int) Math.floor(typ.getVonTage()/7) + " - " +  (int) Math.floor(typ.getBisTage()/7) + " Wochen";
-        }
-
-        if(typ.getBisTage() > 35 && typ.getBisTage() <= 360 ){
-            return (int) Math.floor(typ.getVonTage()/7/30) + " - " + (int) Math.floor(typ.getBisTage()/7/30) + " Monate";
-        }
-
-        else{
-            return (int) Math.floor(typ.getVonTage()/7/30/12) + " - " +  (int) Math.floor(typ.getBisTage()/7/30/12) + " Jahre";
-        }
+        return DateFormatter.formatDate(von) + " bis " + DateFormatter.formatDate(bis);
     }
 }
