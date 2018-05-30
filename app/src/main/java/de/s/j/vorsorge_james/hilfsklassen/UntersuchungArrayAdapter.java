@@ -75,7 +75,7 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
         }
 
         holder.tvName.setText("" + untersuchung.getId());
-        holder.tvZeitraum.setText(DbUntersuchungTyp.getZeitraumString(untersuchung, this.kind) + " nach  der Geburt");
+        holder.tvZeitraum.setText(DbUntersuchungTyp.getZeitraumString(untersuchung, this.kind));
         return listItem;
     }
 
