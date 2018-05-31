@@ -90,14 +90,21 @@ public class SingleUntersuchungView extends AppCompatActivity {
    /*     button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(textFieldDate.getText().toString().isEmpty())){
-                    if(!(textFieldDoctor.getText().toString().isEmpty())){
-                        if(checkDatumIsValid(new Date(textFieldDate.getText().toString()))){
-                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
-                            Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
+                if(!(datum.getText().toString().isEmpty())){
+                    if(!(arzt.getText().toString().isEmpty())){
+                        if(checkDatumIsValid(new Date(datum.getText().toString()))){
+                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, arzt.getText().toString(), datum.getText().toString());
+                            Intent intent = new Intent(SingleUntersuchungView.this, SingleChildView.class);
+                            SingleUntersuchungView.this.startActivity(intent);
+                        }
+                        else{
+                            String hinweis = DbUntersuchungTyp.getZeitraumString(untersuchung, kind);
+                            Toast.makeText(SingleUntersuchungView.this, "Das ausgewählte Datum muss zwischen " + hinweis + " liegen!" , Toast.LENGTH_SHORT).show();
                         }
                     }
+                    else Toast.makeText(SingleUntersuchungView.this, "Sie haben keinen Arzt ausgewählt!", Toast.LENGTH_SHORT).show();
                 }
+                else Toast.makeText(SingleUntersuchungView.this, "Sie müssen ein Datum eintragen!", Toast.LENGTH_SHORT).show();
             }
         });*/
     }
