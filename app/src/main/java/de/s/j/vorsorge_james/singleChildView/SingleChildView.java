@@ -106,4 +106,10 @@ public class SingleChildView extends AppCompatActivity {
             });
         }
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        showKindUntersuchungen(kind);
+    }
 }
