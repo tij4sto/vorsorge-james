@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -20,6 +21,7 @@ import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
+import de.s.j.vorsorge_james.singleUntersuchungView.SingleUntersuchungView;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -87,12 +89,21 @@ public class SingleChildView extends AppCompatActivity {
         SingleChildView.this.startActivity(intent);
     }
 
-    private void showKindUntersuchungen(DbKindDatensatz kind){
+    private void showKindUntersuchungen(final DbKindDatensatz kind){
         if(kind != null){
             ListView lv = findViewById(R.id.kind_untersuchungen);
             List<DbUntersuchungDatensatz> untersuchungen = DbUntersuchungTyp.getAlleUntersuchungen();
-            UntersuchungArrayAdapter untersuchungArrayAdapter = new UntersuchungArrayAdapter(this, untersuchungen, kind);
+            final UntersuchungArrayAdapter untersuchungArrayAdapter = new UntersuchungArrayAdapter(this, untersuchungen, kind);
             lv.setAdapter(untersuchungArrayAdapter);
+            lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Intent intent = new Intent(SingleChildView.this, SingleUntersuchungView.class);
+                    intent.putExtra("uid", "" + untersuchungArrayAdapter.getItem(position).getId());
+                    intent.putExtra("kid", "" + kind.getId());
+                    SingleChildView.this.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 
 public class DbAccess {
     private static final String LOG_TAG = DbAccess.class.getSimpleName();
@@ -48,6 +49,26 @@ public class DbAccess {
 
     }
 
+    public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum){
+        this.open();
+
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idKind);
+        values.put("_id_untersuchung", idUntersuchung);
+        values.put("termin", datum);
+        values.put("arzt", arzt);
+
+        try{
+            long i = db.insert("Kind_hat_Untersuchung", null, values);
+            return true;
+        }
+
+        catch(Exception e){
+            Log.d("KindHatUntersuchung", e.getMessage());
+            return false;
+        }
+    }
+
     public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
         //Zugriff auf Datenbank öffnen
         this.open();
@@ -77,6 +98,42 @@ public class DbAccess {
             Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
             return null;
         }
+    }
+
+    private DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(long idU, long idK){
+        try {
+            Cursor c = db.query(
+                    "Kind_hat_Untersuchung", new String[]{"_id_kind", "_id_untersuchung", "termin", "arzt"},
+                    "_id_kind="+ idK + " AND _id_untersuchung=" + idK,
+                    null,
+                    null,
+                    null,
+                    null);
+            c.moveToFirst();
+            DbKindHatUntersuchungDatensatz data = getKindHatUntersuchungByCursor(c);
+            c.close();
+            return data;
+        }
+
+        catch(Exception e){
+            Log.d("GetKindUntersuchungByPK", e.getMessage());
+            return null;
+        }
+    }
+
+    private DbKindHatUntersuchungDatensatz getKindHatUntersuchungByCursor(Cursor c){
+        int ididK = c.getColumnIndex("_id_kind");
+        int ididU = c.getColumnIndex("_id_untersuchung");
+        int idtermin = c.getColumnIndex("termin");
+        int idarzt = c.getColumnIndex("arzt");
+
+        Long idK = Long.parseLong(c.getString(ididK));
+        Long idU = Long.parseLong(c.getString(ididU));
+        String termin = c.getString(idtermin);
+        String arzt = c.getString(idarzt);
+
+        DbKindHatUntersuchungDatensatz data = new DbKindHatUntersuchungDatensatz(idK, idU, termin, arzt);
+        return data;
     }
 
     private DbKindDatensatz getKindDatensatzByCursor(Cursor c){

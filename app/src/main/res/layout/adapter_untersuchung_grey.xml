@@ -25,24 +25,24 @@
         android:id="@+id/textview1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginLeft="65dp"
+        android:layout_marginStart="65dp"
         android:layout_marginTop="8dp"
-        android:text="Fällig von"
+        android:text="Fällig zwischen"
         android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/zeitraum"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
+        android:layout_marginLeft="64dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="3dp"
         android:text="TextView"
         android:textColor="@android:color/background_light"
-        app:layout_constraintStart_toEndOf="@+id/name"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textview1" />
 
 </android.support.constraint.ConstraintLayout>

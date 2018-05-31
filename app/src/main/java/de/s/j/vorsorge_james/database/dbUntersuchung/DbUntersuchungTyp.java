@@ -2,9 +2,13 @@ package de.s.j.vorsorge_james.database.dbUntersuchung;
 
 import android.util.Log;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
@@ -52,7 +56,7 @@ public enum DbUntersuchungTyp {
         List<DbUntersuchungDatensatz> untersuchungen = new ArrayList<>();
 
         for(DbUntersuchungTyp typ : DbUntersuchungTyp.values()){
-            DbUntersuchungDatensatz untersuchung = new DbUntersuchungDatensatz(typ.getId(), typ.getBeschreibung(), typ.getTageVon(), typ.getTageBis());
+            DbUntersuchungDatensatz untersuchung = new DbUntersuchungDatensatz(typ.getId(), typ.getName(), typ.getTageVon(), typ.getTageBis(), typ.getBeschreibung());
             untersuchungen.add(untersuchung);
         }
 
@@ -70,8 +74,8 @@ public enum DbUntersuchungTyp {
 
         for(DbUntersuchungTyp typ : DbUntersuchungTyp.values()){
             if(alter <= typ.tageVon){
-                if((alter + 20) >= typ.tageVon){
-                    DbUntersuchungDatensatz untersuchung = new DbUntersuchungDatensatz(typ.getId(), typ.getBeschreibung(), typ.getTageVon(), typ.getTageBis());
+                if((alter + 40) >= typ.tageVon){
+                    DbUntersuchungDatensatz untersuchung = new DbUntersuchungDatensatz(typ.getId(), typ.getName(), typ.getTageVon(), typ.getTageBis(), typ.getBeschreibung());
                     untersuchungen.add(untersuchung);
                 }
             }
@@ -80,12 +84,24 @@ public enum DbUntersuchungTyp {
         return untersuchungen;
     }
 
-    public static String getZeitraumString(DbUntersuchungDatensatz typ, DbKindDatensatz kind){
-        Calendar calendar = Calendar.getInstance();
-        Date geb = kind.getDatum();
-        Date von = new Date(geb.getTime() + (typ.getVonTage()*24*60*60*1000));
-        Date bis = new Date(geb.getTime() + (typ.getBisTage()*24*60*60*1000));
+    public static DbUntersuchungDatensatz getUntersuchungDatensatzById(int id){
+        for(DbUntersuchungTyp t : DbUntersuchungTyp.values()){
+            if((int) t.getId() == id) return new DbUntersuchungDatensatz(t.getId(), t.getName(), t.getTageVon(), t.getTageBis(), t.getBeschreibung());
+        }
 
-        return DateFormatter.formatDate(von) + " bis " + DateFormatter.formatDate(bis);
+        return null;
+    }
+
+    public static String getZeitraumString(DbUntersuchungDatensatz typ, DbKindDatensatz kind){
+        Calendar c = Calendar.getInstance();
+        c.setTime(kind.getDatum());
+        c.add(Calendar.DAY_OF_YEAR, typ.getVonTage());
+        Date von = c.getTime();
+        c.setTime(kind.getDatum());
+        c.add(Calendar.DAY_OF_YEAR, typ.getBisTage());
+        Date bis = c.getTime();
+
+        return DateFormatter.formatDate(von) + " und " + DateFormatter.formatDate(bis);
+
     }
 }

@@ -6,13 +6,15 @@ public class DbUntersuchungDatensatz {
     private String name;
     private int vonTage;
     private int bisTage;
+    private String beschreibung;
 
 
-    public DbUntersuchungDatensatz(long id, String name, int vonTage, int bisTage) {
+    public DbUntersuchungDatensatz(long id, String name, int vonTage, int bisTage, String beschreibung) {
         this.id = id;
         this.name = name;
         this.vonTage = vonTage;
         this.bisTage = bisTage;
+        this.beschreibung = beschreibung;
     }
 
     public long getId() {

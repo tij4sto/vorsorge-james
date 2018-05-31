@@ -5,12 +5,14 @@ import java.util.Date;
 public class DbKindHatUntersuchungDatensatz {
     private long idKind;
     private long idUnterschung;
-    private Date termin;
+    private String termin;
+    private String arzt;
 
-    public DbKindHatUntersuchungDatensatz(long idKind, long idUnterschung, Date termin) {
+    public DbKindHatUntersuchungDatensatz(long idKind, long idUnterschung, String termin, String arzt) {
         this.idKind = idKind;
         this.idUnterschung = idUnterschung;
         this.termin = termin;
+        this.arzt = arzt;
     }
 
     public long getIdKind() {
@@ -29,11 +31,11 @@ public class DbKindHatUntersuchungDatensatz {
         this.idUnterschung = idUnterschung;
     }
 
-    public Date getTermin() {
+    public String getTermin() {
         return termin;
     }
 
-    public void setTermin(Date termin) {
+    public void setTermin(String termin) {
         this.termin = termin;
     }
 }

@@ -74,7 +74,7 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
             holder = (ViewHolder) listItem.getTag();
         }
 
-        holder.tvName.setText("" + untersuchung.getId());
+        holder.tvName.setText("" + untersuchung.getName());
         holder.tvZeitraum.setText(DbUntersuchungTyp.getZeitraumString(untersuchung, this.kind));
         return listItem;
     }
