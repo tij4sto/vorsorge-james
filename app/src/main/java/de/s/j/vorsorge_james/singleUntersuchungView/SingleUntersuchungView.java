@@ -67,10 +67,11 @@ public class SingleUntersuchungView extends AppCompatActivity {
         formular.saveDoctorInformation();
     }
 
-    void insertDatensatz(DbKindHatUntersuchungDatensatz datensatz){
-        boolean b = dataSource.insertKindHatUntersuchungDatensatz(datensatz);
-        Log.d(LOG_TAG, "boolean b = " + b);
-        //boolean b = dataSource.createKindHatUntersuchungDatensatz(idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
+    void insertDatensatz(String doctor, String date){
+       // boolean b = dataSource.insertKindHatUntersuchungDatensatz(datensatz);
+        final int idK = kind.getId();
+        final int idU = (int) untersuchung.getId();
+        boolean b = dataSource.createKindHatUntersuchungDatensatz(idK, idU, doctor, date);
         Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
     }
 

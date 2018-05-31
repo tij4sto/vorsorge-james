@@ -51,12 +51,12 @@ final class SetUntersuchungFormular {
             @Override
             public void onClick(View v) {
                 if(isFilled()){
-                    final int idK = activity.getKind().getId();
+                 /*   final int idK = activity.getKind().getId();
                     final int idU = (int) activity.getUntersuchung().getId();
                     DbKindHatUntersuchungDatensatz datensatz
                             = new DbKindHatUntersuchungDatensatz
-                            (idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
-                    activity.insertDatensatz(datensatz);
+                            (idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());*/
+                    activity.insertDatensatz(textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
                     //Toast.makeText(activity, "" + b, Toast.LENGTH_SHORT).show();
                 }
             }
