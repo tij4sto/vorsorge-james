@@ -23,6 +23,7 @@ public class DbAccess {
         Log.d(LOG_TAG, "Unsere DataSource erzeugt jetzt den DbHelper.");
         this.DbHelper = new DbHelper(context);
         this.db = this.DbHelper.getWritableDatabase();
+        db.execSQL("PRAGMA foreign_keys = ON");
     }
 
     public  void open(){
@@ -47,26 +48,6 @@ public class DbAccess {
             return false;
         }
 
-    }
-
-    public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum){
-        this.open();
-
-        ContentValues values = new ContentValues();
-        values.put("_id_kind", idKind);
-        values.put("_id_untersuchung", idUntersuchung);
-        values.put("termin", datum);
-        values.put("arzt", arzt);
-
-        try{
-            long i = db.insert("Kind_hat_Untersuchung", null, values);
-            return true;
-        }
-
-        catch(Exception e){
-            Log.d("KindHatUntersuchung", e.getMessage());
-            return false;
-        }
     }
 
     public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
@@ -134,6 +115,29 @@ public class DbAccess {
 
         DbKindHatUntersuchungDatensatz data = new DbKindHatUntersuchungDatensatz(idK, idU, termin, arzt);
         return data;
+    }
+
+    public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum){
+        this.open();
+
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idKind);
+        values.put("_id_untersuchung", idUntersuchung);
+        values.put("arzt", arzt);
+        values.put("termin", datum);
+
+
+        try{
+            long i = db.insert("Kind_hat_Untersuchung", null, values);
+            if(i < 0)
+                return false;
+            return true;
+        }
+
+        catch(Exception e){
+            Log.d("KindHatUntersuchung", e.getMessage());
+            return false;
+        }
     }
 
     private DbKindDatensatz getKindDatensatzByCursor(Cursor c){

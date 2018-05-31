@@ -46,7 +46,6 @@ public class SingleUntersuchungView extends AppCompatActivity {
         this.dataSource = new DbAccess(this);
         setContentView(R.layout.activity_single_untersuchung_view);
 
-
         //Handling Event Data
         this.intent = getIntent();
         this.kind = this.dataSource.getKindDatensatzById(Integer.parseInt(intent.getStringExtra("kid")));
@@ -55,13 +54,15 @@ public class SingleUntersuchungView extends AppCompatActivity {
         //Zeige Daten in TextView an.
         TextView tvName = findViewById(R.id.name);
         tvName.setText(this.untersuchung.getName());
+        TextView tvBeschreibung = findViewById(R.id.beschreibung);
+        tvBeschreibung.setText(this.untersuchung.getBeschreibung());
 
         init();
     }
 
     private  void init(){
         setCalenderFunctions();
-        Button buttonLoeschen = findViewById(R.id.eintragen);
+        Button button1 = findViewById(R.id.eintragen);
         final EditText datum = findViewById(R.id.datum);
         final EditText arzt = findViewById(R.id.arzt);
         final DbAccess source = this.dataSource;
@@ -69,13 +70,13 @@ public class SingleUntersuchungView extends AppCompatActivity {
         final int idU = (int) this.untersuchung.getId();
 
 
-        buttonLoeschen.setOnClickListener(new View.OnClickListener() {
+        button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!(datum.getText().toString().isEmpty())){
                     if(!(arzt.getText().toString().isEmpty())){
                         if(checkDatumIsValid(new Date(datum.getText().toString()))){
-                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, datum.getText().toString(), arzt.getText().toString());
+                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, arzt.getText().toString(), datum.getText().toString());
                             Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
                         }
                     }
