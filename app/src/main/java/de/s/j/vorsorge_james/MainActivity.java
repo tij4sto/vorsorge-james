@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateLabel(EditText et, Calendar c) {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "MM/dd/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
 
         et.setText(sdf.format(c.getTime()));
@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity {
                 changeActivityToAuswahlKind();
             }
         }
+
+        dataSource.close();
     }
 
     public void changeActivityToAuswahlKind(){
