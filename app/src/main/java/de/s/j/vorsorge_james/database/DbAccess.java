@@ -81,11 +81,11 @@ public class DbAccess {
         }
     }
 
-    private DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(long idU, long idK){
+    public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU){
         try {
             Cursor c = db.query(
                     "Kind_hat_Untersuchung", new String[]{"_id_kind", "_id_untersuchung", "termin", "arzt"},
-                    "_id_kind="+ idK + " AND _id_untersuchung=" + idK,
+                    "_id_kind="+ idK + " AND _id_untersuchung=" + idU,
                     null,
                     null,
                     null,
@@ -108,8 +108,8 @@ public class DbAccess {
         int idtermin = c.getColumnIndex("termin");
         int idarzt = c.getColumnIndex("arzt");
 
-        Long idK = Long.parseLong(c.getString(ididK));
-        Long idU = Long.parseLong(c.getString(ididU));
+        int idK = c.getInt(ididK);
+        int idU = c.getInt(ididU);
         String termin = c.getString(idtermin);
         String arzt = c.getString(idarzt);
 
@@ -181,6 +181,27 @@ public class DbAccess {
             Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
             return null;
         }
+    }
+
+    public List<DbKindHatUntersuchungDatensatz> getKindHatUntersuchungListe(){
+        List<DbKindHatUntersuchungDatensatz> liste = new ArrayList<>();
+
+        Cursor c = this.db.query("Kind_hat_Untersuchung", new String[]{"_id_kind", "_id_untersuchung", "termin", "arzt"},
+                null,
+                null,
+                null,
+                null,
+                null);
+        c.moveToFirst();
+        DbKindHatUntersuchungDatensatz data;
+
+        while(!(c.isAfterLast())){
+            data = getKindHatUntersuchungByCursor(c);
+            liste.add(data);
+            c.moveToNext();
+        }
+        c.close();
+        return liste;
     }
 
     public List<DbKindDatensatz> getKindListe(){

@@ -28,6 +28,7 @@ import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchun
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
+import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -77,10 +78,17 @@ public class SingleUntersuchungView extends AppCompatActivity {
                     if(!(arzt.getText().toString().isEmpty())){
                         if(checkDatumIsValid(new Date(datum.getText().toString()))){
                             boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, arzt.getText().toString(), datum.getText().toString());
-                            Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(SingleUntersuchungView.this, SingleChildView.class);
+                            SingleUntersuchungView.this.startActivity(intent);
+                        }
+                        else{
+                            String hinweis = DbUntersuchungTyp.getZeitraumString(untersuchung, kind);
+                            Toast.makeText(SingleUntersuchungView.this, "Das ausgewählte Datum muss zwischen " + hinweis + " liegen!" , Toast.LENGTH_SHORT).show();
                         }
                     }
+                    else Toast.makeText(SingleUntersuchungView.this, "Sie haben keinen Arzt ausgewählt!", Toast.LENGTH_SHORT).show();
                 }
+                else Toast.makeText(SingleUntersuchungView.this, "Sie müssen ein Datum eintragen!", Toast.LENGTH_SHORT).show();
             }
         });
     }
