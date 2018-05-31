@@ -21,6 +21,7 @@ import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 final class SetUntersuchungFormular {
 
@@ -80,9 +81,25 @@ final class SetUntersuchungFormular {
     }
 
     private boolean isFilled(){
-        return !(textFieldDate.getText().toString().isEmpty()) &&
-                !(textFieldDoctor.getText().toString().isEmpty()) &&
+        return
+                doctorTextFieldIsFilled() && dateTextFieldIsFilled() &&
                 checkDatumIsValid(new Date(textFieldDate.getText().toString()));
+    }
+
+    private boolean dateTextFieldIsFilled(){
+        boolean filled = !textFieldDate.getText().toString().isEmpty();
+        if(!filled){
+            Toast.makeText(activity, "Sie müssen ein Datum eintragen!", Toast.LENGTH_SHORT).show();
+        }
+        return filled;
+    }
+
+    private boolean doctorTextFieldIsFilled(){
+        boolean filled = !textFieldDoctor.getText().toString().isEmpty();
+        if(!filled){
+            Toast.makeText(activity, "Sie haben keinen Arzt ausgewählt!", Toast.LENGTH_SHORT).show();
+        }
+        return filled;
     }
 
     private boolean checkDatumIsValid(Date datum){
@@ -100,7 +117,8 @@ final class SetUntersuchungFormular {
                 return true;
             }
         }
-
+        String hinweis = DbUntersuchungTyp.getZeitraumString(untersuchung, kind);
+        Toast.makeText(activity, "Das ausgewählte Datum muss zwischen " + hinweis + " liegen!" , Toast.LENGTH_SHORT).show();
         return false;
     }
 
