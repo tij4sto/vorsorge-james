@@ -1,5 +1,6 @@
-package de.s.j.vorsorge_james.addChildActivity;
+package de.s.j.vorsorge_james.activities.calenderEditText;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.support.annotation.NonNull;
 import android.widget.DatePicker;
@@ -14,7 +15,7 @@ final class CustomDatePickerDialog {
 
     private DatePickerDialog dialog;
 
-    public CustomDatePickerDialog(@NonNull final AddChildActivity activity) {
+    public CustomDatePickerDialog(@NonNull final Activity activity, @NonNull final CalendarEditTextWrapper editText) {
 
         final Calendar calendar = Calendar.getInstance();
         final DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -23,7 +24,7 @@ final class CustomDatePickerDialog {
                 calendar.set(Calendar.YEAR, year);
                 calendar.set(Calendar.MONTH, month);
                 calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-               // activity.setDate(calendar);
+                editText.setDate(calendar);
             }
         };
 

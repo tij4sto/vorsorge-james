@@ -38,4 +38,8 @@ public class DbKindHatUntersuchungDatensatz {
     public void setTermin(String termin) {
         this.termin = termin;
     }
+
+    public String getArzt() {
+        return arzt;
+    }
 }

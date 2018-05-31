@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.generalActivityElements.FooterHomeOnly;
 
@@ -22,6 +23,7 @@ import de.s.j.vorsorge_james.generalActivityElements.FooterHomeOnly;
 public final class AddChildActivity extends AppCompatActivity {
 
     EditText nameTextField, birthdayTextField;
+    CalendarEditTextWrapper calendarTextFieldWrapper_birthday;
     private CustomDatePickerDialog datePickerDialog;
 
     private DbAccess dbAccess;
@@ -39,12 +41,7 @@ public final class AddChildActivity extends AppCompatActivity {
         nameTextField = findViewById(R.id.inputNameOfChild);
         datePickerDialog = new CustomDatePickerDialog(this);
         birthdayTextField = findViewById(R.id.inputBirthdayChild);
-        birthdayTextField.setOnClickListener(new EditText.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                datePickerDialog.show();
-            }
-        });
+        calendarTextFieldWrapper_birthday = new CalendarEditTextWrapper(birthdayTextField, this);
 
         Button submitButton = findViewById(R.id.submitChildButton);
         submitButton.setOnClickListener(new Button.OnClickListener() {
@@ -59,11 +56,11 @@ public final class AddChildActivity extends AppCompatActivity {
      * Puts the value of a specified date into the birthday text area.
      * @param calendar Date to put into birthday text field
      */
-    void setDate(Calendar calendar) {
+  /*  void setDate(Calendar calendar) {
         String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat format = new SimpleDateFormat(myFormat, Locale.GERMAN);
         birthdayTextField.setText(format.format(calendar.getTime()));
-    }
+    }*/
 
     /**
      * Reads out the text fields and inserts a new dataset into the database.

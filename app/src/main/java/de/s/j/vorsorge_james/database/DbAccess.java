@@ -117,6 +117,15 @@ public class DbAccess {
         return data;
     }
 
+
+    public boolean insertKindHatUntersuchungDatensatz(DbKindHatUntersuchungDatensatz datensatz){
+        int idKind = (int) datensatz.getIdKind();
+        int idUntersuchung = (int) datensatz.getIdUnterschung();
+        String arzt = datensatz.getArzt();
+        String datum = datensatz.getTermin();
+        return createKindHatUntersuchungDatensatz(idKind, idUntersuchung, arzt, datum);
+    }
+
     public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum){
         this.open();
 

@@ -9,4 +9,6 @@
     <string name="submitChildLabel">Kind speichern</string>
     <string name="deleteChildLabel">Kind löschen</string>
     <string name="homeButton">Home</string>
+    <string name="nameOfDoctorHead">Name Ihres Arztes</string>
+    <string name="placeHolderName">Name</string>
 </resources>

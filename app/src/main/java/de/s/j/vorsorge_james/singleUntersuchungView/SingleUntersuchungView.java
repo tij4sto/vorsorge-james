@@ -6,28 +6,22 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import de.s.j.vorsorge_james.MainActivity;
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
-import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -35,16 +29,23 @@ import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
 
 public class SingleUntersuchungView extends AppCompatActivity {
 
+    private static final String LOG_TAG = SingleUntersuchungView.class.getSimpleName();
+
     private DbAccess dataSource;
     private Intent intent;
     private DbKindDatensatz kind;
     private DbUntersuchungDatensatz untersuchung;
 
+    private SetUntersuchungFormular formular;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        this.dataSource = new DbAccess(this);
         setContentView(R.layout.activity_single_untersuchung_view);
+        formular = new SetUntersuchungFormular(this);
+        formular.loadDoctorInformation();
+        this.dataSource = new DbAccess(this);
+
 
         //Handling Event Data
         this.intent = getIntent();
@@ -57,33 +58,51 @@ public class SingleUntersuchungView extends AppCompatActivity {
         TextView tvBeschreibung = findViewById(R.id.beschreibung);
         tvBeschreibung.setText(this.untersuchung.getBeschreibung());
 
-        init();
+    //    init();
     }
 
-    private  void init(){
-        setCalenderFunctions();
-        Button button1 = findViewById(R.id.eintragen);
-        final EditText datum = findViewById(R.id.datum);
-        final EditText arzt = findViewById(R.id.arzt);
+    @Override
+    protected void onStop() {
+        super.onStop();
+        formular.saveDoctorInformation();
+    }
+
+    void insertDatensatz(DbKindHatUntersuchungDatensatz datensatz){
+        boolean b = dataSource.insertKindHatUntersuchungDatensatz(datensatz);
+        Log.d(LOG_TAG, "boolean b = " + b);
+        //boolean b = dataSource.createKindHatUntersuchungDatensatz(idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
+        Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
+    }
+
+    private void init(){
+    //    setCalenderFunctions();
+  /*      Button button1 = findViewById(R.id.eintragen);
+        textFieldDate = findViewById(R.id.datum);
+        textFieldDoctor = findViewById(R.id.arzt);
+        textFieldHouse = findViewById(R.id.textFieldHouse);
+        textFieldPLZ = findViewById(R.id.textFieldPLZ);
+        textFieldStreet = findViewById(R.id.textFieldStreet);*/
         final DbAccess source = this.dataSource;
         final int idK = this.kind.getId();
         final int idU = (int) this.untersuchung.getId();
 
 
-        button1.setOnClickListener(new View.OnClickListener() {
+   /*     button1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(datum.getText().toString().isEmpty())){
-                    if(!(arzt.getText().toString().isEmpty())){
-                        if(checkDatumIsValid(new Date(datum.getText().toString()))){
-                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, arzt.getText().toString(), datum.getText().toString());
+                if(!(textFieldDate.getText().toString().isEmpty())){
+                    if(!(textFieldDoctor.getText().toString().isEmpty())){
+                        if(checkDatumIsValid(new Date(textFieldDate.getText().toString()))){
+                            boolean b = source.createKindHatUntersuchungDatensatz(idK, idU, textFieldDoctor.getText().toString(), textFieldDate.getText().toString());
                             Toast.makeText(SingleUntersuchungView.this, "" + b, Toast.LENGTH_SHORT).show();
                         }
                     }
                 }
             }
-        });
+        });*/
     }
+
+
 
     private boolean setUntersuchungToKind(int idKind, int idUntersuchung, String arzt, String datum){
         this.dataSource.open();
@@ -113,7 +132,7 @@ public class SingleUntersuchungView extends AppCompatActivity {
 
         return false;
     }
-
+/*
     public void setCalenderFunctions(){
         final Calendar c = Calendar.getInstance();
         final EditText et = (EditText) findViewById(R.id.datum);
@@ -145,4 +164,14 @@ public class SingleUntersuchungView extends AppCompatActivity {
 
         et.setText(sdf.format(c.getTime()));
     }
+
+*/
+    DbKindDatensatz getKind(){
+        return this.kind;
+    }
+
+    DbUntersuchungDatensatz getUntersuchung(){
+        return this.untersuchung;
+    }
 }
+
