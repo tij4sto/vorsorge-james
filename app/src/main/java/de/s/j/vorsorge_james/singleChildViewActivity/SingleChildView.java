@@ -72,6 +72,7 @@ public class SingleChildView extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(SingleChildView.this, ChartViewActivity.class);
+                i.putExtra("idK", "" + kind.getId());
                 SingleChildView.this.startActivity(i);
             }
         });
