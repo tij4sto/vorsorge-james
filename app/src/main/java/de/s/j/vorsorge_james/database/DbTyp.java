@@ -15,6 +15,15 @@ public enum DbTyp {
                     "arzt TEXT NOT NULL, " +
                     "PRIMARY KEY(_id_kind, _id_untersuchung), " +
                     "FOREIGN KEY(_id_kind) REFERENCES Kind (_id) ON DELETE CASCADE ON UPDATE NO ACTION);"
+    ),
+    KIND_HAT_GEWICHT_UND_GROESSE(
+            "CREATE TABLE Kind_hat_Gewicht_und_Groesse(" +
+                    "_id_kind INTEGER NOT NULL, " +
+                    "_datum TEXT NOT NULL, " +
+                    "gewicht INTEGER NOT NULL, " +
+                    "groesse INTEGER NOT NULL, " +
+                    "PRIMARY KEY(_id_kind, _datum), +" +
+                    "FOREIGN KEY(_id_kind) REFERENCES Kind(_id) ON DELETE CASCADE ON UPDATE NO ACTION);"
     );
 
     private String s;
