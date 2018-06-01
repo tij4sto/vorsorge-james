@@ -11,4 +11,5 @@
     <string name="homeButton">Home</string>
     <string name="nameOfDoctorHead">Name Ihres Arztes</string>
     <string name="placeHolderName">Name</string>
+    <string name="placeholderDescription">Beschreibung</string>
 </resources>

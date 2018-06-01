@@ -15,7 +15,6 @@
             </intent-filter>
         </activity>
 
-        <!-- TODO: PERHAPS REMOVE LAUNCH MODE WHEN SET AS MAIN ACTIVITY -->
         <activity
             android:name=".childListViewActivity.ChildListViewActivity"
             android:launchMode="singleInstance">
@@ -25,7 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".singleUntersuchungView.SingleUntersuchungView">
+        <activity android:name=".singleUntersuchungView.SingleUntersuchungView"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>

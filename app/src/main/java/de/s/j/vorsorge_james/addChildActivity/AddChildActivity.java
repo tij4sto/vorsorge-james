@@ -7,10 +7,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
-
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
 import de.s.j.vorsorge_james.database.DbAccess;
@@ -24,7 +20,6 @@ public final class AddChildActivity extends AppCompatActivity {
 
     EditText nameTextField, birthdayTextField;
     CalendarEditTextWrapper calendarTextFieldWrapper_birthday;
-    private CustomDatePickerDialog datePickerDialog;
 
     private DbAccess dbAccess;
 
@@ -39,7 +34,6 @@ public final class AddChildActivity extends AppCompatActivity {
 
     private void setupFields(){
         nameTextField = findViewById(R.id.inputNameOfChild);
-        datePickerDialog = new CustomDatePickerDialog(this);
         birthdayTextField = findViewById(R.id.inputBirthdayChild);
         calendarTextFieldWrapper_birthday = new CalendarEditTextWrapper(birthdayTextField, this);
 
@@ -51,16 +45,6 @@ public final class AddChildActivity extends AppCompatActivity {
             }
         });
     }
-
-    /**
-     * Puts the value of a specified date into the birthday text area.
-     * @param calendar Date to put into birthday text field
-     */
-  /*  void setDate(Calendar calendar) {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat format = new SimpleDateFormat(myFormat, Locale.GERMAN);
-        birthdayTextField.setText(format.format(calendar.getTime()));
-    }*/
 
     /**
      * Reads out the text fields and inserts a new dataset into the database.

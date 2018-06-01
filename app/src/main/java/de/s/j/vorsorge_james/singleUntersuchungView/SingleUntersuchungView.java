@@ -2,8 +2,13 @@ package de.s.j.vorsorge_james.singleUntersuchungView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
@@ -40,8 +45,21 @@ public class SingleUntersuchungView extends AppCompatActivity {
         //Zeige Daten in TextView an.
         TextView tvName = findViewById(R.id.name);
         tvName.setText(this.untersuchung.getName());
-        TextView tvBeschreibung = findViewById(R.id.beschreibung);
+        final TextView tvBeschreibung = findViewById(R.id.textViewDescriptionUntersuchung);
         tvBeschreibung.setText(this.untersuchung.getBeschreibung());
+      //  tvBeschreibung.setText(this.untersuchung.getBeschreibung());
+
+        ToggleButton toggleButton = findViewById(R.id.toggleButton);
+        toggleButton.setOnCheckedChangeListener(new ToggleButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked){
+                    tvBeschreibung.setVisibility(View.VISIBLE);
+                } else {
+                    tvBeschreibung.setVisibility(View.GONE);
+                }
+            }
+        });
 
     }
 
@@ -54,6 +72,7 @@ public class SingleUntersuchungView extends AppCompatActivity {
     void insertDatensatz(String doctor, String date){
         final int idK = kind.getId();
         final int idU = (int) untersuchung.getId();
+        // TODO: Make overwriting possible.
         boolean b = dataSource.createKindHatUntersuchungDatensatz(idK, idU, doctor, date);
         finish();
     }

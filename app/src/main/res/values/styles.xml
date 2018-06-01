@@ -10,7 +10,7 @@
     </style>
 
     <style name="ActivityTitle" parent="">
-        <item name="android:textSize">40dp</item>
+        <item name="android:textSize">34dp</item>
         <item name="android:gravity">center</item>
         <item name="android:textColor">@color/tealMedium</item>
     </style>
@@ -62,6 +62,11 @@
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:textColor">@drawable/standard_button_text</item>
+    </style>
+
+    <style name="expandButton">
+        <item name="android:colorBackground">@color/greenMedium</item>
+        <item name="android:background">@drawable/expand_button_symbol</item>
     </style>
 
 </resources>
