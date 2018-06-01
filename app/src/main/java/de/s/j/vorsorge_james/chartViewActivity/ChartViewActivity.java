@@ -7,14 +7,18 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
+import java.util.List;
+
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
+import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 
 public class ChartViewActivity extends AppCompatActivity {
 
     private int idKind;
     private DbAccess datasource;
     GraphView graph;
+    List<DbKindHatGewichtUndGroesse> liste;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -22,6 +26,7 @@ public class ChartViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chart_view);
         this.datasource = new DbAccess(this);
         this.graph = (GraphView) findViewById(R.id.graph);
+        this.liste = datasource.getGewichtGroesseListe();
     }
 
     private void showGraph(){

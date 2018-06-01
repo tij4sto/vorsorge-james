@@ -102,8 +102,37 @@ public class DbAccess {
         return false;
     }
 
-    public List<DbKindHatGewichtUndGroesse> getGewichtUndGrößeByID(int idKind){
-        List<DbKindHatGewichtUndGroesse>
+    private DbKindHatGewichtUndGroesse getGewichtUndGroesseByCursor(Cursor c){
+        int idIdK = c.getColumnIndex("_id");
+        int idDatum = c.getColumnIndex("_datum");
+        int idCm = c.getColumnIndex("cm");
+        int idKg = c.getColumnIndex("kg");
+
+        int idK = c.getInt(idIdK);
+        String datum = c.getString(idDatum);
+        int cm = c.getInt(idCm);
+        int kg = c.getInt(idKg);
+
+        DbKindHatGewichtUndGroesse data = new DbKindHatGewichtUndGroesse(idK, datum, cm, kg);
+        return data;
+    }
+
+    public DbKindHatGewichtUndGroesse getGewichtUndGrößeByID(int idKind){
+        try {
+            Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
+                    null,
+                    null,
+                    null,
+                    null,
+                    null);
+            c.moveToFirst();
+            DbKindHatGewichtUndGroesse data = getGewichtUndGroesseByCursor(c);
+            c.close();
+            return data;
+        }
+        catch(Exception e){
+            return null;
+        }
     }
 
     public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU){
@@ -251,5 +280,25 @@ public class DbAccess {
 
         c.close();
         return kinder;
+    }
+
+    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(){
+        List<DbKindHatGewichtUndGroesse> liste = new ArrayList<>();
+        Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
+                null,
+                null,
+                null,
+                null,
+                null);
+        c.moveToFirst();
+        DbKindHatGewichtUndGroesse data;
+
+        while(!(c.isAfterLast())){
+            data = getGewichtUndGroesseByCursor(c);
+            liste.add(data);
+            c.moveToNext();
+        }
+
+        return liste;
     }
 }
