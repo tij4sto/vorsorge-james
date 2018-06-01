@@ -21,6 +21,7 @@ import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
+import de.s.j.vorsorge_james.setKindGewichtUndGroesse.SetKindGewichtUndGroesseActivity;
 import de.s.j.vorsorge_james.singleUntersuchungView.SingleUntersuchungView;
 
 /**
@@ -56,6 +57,16 @@ public class SingleChildView extends AppCompatActivity {
     }
 
     private  void init(final DbKindDatensatz kind){
+        Button buttonGuG = findViewById(R.id.gug);
+        buttonGuG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SingleChildView.this, SetKindGewichtUndGroesseActivity.class);
+                i.putExtra("idK", ""+ kind.getId());
+                SingleChildView.this.startActivity(i);
+            }
+        });
+
         Button buttonLoeschen = findViewById(R.id.loeschen);
         buttonLoeschen.setOnClickListener(new View.OnClickListener() {
             @Override

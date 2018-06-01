@@ -81,6 +81,26 @@ public class DbAccess {
         }
     }
 
+    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, int kg){
+        this.open();
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idKind);
+        values.put("_datum", datum);
+        values.put("groesse", cm);
+        values.put("gewicht", kg);
+
+        try {
+            long l = db.insert("Kind_hat_Gewicht_und_Groesse", null, values);
+            if (l >= 0) return true;
+        }
+
+        catch (Exception e ){
+            Log.d("SaveGewicht()", e.getMessage());
+        }
+
+        return false;
+    }
+
     public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU){
         try {
             Cursor c = db.query(

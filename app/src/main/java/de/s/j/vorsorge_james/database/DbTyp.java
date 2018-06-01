@@ -22,7 +22,7 @@ public enum DbTyp {
                     "_datum TEXT NOT NULL, " +
                     "gewicht INTEGER NOT NULL, " +
                     "groesse INTEGER NOT NULL, " +
-                    "PRIMARY KEY(_id_kind, _datum), +" +
+                    "PRIMARY KEY(_id_kind, _datum), " +
                     "FOREIGN KEY(_id_kind) REFERENCES Kind(_id) ON DELETE CASCADE ON UPDATE NO ACTION);"
     );
 

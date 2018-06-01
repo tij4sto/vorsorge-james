@@ -2,6 +2,7 @@ package de.s.j.vorsorge_james.hilfsklassen;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class DateFormatter {
 
@@ -12,5 +13,11 @@ public class DateFormatter {
 
     public static final Date formatDate(String date){
         return new Date(date);
+    }
+
+    public static final String formatDateToDBCorrect(Date date){
+        String myFormat = "MM/dd/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.GERMAN);
+        return sdf.format(date);
     }
 }

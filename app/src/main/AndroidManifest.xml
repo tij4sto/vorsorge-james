@@ -25,6 +25,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".setKindGewichtUndGroesse.SetKindGewichtUndGroesseActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".singleUntersuchungView.SingleUntersuchungView">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
