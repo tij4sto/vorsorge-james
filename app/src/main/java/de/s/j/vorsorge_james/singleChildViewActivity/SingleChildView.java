@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.singleChildView;
+package de.s.j.vorsorge_james.singleChildViewActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,13 +14,15 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.chartViewActivity.ChartViewActivity;
 import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
-import de.s.j.vorsorge_james.singleUntersuchungView.SingleUntersuchungView;
+import de.s.j.vorsorge_james.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity;
+import de.s.j.vorsorge_james.singleUntersuchungViewActivity.SingleUntersuchungView;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -56,6 +57,25 @@ public class SingleChildView extends AppCompatActivity {
     }
 
     private  void init(final DbKindDatensatz kind){
+        Button buttonGuG = findViewById(R.id.gug);
+        buttonGuG.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SingleChildView.this, SetKindGewichtUndGroesseActivity.class);
+                i.putExtra("idK", ""+ kind.getId());
+                SingleChildView.this.startActivity(i);
+            }
+        });
+
+        Button buttonZeigeChart = (Button) findViewById(R.id.show_graph);
+        buttonZeigeChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(SingleChildView.this, ChartViewActivity.class);
+                SingleChildView.this.startActivity(i);
+            }
+        });
+
         Button buttonLoeschen = findViewById(R.id.loeschen);
         buttonLoeschen.setOnClickListener(new View.OnClickListener() {
             @Override

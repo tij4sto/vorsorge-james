@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 
 public class DbAccess {
@@ -77,6 +78,59 @@ public class DbAccess {
 
         catch (Exception e){
             Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
+            return null;
+        }
+    }
+
+    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, int kg){
+        this.open();
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idKind);
+        values.put("_datum", datum);
+        values.put("groesse", cm);
+        values.put("gewicht", kg);
+
+        try {
+            long l = db.insert("Kind_hat_Gewicht_und_Groesse", null, values);
+            if (l >= 0) return true;
+        }
+
+        catch (Exception e ){
+            Log.d("SaveGewicht()", e.getMessage());
+        }
+
+        return false;
+    }
+
+    private DbKindHatGewichtUndGroesse getGewichtUndGroesseByCursor(Cursor c){
+        int idIdK = c.getColumnIndex("_id");
+        int idDatum = c.getColumnIndex("_datum");
+        int idCm = c.getColumnIndex("cm");
+        int idKg = c.getColumnIndex("kg");
+
+        int idK = c.getInt(idIdK);
+        String datum = c.getString(idDatum);
+        int cm = c.getInt(idCm);
+        int kg = c.getInt(idKg);
+
+        DbKindHatGewichtUndGroesse data = new DbKindHatGewichtUndGroesse(idK, datum, cm, kg);
+        return data;
+    }
+
+    public DbKindHatGewichtUndGroesse getGewichtUndGrößeByID(int idKind){
+        try {
+            Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
+                    null,
+                    null,
+                    null,
+                    null,
+                    null);
+            c.moveToFirst();
+            DbKindHatGewichtUndGroesse data = getGewichtUndGroesseByCursor(c);
+            c.close();
+            return data;
+        }
+        catch(Exception e){
             return null;
         }
     }
@@ -226,5 +280,25 @@ public class DbAccess {
 
         c.close();
         return kinder;
+    }
+
+    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(){
+        List<DbKindHatGewichtUndGroesse> liste = new ArrayList<>();
+        Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
+                null,
+                null,
+                null,
+                null,
+                null);
+        c.moveToFirst();
+        DbKindHatGewichtUndGroesse data;
+
+        while(!(c.isAfterLast())){
+            data = getGewichtUndGroesseByCursor(c);
+            liste.add(data);
+            c.moveToNext();
+        }
+
+        return liste;
     }
 }

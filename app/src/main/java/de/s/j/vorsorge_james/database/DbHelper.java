@@ -23,6 +23,7 @@ class DbHelper extends SQLiteOpenHelper {
             db.execSQL(DbTyp.KIND.getString());
             db.execSQL(DbTyp.UNTERSUCHUNG.getString());
             db.execSQL(DbTyp.KIND_HAT_UNTERSUCHUNG.getString());
+            db.execSQL(DbTyp.KIND_HAT_GEWICHT_UND_GROESSE.getString());
 
         }
         catch (Exception e){
