@@ -11,6 +11,7 @@ import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 
 public class DbAccess {
@@ -99,6 +100,10 @@ public class DbAccess {
         }
 
         return false;
+    }
+
+    public List<DbKindHatGewichtUndGroesse> getGewichtUndGrößeByID(int idKind){
+        List<DbKindHatGewichtUndGroesse>
     }
 
     public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU){
