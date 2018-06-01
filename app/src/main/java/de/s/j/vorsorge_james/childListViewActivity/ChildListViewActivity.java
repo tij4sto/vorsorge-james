@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.List;
@@ -17,8 +15,7 @@ import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.generalActivityElements.Footer_insideListViewActivity;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
-import de.s.j.vorsorge_james.singleChildView.SingleChildView;
-import de.s.j.vorsorge_james.utils.guiUtils.OnClickSetter;
+import de.s.j.vorsorge_james.singleChildViewActivity.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.

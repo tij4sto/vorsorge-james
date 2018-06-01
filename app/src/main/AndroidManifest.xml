@@ -25,19 +25,25 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".setKindGewichtUndGroesse.SetKindGewichtUndGroesseActivity">
+        <activity android:name=".setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".singleUntersuchungView.SingleUntersuchungView">
+        <activity android:name=".chartViewActivity.ChartViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".singleChildView.SingleChildView">
+        <activity android:name=".singleUntersuchungViewActivity.SingleUntersuchungView">
+            <intent-filter>
+                <action android:name="android.intent.action.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".singleChildViewActivity.SingleChildView">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>

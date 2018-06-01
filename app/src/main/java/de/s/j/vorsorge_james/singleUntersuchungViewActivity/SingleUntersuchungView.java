@@ -1,34 +1,27 @@
-package de.s.j.vorsorge_james.singleUntersuchungView;
+package de.s.j.vorsorge_james.singleUntersuchungViewActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import de.s.j.vorsorge_james.MainActivity;
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
-import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
-import de.s.j.vorsorge_james.singleChildView.SingleChildView;
+import de.s.j.vorsorge_james.singleChildViewActivity.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.

@@ -1,22 +1,18 @@
-package de.s.j.vorsorge_james.setKindGewichtUndGroesse;
+package de.s.j.vorsorge_james.setKindGewichtUndGroesseActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.hilfsklassen.DateFormatter;
-import de.s.j.vorsorge_james.singleChildView.SingleChildView;
 
 public class SetKindGewichtUndGroesseActivity extends AppCompatActivity {
 
