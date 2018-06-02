@@ -39,4 +39,12 @@ public class DbKindHatGewichtUndGroesse {
     public void setKg(int kg) {
         this.kg = kg;
     }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 }
