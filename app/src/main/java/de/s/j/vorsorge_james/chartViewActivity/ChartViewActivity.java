@@ -46,13 +46,15 @@ public class ChartViewActivity extends AppCompatActivity {
         this.datasource.saveGewichtUndGroesseInDb(2, "05/02/2018", 51, 1);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/03/2018", 52, 1);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/04/2018", 53, 2);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/05/2018", 54, 1);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/06/2018", 55, 1);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/07/2018", 56, 1);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/08/2018", 57, 1);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/05/2018", 54, 2);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/06/2018", 55, 2);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/07/2018", 56, 2);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/08/2018", 57, 2);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/09/2018", 58, 3);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/10/2018", 59, 1);
-        this.datasource.saveGewichtUndGroesseInDb(2, "05/11/2018", 60, 1);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/10/2018", 59, 2);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/11/2018", 60, 3);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/12/2018", 65, 5);
+        this.datasource.saveGewichtUndGroesseInDb(2, "05/13/2018", 165, 15);
 
 
         this.liste = datasource.getGewichtGroesseListe(2);
@@ -66,6 +68,9 @@ public class ChartViewActivity extends AppCompatActivity {
             groesseGraph.appendData(new DataPoint(new Date(liste.get(i).getDate()), liste.get(i).getCm()), true, liste.size());
         }
 
+        groesseGraph.setDrawBackground(true);
+        groesseGraph.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+
         graphGroesse.addSeries(groesseGraph);
         graphGroesse.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "cm"));
         graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(4); //4 bei 4 Zoll. Je größer  desto mehr.
@@ -73,12 +78,14 @@ public class ChartViewActivity extends AppCompatActivity {
         graphGroesse.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGroesse.getViewport().setXAxisBoundsManual(true);
         graphGroesse.getGridLabelRenderer().setHumanRounding(false);
-        graphGroesse.setBackgroundColor(getResources().getColor(R.color.sunnyGreenLightest));
 
         LineGraphSeries<DataPoint> gewichtGraph = new LineGraphSeries<>();
         for(int i = 0; i < liste.size(); i++){
             gewichtGraph.appendData(new DataPoint(new Date(liste.get(i).getDate()), liste.get(i).getKg()), true, liste.size());
         }
+
+        gewichtGraph.setDrawBackground(true);
+        gewichtGraph.setDrawDataPoints(true);
 
         graphGewicht.addSeries(gewichtGraph);
         graphGewicht.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "kg"));
@@ -87,7 +94,6 @@ public class ChartViewActivity extends AppCompatActivity {
         graphGewicht.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGewicht.getViewport().setXAxisBoundsManual(true);
         graphGewicht.getGridLabelRenderer().setHumanRounding(false);
-        graphGewicht.setBackgroundColor(getResources().getColor(R.color.sunnyGreenLightest));
     }
 
     class CustomLabelFormatter extends DefaultLabelFormatter{
