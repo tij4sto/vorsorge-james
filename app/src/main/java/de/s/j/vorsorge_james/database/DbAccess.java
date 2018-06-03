@@ -103,10 +103,10 @@ public class DbAccess {
     }
 
     private DbKindHatGewichtUndGroesse getGewichtUndGroesseByCursor(Cursor c){
-        int idIdK = c.getColumnIndex("_id");
+        int idIdK = c.getColumnIndex("_id_kind");
         int idDatum = c.getColumnIndex("_datum");
-        int idCm = c.getColumnIndex("cm");
-        int idKg = c.getColumnIndex("kg");
+        int idCm = c.getColumnIndex("groesse");
+        int idKg = c.getColumnIndex("gewicht");
 
         int idK = c.getInt(idIdK);
         String datum = c.getString(idDatum);
@@ -282,10 +282,10 @@ public class DbAccess {
         return kinder;
     }
 
-    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(){
+    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(int idK){
         List<DbKindHatGewichtUndGroesse> liste = new ArrayList<>();
-        Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
-                null,
+        Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "gewicht", "groesse"},
+                "_id_kind=" + idK,
                 null,
                 null,
                 null,
