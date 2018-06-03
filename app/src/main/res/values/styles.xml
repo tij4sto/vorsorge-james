@@ -3,9 +3,9 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/greenMedium</item>
+        <item name="colorPrimaryDark">@color/greenDark</item>
+        <item name="colorAccent">@color/tealLightest</item>
         
     </style>
 
@@ -54,7 +54,7 @@
     </style>
 
     <style name="footer">
-        <item name="android:background">@color/greenMedium</item>
+        <item name="android:background">@color/greenDark</item>
     </style>
 
     <style name="standardButton">
@@ -67,6 +67,15 @@
     <style name="expandButton">
         <item name="android:colorBackground">@color/greenMedium</item>
         <item name="android:background">@drawable/expand_button_symbol</item>
+    </style>
+
+    <style name="editText">
+        <item name="android:textColor">@color/greenDarkest</item>
+
+    </style>
+    
+    <style name="editText.small">
+        <item name="android:textSize">12dp</item>
     </style>
 
 </resources>
