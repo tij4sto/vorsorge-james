@@ -32,14 +32,8 @@
             </intent-filter>
         </activity>
 
-            <service android:name=".notifications.MyService">
-                <intent-filter>
-                    <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"></action>
-                </intent-filter>
-            </service>
-
-            <receiver
-                android:name=".alarmManager.MyAlarm"
+        <receiver
+                android:name=".notifications.NotificationAlarm"
                 android:enabled="true">
 
                 <intent-filter>
@@ -52,7 +46,7 @@
 
             </receiver>
 
-            <receiver android:name=".alarmManager.BootReceiver"
+            <receiver android:name=".notifications.BootReceiver"
                 android:enabled="false">
                 <intent-filter>
                     <action android:name="android.intent.action.BOOT_COMPLETED"></action>

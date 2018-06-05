@@ -11,7 +11,6 @@ import android.widget.Button;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
-import de.s.j.vorsorge_james.notifications.NotificationHelper;
 import de.s.j.vorsorge_james.utils.guiUtils.OnClickSetter;
 
 public final class Footer_insideListViewActivity {
@@ -25,7 +24,7 @@ public final class Footer_insideListViewActivity {
         noteButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 new NotificationHelper(activityContext).sendSampleNotification("Tikki");
+                // new NotificationHelper(activityContext).sendSampleNotification("Tikki");
 
             }
         });

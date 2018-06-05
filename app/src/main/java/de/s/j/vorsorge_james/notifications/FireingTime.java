@@ -1,11 +1,16 @@
-package de.s.j.vorsorge_james.alarmManager;
+package de.s.j.vorsorge_james.notifications;
 
 import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.util.Calendar;
 
-public final class FireingTime {
+/**
+ * Test class for providing a time for building a notification.
+ */
+final class FireingTime {
+
+    private final static boolean FIX = true;
 
     public static final Calendar getTime(){
         Calendar fireingTime = Calendar.getInstance();

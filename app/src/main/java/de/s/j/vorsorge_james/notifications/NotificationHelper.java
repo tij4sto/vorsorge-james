@@ -1,6 +1,5 @@
 package de.s.j.vorsorge_james.notifications;
 
-import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -11,7 +10,7 @@ import android.util.Log;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
 
-public final class NotificationHelper {
+final class NotificationHelper {
 
     Context activity;
 
