@@ -8,7 +8,7 @@ import java.util.Calendar;
 /**
  * Test class for providing a time for building a notification.
  */
-final class FireingTime {
+public final class FireingTime {
 
     private final static boolean FIX = true;
 
