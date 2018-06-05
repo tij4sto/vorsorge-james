@@ -20,7 +20,7 @@ public enum DbTyp {
             "CREATE TABLE Kind_hat_Gewicht_und_Groesse(" +
                     "_id_kind INTEGER NOT NULL, " +
                     "_datum TEXT NOT NULL, " +
-                    "gewicht INTEGER NOT NULL, " +
+                    "gewicht REAL NOT NULL, " +
                     "groesse INTEGER NOT NULL, " +
                     "PRIMARY KEY(_id_kind, _datum), " +
                     "FOREIGN KEY(_id_kind) REFERENCES Kind(_id) ON DELETE CASCADE ON UPDATE NO ACTION);"

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3fb541</color>
+    <color name="colorPrimaryDark">#23641e</color>
+    <color name="colorAccent">#ffb348</color>
 
     <color name="greenDarkest">#1B2D02</color>
     <color name="greenDark">#4A7016</color>
@@ -15,6 +15,7 @@
     <color name="tealMedium">#338C51</color>
     <color name="tealLight">#62BB80</color>
     <color name="tealLightest">#A5EBBD</color>
+    <color name="tealLightestTransparent">#63a5ebbd</color>
 
     <color name="sunnyGreenDarkest">#2D3103</color>
     <color name="sunnyGreenDark">#707918</color>
