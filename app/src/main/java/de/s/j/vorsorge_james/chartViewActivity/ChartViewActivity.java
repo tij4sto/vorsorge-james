@@ -46,7 +46,7 @@ public class ChartViewActivity extends AppCompatActivity {
         this.intent = getIntent();
         this.idKind = Integer.parseInt(intent.getStringExtra("idK"));
 
-        //Testdaten
+        /* Testdaten
         this.datasource.saveGewichtUndGroesseInDb(2, "05/01/2018", 50, 1);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/02/2018", 51, 1);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/03/2018", 52, 1);
@@ -60,6 +60,7 @@ public class ChartViewActivity extends AppCompatActivity {
         this.datasource.saveGewichtUndGroesseInDb(2, "05/11/2018", 60, 3);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/12/2018", 65, 5);
         this.datasource.saveGewichtUndGroesseInDb(2, "05/13/2018", 165, 15);
+        */
 
 
         this.liste = datasource.getGewichtGroesseListe(idKind);
