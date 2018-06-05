@@ -301,4 +301,9 @@ public class DbAccess {
 
         return liste;
     }
+
+    @Override
+    public String toString(){
+        return "DB Access Vorsorge-James " + db.toString();
+    }
 }

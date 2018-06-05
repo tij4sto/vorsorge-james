@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="de.s.j.vorsorge_james">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -9,21 +11,53 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
+        <!-- ACTUAL MAIN ACTIVITY -->
         <activity
             android:name=".childListViewActivity.ChildListViewActivity"
             android:launchMode="singleInstance">
+
+
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+            <service android:name=".notifications.MyService">
+                <intent-filter>
+                    <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE"></action>
+                </intent-filter>
+            </service>
+
+            <receiver
+                android:name=".alarmManager.MyAlarm"
+                android:enabled="true">
+
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <!--    <action android:name="android.intent.action.QUICKBOOT_POWERON" />-->
+
+                    <category android:name="android.intent.category.DEFAULT" />
+                </intent-filter>
+
+
+            </receiver>
+
+            <receiver android:name=".alarmManager.BootReceiver"
+                android:enabled="false">
+                <intent-filter>
+                    <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                </intent-filter>
+            </receiver>
 
         <activity android:name=".setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity">
             <intent-filter>
@@ -57,5 +91,8 @@
         </activity>
 
     </application>
+
+
+
 
 </manifest>
