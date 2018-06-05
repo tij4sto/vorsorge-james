@@ -12,16 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <!-- ACTUAL MAIN ACTIVITY -->
         <activity
-            android:name=".childListViewActivity.ChildListViewActivity"
+            android:name=".activities.childListViewActivity.ChildListViewActivity"
             android:launchMode="singleInstance">
 
 
@@ -53,32 +46,32 @@
                 </intent-filter>
             </receiver>
 
-        <activity android:name=".setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity">
+        <activity android:name=".activities.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".chartViewActivity.ChartViewActivity">
+        <activity android:name=".activities.chartViewActivity.ChartViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".singleUntersuchungViewActivity.SingleUntersuchungView"
+        <activity android:name=".activities.singleUntersuchungViewActivity.SingleUntersuchungView"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".singleChildViewActivity.SingleChildView">
+        <activity android:name=".activities.singleChildViewActivity.SingleChildView">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".addChildActivity.AddChildActivity">
+        <activity android:name=".activities.addChildActivity.AddChildActivity">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>

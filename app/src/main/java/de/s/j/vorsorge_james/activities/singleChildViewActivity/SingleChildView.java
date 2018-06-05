@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.singleChildViewActivity;
+package de.s.j.vorsorge_james.activities.singleChildViewActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,15 +14,15 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.chartViewActivity.ChartViewActivity;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
+import de.s.j.vorsorge_james.activities.chartViewActivity.ChartViewActivity;
+import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 import de.s.j.vorsorge_james.hilfsklassen.UntersuchungArrayAdapter;
-import de.s.j.vorsorge_james.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity;
-import de.s.j.vorsorge_james.singleUntersuchungViewActivity.SingleUntersuchungView;
+import de.s.j.vorsorge_james.activities.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity;
+import de.s.j.vorsorge_james.activities.singleUntersuchungViewActivity.SingleUntersuchungView;
 
 /**
  * Created by Frieza on 03.05.2018.

@@ -8,7 +8,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
+import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
 
 final class NotificationHelper {
 

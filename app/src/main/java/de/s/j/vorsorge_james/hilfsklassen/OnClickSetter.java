@@ -1,13 +1,10 @@
-package de.s.j.vorsorge_james.utils.guiUtils;
+package de.s.j.vorsorge_james.hilfsklassen;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.AppCompatButton;
 import android.view.View;
-import android.widget.Button;
 
-import de.s.j.vorsorge_james.addChildActivity.AddChildActivity;
-import de.s.j.vorsorge_james.childListViewActivity.ChildListViewActivity;
+import de.s.j.vorsorge_james.activities.addChildActivity.AddChildActivity;
 
 /**
  * Class that provides static methods for setting OnClickListeners

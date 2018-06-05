@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.singleUntersuchungViewActivity;
+package de.s.j.vorsorge_james.activities.singleUntersuchungViewActivity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

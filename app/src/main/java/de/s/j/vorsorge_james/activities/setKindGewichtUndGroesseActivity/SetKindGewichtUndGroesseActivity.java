@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.setKindGewichtUndGroesseActivity;
+package de.s.j.vorsorge_james.activities.setKindGewichtUndGroesseActivity;
 
 import android.content.Intent;
 import android.os.Bundle;

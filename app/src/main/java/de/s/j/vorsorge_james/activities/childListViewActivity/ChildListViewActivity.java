@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.childListViewActivity;
+package de.s.j.vorsorge_james.activities.childListViewActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -17,9 +17,9 @@ import de.s.j.vorsorge_james.notifications.FireingTime;
 import de.s.j.vorsorge_james.notifications.NotificationAlarmManager;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.generalActivityElements.Footer_insideListViewActivity;
+import de.s.j.vorsorge_james.activities.Footer_insideListViewActivity;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
-import de.s.j.vorsorge_james.singleChildViewActivity.SingleChildView;
+import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.
