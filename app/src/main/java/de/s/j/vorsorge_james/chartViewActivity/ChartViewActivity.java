@@ -6,12 +6,16 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.jjoe64.graphview.DefaultLabelFormatter;
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.helper.DateAsXAxisLabelFormatter;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 
 import java.text.DateFormat;
 import java.util.Calendar;
@@ -58,7 +62,7 @@ public class ChartViewActivity extends AppCompatActivity {
         this.datasource.saveGewichtUndGroesseInDb(2, "05/13/2018", 165, 15);
 
 
-        this.liste = datasource.getGewichtGroesseListe(2);
+        this.liste = datasource.getGewichtGroesseListe(idKind);
 
         if(liste.size() > 0) showGraph();
     }
@@ -70,11 +74,23 @@ public class ChartViewActivity extends AppCompatActivity {
         }
 
         groesseGraph.setDrawBackground(true);
-        groesseGraph.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        groesseGraph.setBackgroundColor(getResources().getColor(R.color.tealLightestTransparent));
+        groesseGraph.setColor(getResources().getColor(R.color.colorPrimaryDark));
+        groesseGraph.setDrawDataPoints(true);
+
+        groesseGraph.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Number d = dataPoint.getX();
+                Date date = new Date(d.longValue());
+                String dateString = DateFormatter.formatDate(date);
+                Toast.makeText(ChartViewActivity.this, "Datum: " + dateString + " Grösse: " + dataPoint.getY() + " cm", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         graphGroesse.addSeries(groesseGraph);
         graphGroesse.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "cm"));
-        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(4); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 4); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGroesse.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGroesse.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGroesse.getViewport().setXAxisBoundsManual(true);
@@ -87,14 +103,24 @@ public class ChartViewActivity extends AppCompatActivity {
 
         gewichtGraph.setDrawBackground(true);
         gewichtGraph.setDrawDataPoints(true);
+        gewichtGraph.setOnDataPointTapListener(new OnDataPointTapListener() {
+            @Override
+            public void onTap(Series series, DataPointInterface dataPoint) {
+                Number d = dataPoint.getX();
+                Date date = new Date(d.longValue());
+                String dateString = DateFormatter.formatDate(date);
+                Toast.makeText(ChartViewActivity.this, "Datum: " + dateString + " Gewicht: " + dataPoint.getY() + " kg", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         graphGewicht.addSeries(gewichtGraph);
         graphGewicht.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "kg"));
-        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(4); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 4); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGewicht.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGewicht.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGewicht.getViewport().setXAxisBoundsManual(true);
         graphGewicht.getGridLabelRenderer().setHumanRounding(false);
+
     }
 
     class CustomLabelFormatter extends DefaultLabelFormatter{

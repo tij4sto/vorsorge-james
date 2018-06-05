@@ -15,6 +15,7 @@
     <color name="tealMedium">#338C51</color>
     <color name="tealLight">#62BB80</color>
     <color name="tealLightest">#A5EBBD</color>
+    <color name="tealLightestTransparent">#63a5ebbd</color>
 
     <color name="sunnyGreenDarkest">#2D3103</color>
     <color name="sunnyGreenDark">#707918</color>

@@ -7,9 +7,9 @@ public class DbKindHatGewichtUndGroesse {
     private int id;
     private String date;
     private int cm;
-    private int kg;
+    private float kg;
 
-    public DbKindHatGewichtUndGroesse(int id, String date, int cm, int kg){
+    public DbKindHatGewichtUndGroesse(int id, String date, int cm, float kg){
         this.id = id;
         this.date = date;
         this.cm = cm;
@@ -32,11 +32,11 @@ public class DbKindHatGewichtUndGroesse {
         this.cm = cm;
     }
 
-    public int getKg() {
+    public float getKg() {
         return kg;
     }
 
-    public void setKg(int kg) {
+    public void setKg(float kg) {
         this.kg = kg;
     }
 
