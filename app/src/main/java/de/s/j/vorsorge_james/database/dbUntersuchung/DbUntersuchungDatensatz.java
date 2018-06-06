@@ -2,13 +2,13 @@ package de.s.j.vorsorge_james.database.dbUntersuchung;
 
 public class DbUntersuchungDatensatz {
 
-    private long id;
+    private int id;
     private String name;
     private int vonTage;
     private int bisTage;
     private String beschreibung;
 
-    public DbUntersuchungDatensatz(long id, String name, int vonTage, int bisTage, String beschreibung) {
+    public DbUntersuchungDatensatz(int id, String name, int vonTage, int bisTage, String beschreibung) {
         this.id = id;
         this.name = name;
         this.vonTage = vonTage;
@@ -16,11 +16,11 @@ public class DbUntersuchungDatensatz {
         this.beschreibung = beschreibung;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

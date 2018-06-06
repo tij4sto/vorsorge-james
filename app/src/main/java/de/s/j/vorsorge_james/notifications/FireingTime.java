@@ -14,8 +14,8 @@ public final class FireingTime {
 
     public static final Calendar getTime(){
         Calendar fireingTime = Calendar.getInstance();
-        fireingTime.set(Calendar.MINUTE, fireingTime.get(Calendar.MINUTE) + 1);
-        fireingTime.set(Calendar.SECOND, 0);
+      //  fireingTime.set(Calendar.MINUTE, fireingTime.get(Calendar.MINUTE) + 1);
+     //   fireingTime.set(Calendar.SECOND, 0);
         Log.d("MyAlarm", "Fireing Time :"+ fireingTime.getTime().toString());
         return fireingTime;
     }

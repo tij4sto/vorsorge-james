@@ -237,6 +237,14 @@ public class DbAccess {
         }
     }
 
+    public boolean isKindInUntersuchung(int idK, int idU){
+        for(DbKindHatUntersuchungDatensatz data : getKindHatUntersuchungListe()){
+            if(idK == data.getIdKind() && idU == data.getIdUnterschung()) return true;
+        }
+
+        return false;
+    }
+
     public List<DbKindHatUntersuchungDatensatz> getKindHatUntersuchungListe(){
         List<DbKindHatUntersuchungDatensatz> liste = new ArrayList<>();
 

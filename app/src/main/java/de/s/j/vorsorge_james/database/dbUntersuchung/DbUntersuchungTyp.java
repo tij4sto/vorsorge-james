@@ -30,13 +30,13 @@ public enum DbUntersuchungTyp {
     U9(10, "U9", "Prüfung der Motorik, des Hör- und Sehvermögens und der Sprachentwicklung, um eventuelle Krankheiten und Fehlentwicklungen vor dem Schuleintritt zu erkennen und gegenzuwirken", 1830, 1952),
     J1(11, "J1", "Untersuchung des allgemeinen Gesundheitszustands und der Wachstumsentwicklung, der Organe und des Skelettsystems, Erhebung des Impfstatus, Untersuchung des Stands der Pubertätsentwicklung, der seelischen Entwicklung und des Auftretens von psychischen Auffälligkeiten, von Schulleistungsproblemen und gesundheitsgefährdendem Verhalten (Rauchen, Alkohol- und Drogenkonsum), Beratung auf Grundlage des individuellen Risikoprofils des Jugendlichen zu Möglichkeiten und Hilfen zur Vermeidung gesundheitsschädigender Verhaltensweisen und Tipps für eine gesunde Lebensführung", 4745, 5110);
 
-    private long id;
+    private int id;
     private String n;
     private String s;
     private int tageVon;
     private int tageBis;
 
-    DbUntersuchungTyp(long id, String n, String s, int tageVon, int tageBis){
+    DbUntersuchungTyp(int id, String n, String s, int tageVon, int tageBis){
         this.id = id;
         this.n = n;
         this.s = s;
@@ -44,7 +44,7 @@ public enum DbUntersuchungTyp {
         this.tageBis = tageBis;
     }
 
-    public long getId(){ return this.id; }
+    public int getId(){ return this.id; }
     public String getBeschreibung(){
         return this.s;
     }
@@ -62,6 +62,12 @@ public enum DbUntersuchungTyp {
 
         return untersuchungen;
     }
+
+    /**
+     * Returns all Untersuchungen that are due within the next 40 days for a specified child.
+     * @param kind Child that is expected to attend Untersuchungen
+     * @return A list of untersuchungen that are due within the next 40 days
+     */
     public static List<DbUntersuchungDatensatz> getBenoetigteUntersuchungenByKind(DbKindDatensatz kind){
         List<DbUntersuchungDatensatz> untersuchungen = new ArrayList<>();
 

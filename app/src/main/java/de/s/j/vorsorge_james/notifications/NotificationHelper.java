@@ -7,22 +7,35 @@ import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import java.util.HashMap;
+import java.util.List;
+
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
+import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 
 final class NotificationHelper {
 
-    Context activity;
+    private Context activity;
+    private NotificationManager notificationManager;
 
-    public NotificationHelper(Context activity){
+    NotificationHelper(Context activity){
         this.activity = activity;
+        notificationManager =  (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
-    public void sendSampleNotification(String message){
+    void sendSampleNotification(String message){
         sendSampleNotification(activity, message);
     }
 
-    public void sendSampleNotification(Context activityContext, String message){
+    void sendBenoetigteUntersuchungNotification (KindBenoetigteUntersuchungMap allBenoetigteUntersuchungen){
+        final int uniqueID = 67539650;
+        NotificationBuilder builder = new Notification_Untersuchung(activity, allBenoetigteUntersuchungen);
+        notificationManager.notify(uniqueID, builder.build());
+    }
+
+    void sendSampleNotification(Context activityContext, String message){
         final int uniqueID = 34657;
 
         NotificationCompat.Builder notificationBuilder =
@@ -34,14 +47,29 @@ final class NotificationHelper {
         notificationBuilder.setContentTitle("Sample Notification");
         notificationBuilder.setContentText(message);
 
-        Intent openActivityIntent = new Intent(activityContext, ChildListViewActivity.class);
-        PendingIntent accessAppIntent =
-                PendingIntent.getActivity(activityContext, 0, openActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        notificationBuilder.setContentIntent(accessAppIntent);
 
-        NotificationManager notificationManager = (NotificationManager) activityContext.getSystemService(Context.NOTIFICATION_SERVICE);
+
         notificationManager.notify(uniqueID, notificationBuilder.build());
         Log.d("MyAlarm", "Notification built");
     }
+
+    public void sendAnotherSample(String message){
+        final int uniqueID = 11112;
+
+        NotificationBuilder notificationBuilder =
+                new Notification_Termin(activity);
+
+
+        notificationManager.notify(uniqueID, notificationBuilder.build());
+        Log.d("MyAlarm", "Notification built");
+    }
+
+    private NotificationCompat.Builder makeBuilder(){
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(activity, "vorsorge-james-notification-channel");
+        return builder;
+    }
+
+
 
 }

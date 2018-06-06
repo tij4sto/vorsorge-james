@@ -55,7 +55,8 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
 
         if(listItem == null || ((ViewHolder) listItem.getTag()).id != this.alleUntersuchungen.get(position).getId()){
             boolean isNoetig = checkItemIsInNoetigeList(untersuchung);
-            boolean isEingetragen = isKindInUntersuchung(datasource.getKindHatUntersuchungListe(), this.kind.getId(), (int) untersuchung.getId());
+           // boolean isEingetragen = isKindInUntersuchung(datasource.getKindHatUntersuchungListe(), this.kind.getId(), untersuchung.getId());
+            boolean isEingetragen = datasource.isKindInUntersuchung(this.kind.getId(), untersuchung.getId());
 
             if(isEingetragen){
                 listItem = LayoutInflater.from(mContext).inflate(R.layout.adapter_untersuchung_green, parent, false);
@@ -118,13 +119,13 @@ public class UntersuchungArrayAdapter extends ArrayAdapter<DbUntersuchungDatensa
         return listItem;
     }
 
-    private boolean isKindInUntersuchung(List<DbKindHatUntersuchungDatensatz> list, int idK, int idU){
+ /*   private boolean isKindInUntersuchung(List<DbKindHatUntersuchungDatensatz> list, int idK, int idU){
         for(DbKindHatUntersuchungDatensatz data : list){
             if(idK == data.getIdKind() && idU == data.getIdUnterschung()) return true;
         }
 
         return false;
-    }
+    }*/
 
     static class ViewHolder{
         public long id;
