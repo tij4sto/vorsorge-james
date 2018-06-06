@@ -1,7 +1,9 @@
 package de.s.j.vorsorge_james.notifications;
 
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -24,6 +26,13 @@ final class NotificationHelper {
     void sendBenoetigteUntersuchungNotification (KindBenoetigteUntersuchungMap allBenoetigteUntersuchungen){
         final int uniqueID = 67539650;
         NotificationBuilder builder = new Notification_Untersuchung(activity, allBenoetigteUntersuchungen);
+
+            if (Build.VERSION.SDK_INT >= 26 ){
+                notificationManager.createNotificationChannel(builder.getNotificationChannel());
+            }
+
+
+
         notificationManager.notify(uniqueID, builder.build());
     }
 

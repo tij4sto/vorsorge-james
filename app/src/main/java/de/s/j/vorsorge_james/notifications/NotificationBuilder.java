@@ -1,19 +1,22 @@
 package de.s.j.vorsorge_james.notifications;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 
 import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
 
 abstract class NotificationBuilder extends NotificationCompat.Builder {
 
-    protected static final String channelId = "vorsorge-james-notification-channel";
     protected Context context;
 
-    public NotificationBuilder(@NonNull Context context) {
+    NotificationBuilder(@NonNull Context context, String channelId) {
         super(context, channelId);
         this.context = context;
     }
@@ -24,6 +27,8 @@ abstract class NotificationBuilder extends NotificationCompat.Builder {
         setAutoCancel(true);
         setContentIntent(makeAccessAppIntent());
     }
+
+    protected abstract NotificationChannel getNotificationChannel();
 
     protected abstract void setupSubClass();
 

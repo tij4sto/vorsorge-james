@@ -1,14 +1,17 @@
 package de.s.j.vorsorge_james.notifications;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
@@ -18,13 +21,23 @@ import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 final class Notification_Untersuchung extends NotificationBuilder {
 
+    protected static final String channelId = "vorsorge-james-notification-channel";
+
     private KindBenoetigteUntersuchungMap untersuchungMap;
     private LinkedList<DbKindDatensatz> kinder;
 
     public Notification_Untersuchung(@NonNull Context context, KindBenoetigteUntersuchungMap untersuchungMap) {
-        super(context);
+        super(context, channelId);
         this.untersuchungMap = untersuchungMap;
         super.setup();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    protected NotificationChannel getNotificationChannel() {
+        NotificationChannel channel_untersuchungen =
+                new NotificationChannel(channelId, "Untersuchungen", NotificationManager.IMPORTANCE_DEFAULT);
+        return channel_untersuchungen;
     }
 
     @Override
@@ -63,8 +76,6 @@ final class Notification_Untersuchung extends NotificationBuilder {
                         inboxStyle.addLine(untersuchung.getName() + " " + DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
                     }
                 }
-
-
             }
             setStyle(inboxStyle);
 
