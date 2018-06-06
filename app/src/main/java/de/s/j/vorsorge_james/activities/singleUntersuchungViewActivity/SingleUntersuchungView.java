@@ -14,11 +14,14 @@ import android.widget.ToggleButton;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
+import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
+import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
@@ -76,11 +79,24 @@ public class SingleUntersuchungView extends AppCompatActivity {
     }
 
     void insertDatensatz(String doctor, String date){
-        final int idK = kind.getId();
-        final int idU = (int) untersuchung.getId();
-        // TODO: Make overwriting possible.
-        boolean b = dataSource.createKindHatUntersuchungDatensatz(idK, idU, doctor, date);
-        finish();
+        List<DbKindHatUntersuchungDatensatz> liste = dataSource.getKindHatUntersuchungListe();
+        for(DbKindHatUntersuchungDatensatz item : liste){
+            if(item.getIdKind() == this.kind.getId() && item.getIdUnterschung() == this.untersuchung.getId()){
+                boolean b = dataSource.updateKindHatUntersuchung(this.kind.getId(), (int) this.untersuchung.getId(), doctor, date);
+                if(b) {
+                    finish();
+                    return;
+                }
+                else Toast.makeText(this, "Das hat nicht funktioniert", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        boolean b = dataSource.createKindHatUntersuchungDatensatz(this.kind.getId(), (int) this.untersuchung.getId(), doctor, date);
+        if(b) finish();
+        else Toast.makeText(this, "Das hat nicht funktioniert", Toast.LENGTH_SHORT).show();
+
+
+
     }
 
     DbKindDatensatz getKind(){
@@ -90,6 +106,8 @@ public class SingleUntersuchungView extends AppCompatActivity {
     DbUntersuchungDatensatz getUntersuchung(){
         return this.untersuchung;
     }
+
+
 
     static final class SetUntersuchungFormular {
 
