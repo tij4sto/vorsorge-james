@@ -19,7 +19,6 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/footer"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,10 +26,10 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -56,7 +55,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:id="@+id/descriptionContainer"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="32dp"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="32dp"
@@ -83,6 +82,7 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:layout_marginTop="8dp"
+                            android:padding="10sp"
                             android:text="@string/placeholderDescription"
                             android:textColor="@color/greenDark"
                             android:textSize="18sp"
@@ -106,22 +106,21 @@
 
                     <TextView
                         android:id="@+id/textViewDescriptionUntersuchung"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:background="@color/greenDark"
-                        android:padding="4dp"
+                        android:padding="10sp"
                         android:text="TextView"
                         android:textColor="@color/sunnyGreenLightest"
+                        android:textSize="14dp"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.75"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout" />
+                        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+                        app:layout_constraintVertical_bias="0.0" />
                 </android.support.constraint.ConstraintLayout>
 
                 <android.support.constraint.ConstraintLayout
@@ -141,6 +140,7 @@
 
                     <Button
                         android:id="@+id/buttonSubmitUntersuchung"
+                        style="@style/standardButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
@@ -165,6 +165,7 @@
 
                     <EditText
                         android:id="@+id/textFieldPLZ"
+                        style="@style/editText.small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -180,6 +181,7 @@
 
                     <EditText
                         android:id="@+id/textFieldStreet"
+                        style="@style/editText.small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
@@ -195,6 +197,7 @@
 
                     <EditText
                         android:id="@+id/textFieldHouse"
+                        style="@style/editText.small"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"

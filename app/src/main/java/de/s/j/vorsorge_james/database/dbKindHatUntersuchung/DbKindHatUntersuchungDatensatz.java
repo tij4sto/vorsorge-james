@@ -41,4 +41,9 @@ public class DbKindHatUntersuchungDatensatz {
         this.termin = termin;
     }
 
+    @Override
+    public String toString(){
+        return "Kind mit ID: " + idKind + " hat  Untersuchung mit ID: " + idUnterschung + " am " + termin + " bei " + arzt;
+    }
+
 }

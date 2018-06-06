@@ -1,4 +1,4 @@
-package de.s.j.vorsorge_james.childListViewActivity;
+package de.s.j.vorsorge_james.activities.childListViewActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,16 +6,20 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.Calendar;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.notifications.FireingTime;
+import de.s.j.vorsorge_james.notifications.NotificationAlarmManager;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.generalActivityElements.Footer_insideListViewActivity;
+import de.s.j.vorsorge_james.activities.Footer_insideListViewActivity;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
-import de.s.j.vorsorge_james.singleChildViewActivity.SingleChildView;
+import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -33,8 +37,26 @@ public class ChildListViewActivity extends AppCompatActivity {
         showChildren();
 
         new Footer_insideListViewActivity(this);
-     /*   Button addChildButton = findViewById(R.id.addChildButton);
-        OnClickSetter.openAddChildActivity(addChildButton);*/
+
+        Button startJobButton = findViewById(R.id.rightFooterButton);
+        startJobButton.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+                Calendar startTime = FireingTime.getTime();
+                Log.d("MyAlarm", "" + calendar.getTime() + " " + startTime.getTime());
+                new NotificationAlarmManager(ChildListViewActivity.this).start();
+            }
+        });
+
+        Button middle = findViewById(R.id.button3);
+        middle.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new NotificationAlarmManager(ChildListViewActivity.this).cancel();
+            }
+        });
+
     }
 
     @Override

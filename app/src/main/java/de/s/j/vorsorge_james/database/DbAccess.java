@@ -303,6 +303,7 @@ public class DbAccess {
         return liste;
     }
 
+<<<<<<< HEAD
     public boolean updateGewichtUndGroesse(int idK, String date, int cm, float gewicht){
         ContentValues values = new ContentValues();
         values.put("_id_kind", idK);
@@ -313,5 +314,10 @@ public class DbAccess {
         if(b > 0)
             return true;
         return false;
+=======
+    @Override
+    public String toString(){
+        return "DB Access Vorsorge-James " + db.toString();
+>>>>>>> 3706c599d6c2fca28feeefbb5bd00e1e7b59cfb7
     }
 }
