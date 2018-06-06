@@ -49,8 +49,8 @@
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         app:layout_constraintVertical_bias="0.51">
 
-        <EditText
-            android:id="@+id/groesse"
+        <TextView
+            android:id="@+id/tvDatum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -58,31 +58,33 @@
             android:layout_marginLeft="32dp"
             android:layout_marginRight="32dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
-            android:ems="10"
-            android:hint="Größe in cm"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Datum"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/datum"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvgroesse" />
+            app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvgroesse"
+        <EditText
+            android:id="@+id/datum"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginStart="8dp"
-            android:gravity="center_horizontal"
-            android:text="Größe"
-            android:textSize="24sp"
-            app:layout_constraintBottom_toTopOf="@+id/groesse"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Datum"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/tvGroesse"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/constraintLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/tvDatum"
+            android:focusable="false"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -94,7 +96,7 @@
             android:layout_marginRight="32dp"
             android:layout_marginStart="32dp"
             android:layout_marginTop="24dp"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:text="Gewicht"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/gewicht"
@@ -106,18 +108,54 @@
             android:id="@+id/gewicht"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:layout_marginEnd="32dp"
-            android:layout_marginLeft="32dp"
+            android:layout_marginLeft="29dp"
             android:layout_marginRight="32dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Gewicht in kg"
             android:inputType="textPersonName"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+        <EditText
+            android:id="@+id/groesse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="29dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:hint="Größe in cm"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvGroesse" />
+
+        <TextView
+            android:id="@+id/tvGroesse"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:gravity="left"
+            android:text="Größe"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/groesse"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/datum" />
 
 
     </android.support.constraint.ConstraintLayout>

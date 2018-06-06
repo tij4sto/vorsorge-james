@@ -103,7 +103,10 @@ public class ChartViewActivity extends AppCompatActivity {
         }
 
         gewichtGraph.setDrawBackground(true);
+        gewichtGraph.setBackgroundColor(getResources().getColor(R.color.tealLightestTransparent));
+        gewichtGraph.setColor(getResources().getColor(R.color.colorPrimaryDark));
         gewichtGraph.setDrawDataPoints(true);
+
         gewichtGraph.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {

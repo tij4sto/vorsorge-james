@@ -3,6 +3,7 @@ package de.s.j.vorsorge_james.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
@@ -300,5 +301,17 @@ public class DbAccess {
         }
 
         return liste;
+    }
+
+    public boolean updateGewichtUndGroesse(int idK, String date, int cm, float gewicht){
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idK);
+        values.put("_datum", date);
+        values.put("groesse", cm);
+        values.put("gewicht", gewicht);
+        int b = db.update("Kind_hat_Gewicht_und_Groesse", values, "_id_kind=" + idK + " AND _datum=" + DatabaseUtils.sqlEscapeString(date), null);
+        if(b > 0)
+            return true;
+        return false;
     }
 }
