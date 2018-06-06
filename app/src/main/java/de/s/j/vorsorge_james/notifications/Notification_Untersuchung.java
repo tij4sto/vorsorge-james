@@ -3,6 +3,7 @@ package de.s.j.vorsorge_james.notifications;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 import java.util.LinkedList;
@@ -13,6 +14,7 @@ import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 final class Notification_Untersuchung extends NotificationBuilder {
 
@@ -31,6 +33,9 @@ final class Notification_Untersuchung extends NotificationBuilder {
         setSmallIcon(R.drawable.ic_launcher_background);
         setContentTitle("Es stehen Untersuchungen an.");
 
+        int color = context.getResources().getColor(R.color.orange);
+        setColor(color);
+
         kinder = new LinkedList<>(untersuchungMap.keySet());
         Log.d("MyAlarm", "Anzahl Kinder mit Untersuchungen: " + kinder.size());
         if(kinder.size() == 1){
@@ -45,12 +50,29 @@ final class Notification_Untersuchung extends NotificationBuilder {
                 }
             }
         } else {
+            NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
             for(DbKindDatensatz kind : kinder){
-                List<DbUntersuchungDatensatz> untersuchungen = untersuchungMap.get(kind);
-                Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungen.size());
+                List<DbUntersuchungDatensatz> untersuchungenDesKindes = untersuchungMap.get(kind);
+                if(untersuchungenDesKindes.size() == 1){
+                    DbUntersuchungDatensatz untersuchung = untersuchungenDesKindes.get(0);
+                    inboxStyle.addLine(kind.getName() + " hat Untersuchung " + untersuchung.getName() + " " +DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
+                } else {
+                    inboxStyle.addLine(kind.getName() + " hat Untersuchungen:");
+                    for(DbUntersuchungDatensatz untersuchung : untersuchungenDesKindes){
+                        Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungenDesKindes.size());
+                        inboxStyle.addLine(untersuchung.getName() + " " + DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
+                    }
+                }
+
+
             }
+            setStyle(inboxStyle);
+
+
             setContentText("Kinder haben Untersuchungen");
         }
+
+
 
     }
 
