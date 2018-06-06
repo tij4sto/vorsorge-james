@@ -14,6 +14,7 @@ import java.util.List;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 
 public class DbAccess {
     private static final String LOG_TAG = DbAccess.class.getSimpleName();
@@ -28,31 +29,29 @@ public class DbAccess {
         db.execSQL("PRAGMA foreign_keys = ON");
     }
 
-    public  void open(){
+    public void open() {
         Log.d(LOG_TAG, "Datenbank Instanz wird angefragt.");
         this.db = this.DbHelper.getWritableDatabase();
         Log.d(LOG_TAG, "Datenbank Referenz erhalten. Pfad: " + this.db.getPath());
     }
 
-    public void close(){
+    public void close() {
         DbHelper.close();
         Log.d(LOG_TAG, "Verbindung mittels Access-Worker zur Datenbank geschlossen.");
     }
 
-    public boolean deleteKindDatensatzById(int id){
+    public boolean deleteKindDatensatzById(int id) {
         try {
-            Log.d(LOG_TAG, "Löschen funktioniert "+ this.db.delete("kind",  "_id="+id, null));
+            Log.d(LOG_TAG, "Löschen funktioniert " + this.db.delete("kind", "_id=" + id, null));
             return true;
-        }
-
-        catch (Exception e) {
+        } catch (Exception e) {
             Log.d(LOG_TAG, "Löschen nicht geklappt! " + e.getMessage());
             return false;
         }
 
     }
 
-    public DbKindDatensatz createKindDatensatz(String name, String geburtstag){
+    public DbKindDatensatz createKindDatensatz(String name, String geburtstag) {
         //Zugriff auf Datenbank öffnen
         this.open();
 
@@ -75,15 +74,13 @@ public class DbAccess {
             DbKindDatensatz kind = getKindDatensatzByCursor(cursor);
             cursor.close();
             return kind;
-        }
-
-        catch (Exception e){
+        } catch (Exception e) {
             Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
             return null;
         }
     }
 
-    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, int kg){
+    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, int kg) {
         this.open();
         ContentValues values = new ContentValues();
         values.put("_id_kind", idKind);
@@ -94,16 +91,14 @@ public class DbAccess {
         try {
             long l = db.insert("Kind_hat_Gewicht_und_Groesse", null, values);
             if (l >= 0) return true;
-        }
-
-        catch (Exception e ){
+        } catch (Exception e) {
             Log.d("SaveGewicht()", e.getMessage());
         }
 
         return false;
     }
 
-    private DbKindHatGewichtUndGroesse getGewichtUndGroesseByCursor(Cursor c){
+    private DbKindHatGewichtUndGroesse getGewichtUndGroesseByCursor(Cursor c) {
         int idIdK = c.getColumnIndex("_id_kind");
         int idDatum = c.getColumnIndex("_datum");
         int idCm = c.getColumnIndex("groesse");
@@ -118,7 +113,7 @@ public class DbAccess {
         return data;
     }
 
-    public DbKindHatGewichtUndGroesse getGewichtUndGrößeByID(int idKind){
+    public DbKindHatGewichtUndGroesse getGewichtUndGrößeByID(int idKind) {
         try {
             Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "cm", "kg"},
                     null,
@@ -130,17 +125,16 @@ public class DbAccess {
             DbKindHatGewichtUndGroesse data = getGewichtUndGroesseByCursor(c);
             c.close();
             return data;
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
-    public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU){
+    public DbKindHatUntersuchungDatensatz getKindHatUntersuchungByPK(int idK, int idU) {
         try {
             Cursor c = db.query(
                     "Kind_hat_Untersuchung", new String[]{"_id_kind", "_id_untersuchung", "termin", "arzt"},
-                    "_id_kind="+ idK + " AND _id_untersuchung=" + idU,
+                    "_id_kind=" + idK + " AND _id_untersuchung=" + idU,
                     null,
                     null,
                     null,
@@ -149,15 +143,13 @@ public class DbAccess {
             DbKindHatUntersuchungDatensatz data = getKindHatUntersuchungByCursor(c);
             c.close();
             return data;
-        }
-
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d("GetKindUntersuchungByPK", e.getMessage());
             return null;
         }
     }
 
-    private DbKindHatUntersuchungDatensatz getKindHatUntersuchungByCursor(Cursor c){
+    private DbKindHatUntersuchungDatensatz getKindHatUntersuchungByCursor(Cursor c) {
         int ididK = c.getColumnIndex("_id_kind");
         int ididU = c.getColumnIndex("_id_untersuchung");
         int idtermin = c.getColumnIndex("termin");
@@ -172,7 +164,7 @@ public class DbAccess {
         return data;
     }
 
-    public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum){
+    public boolean createKindHatUntersuchungDatensatz(int idKind, int idUntersuchung, String arzt, String datum) {
         this.open();
 
         ContentValues values = new ContentValues();
@@ -182,20 +174,18 @@ public class DbAccess {
         values.put("termin", datum);
 
 
-        try{
+        try {
             long i = db.insert("Kind_hat_Untersuchung", null, values);
-            if(i < 0)
+            if (i < 0)
                 return false;
             return true;
-        }
-
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d("KindHatUntersuchung", e.getMessage());
             return false;
         }
     }
 
-    private DbKindDatensatz getKindDatensatzByCursor(Cursor c){
+    private DbKindDatensatz getKindDatensatzByCursor(Cursor c) {
         try {
             Log.d(LOG_TAG, "getKindDatensatzByCursor() versucht Eintrag mit Cursor zu finden.");
 
@@ -212,33 +202,29 @@ public class DbAccess {
 
             DbKindDatensatz kind = new DbKindDatensatz(id, name, date);
             return kind;
-        }
-
-        catch (Exception e){
+        } catch (Exception e) {
             Log.d(LOG_TAG, "getKindDatensatzByCursor() meldet : " + e.getMessage());
             return null;
         }
     }
 
-    public DbKindDatensatz getKindDatensatzById(long i){
+    public DbKindDatensatz getKindDatensatzById(long i) {
         try {
             Log.d(LOG_TAG, "findKindByID: Versuche kind mit ID=" + i + " zu finden");
             Cursor cursor = db.query("Kind", new String[]{"_id", "name", "geburtstag"}, "_id" + "=" + i, null, null, null, null);
             cursor.moveToFirst();
             DbKindDatensatz kind = getKindDatensatzByCursor(cursor);
             cursor.close();
-            if(kind == null) throw new NullPointerException();
+            if (kind == null) throw new NullPointerException();
             Log.d(LOG_TAG, "Hat geklappt");
             return kind;
-        }
-
-        catch (Exception e){
+        } catch (Exception e) {
             Log.d(LOG_TAG, "CreateKindDatensatz() meldet: " + e.getMessage());
             return null;
         }
     }
 
-    public List<DbKindHatUntersuchungDatensatz> getKindHatUntersuchungListe(){
+    public List<DbKindHatUntersuchungDatensatz> getKindHatUntersuchungListe() {
         List<DbKindHatUntersuchungDatensatz> liste = new ArrayList<>();
 
         Cursor c = this.db.query("Kind_hat_Untersuchung", new String[]{"_id_kind", "_id_untersuchung", "termin", "arzt"},
@@ -250,7 +236,7 @@ public class DbAccess {
         c.moveToFirst();
         DbKindHatUntersuchungDatensatz data;
 
-        while(!(c.isAfterLast())){
+        while (!(c.isAfterLast())) {
             data = getKindHatUntersuchungByCursor(c);
             liste.add(data);
             c.moveToNext();
@@ -259,7 +245,7 @@ public class DbAccess {
         return liste;
     }
 
-    public List<DbKindDatensatz> getKindListe(){
+    public List<DbKindDatensatz> getKindListe() {
         List<DbKindDatensatz> kinder = new ArrayList<>();
 
         Cursor c = this.db.query("kind", new String[]{"_id", "name", "geburtstag"},
@@ -272,10 +258,10 @@ public class DbAccess {
 
         DbKindDatensatz kind;
 
-        while(!(c.isAfterLast())){
+        while (!(c.isAfterLast())) {
             kind = getKindDatensatzByCursor(c);
             kinder.add(kind);
-            Log.d(LOG_TAG, "getKindListe() hat Kind " + kind.toString() +" in Liste eingetragen!");
+            Log.d(LOG_TAG, "getKindListe() hat Kind " + kind.toString() + " in Liste eingetragen!");
             c.moveToNext();
         }
 
@@ -283,7 +269,7 @@ public class DbAccess {
         return kinder;
     }
 
-    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(int idK){
+    public List<DbKindHatGewichtUndGroesse> getGewichtGroesseListe(int idK) {
         List<DbKindHatGewichtUndGroesse> liste = new ArrayList<>();
         Cursor c = db.query("Kind_hat_Gewicht_und_Groesse", new String[]{"_id_kind", "_datum", "gewicht", "groesse"},
                 "_id_kind=" + idK,
@@ -294,7 +280,7 @@ public class DbAccess {
         c.moveToFirst();
         DbKindHatGewichtUndGroesse data;
 
-        while(!(c.isAfterLast())){
+        while (!(c.isAfterLast())) {
             data = getGewichtUndGroesseByCursor(c);
             liste.add(data);
             c.moveToNext();
@@ -303,21 +289,33 @@ public class DbAccess {
         return liste;
     }
 
-<<<<<<< HEAD
-    public boolean updateGewichtUndGroesse(int idK, String date, int cm, float gewicht){
+    public boolean updateGewichtUndGroesse(int idK, String date, int cm, float gewicht) {
         ContentValues values = new ContentValues();
         values.put("_id_kind", idK);
         values.put("_datum", date);
         values.put("groesse", cm);
         values.put("gewicht", gewicht);
         int b = db.update("Kind_hat_Gewicht_und_Groesse", values, "_id_kind=" + idK + " AND _datum=" + DatabaseUtils.sqlEscapeString(date), null);
+        if (b > 0)
+            return true;
+        return false;
+    }
+
+    public boolean updateKindHatUntersuchung(int idKind, int idUntersuchung, String arzt, String datum){
+        ContentValues values = new ContentValues();
+        values.put("_id_kind", idKind);
+        values.put("_id_untersuchung", idUntersuchung);
+        values.put("arzt", arzt);
+        values.put("termin", datum);
+        int b = db.update("Kind_hat_Untersuchung", values, "_id_kind=" + idKind + " AND _id_untersuchung=" + idUntersuchung, null);
+
         if(b > 0)
             return true;
         return false;
-=======
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         return "DB Access Vorsorge-James " + db.toString();
->>>>>>> 3706c599d6c2fca28feeefbb5bd00e1e7b59cfb7
     }
 }

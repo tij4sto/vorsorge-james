@@ -17,7 +17,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import de.s.j.vorsorge_james.MainActivity;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
@@ -33,7 +32,7 @@ public class SetKindGewichtUndGroesseActivity extends AppCompatActivity {
     private EditText etGewicht;
     private EditText etGroesse;
     private Button speichern;
-    private String datum;
+    private String datum = DateFormatter.formatDateToDBCorrect(new Date());
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -76,7 +75,7 @@ public class SetKindGewichtUndGroesseActivity extends AppCompatActivity {
                             String kgs = etGewicht.getText().toString().replace(",", ".");
                             float kg = Float.parseFloat(kgs);
                             if(kg > 300) kg = kg / 1000;
-                            if(saveGewichtUndGroesse(idKind, datum, (int) cm, (int) kg)){
+                            if(saveGewichtUndGroesse(idKind, SetKindGewichtUndGroesseActivity.this.datum, (int) cm, (int) kg)){
                                 SetKindGewichtUndGroesseActivity.this.finish();
                             }
 
