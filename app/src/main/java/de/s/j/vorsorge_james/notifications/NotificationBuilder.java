@@ -11,14 +11,14 @@ import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActiv
 abstract class NotificationBuilder extends NotificationCompat.Builder {
 
     protected static final String channelId = "vorsorge-james-notification-channel";
-    private Context context;
+    protected Context context;
 
     public NotificationBuilder(@NonNull Context context) {
         super(context, channelId);
         this.context = context;
     }
 
-    protected void setup(){
+    protected final void setup(){
         setupSubClass();
         setWhen(System.currentTimeMillis());
         setAutoCancel(true);
@@ -27,8 +27,13 @@ abstract class NotificationBuilder extends NotificationCompat.Builder {
 
     protected abstract void setupSubClass();
 
-    protected PendingIntent makeAccessAppIntent(){
+    protected Intent makeOpenActivityIntent(){
         Intent openActivityIntent = new Intent(context, ChildListViewActivity.class);
+        return openActivityIntent;
+    }
+
+    private PendingIntent makeAccessAppIntent(){
+        Intent openActivityIntent = makeOpenActivityIntent();
         PendingIntent accessAppIntent =
                 PendingIntent.getActivity(context, 0, openActivityIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return accessAppIntent;

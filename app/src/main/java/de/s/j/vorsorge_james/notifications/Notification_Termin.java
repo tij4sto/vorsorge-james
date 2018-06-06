@@ -1,6 +1,7 @@
 package de.s.j.vorsorge_james.notifications;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 
 import de.s.j.vorsorge_james.R;
@@ -18,5 +19,10 @@ final class Notification_Termin extends NotificationBuilder {
     @Override
     protected void setupSubClass() {
 
+    }
+
+    @Override
+    protected Intent makeOpenActivityIntent() {
+        return null;
     }
 }

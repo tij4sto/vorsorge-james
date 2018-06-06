@@ -1,19 +1,11 @@
 package de.s.j.vorsorge_james.notifications;
 
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
-import java.util.HashMap;
-import java.util.List;
-
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
-import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 
 final class NotificationHelper {
 
@@ -69,7 +61,5 @@ final class NotificationHelper {
                 new NotificationCompat.Builder(activity, "vorsorge-james-notification-channel");
         return builder;
     }
-
-
 
 }

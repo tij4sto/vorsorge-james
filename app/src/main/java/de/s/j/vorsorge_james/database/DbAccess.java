@@ -8,11 +8,14 @@ import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
+import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 public class DbAccess {
     private static final String LOG_TAG = DbAccess.class.getSimpleName();
@@ -243,6 +246,28 @@ public class DbAccess {
         }
 
         return false;
+    }
+
+    public List<DbUntersuchungDatensatz> getBenoetigteUntersuchungenOhneTermine(DbKindDatensatz kind){
+        List<DbUntersuchungDatensatz>
+                untersuchungen = DbUntersuchungTyp.getBenoetigteUntersuchungenByKind(kind),
+                removeUntersucungen = new LinkedList<>();
+
+        DbUntersuchungTyp.getBenoetigteUntersuchungenByKind(kind);
+
+        LinkedList<DbUntersuchungDatensatz> removeUntersuchungen = new LinkedList<>();
+        for(DbUntersuchungDatensatz untersuchung : untersuchungen){
+
+            if(isKindInUntersuchung(kind.getId(), untersuchung.getId())){
+                removeUntersuchungen.add(untersuchung);
+            }
+        }
+        for (DbUntersuchungDatensatz untersuchung: removeUntersuchungen) {
+            untersuchungen.remove(untersuchung);
+        }
+
+        return untersuchungen;
+
     }
 
     public List<DbKindHatUntersuchungDatensatz> getKindHatUntersuchungListe(){

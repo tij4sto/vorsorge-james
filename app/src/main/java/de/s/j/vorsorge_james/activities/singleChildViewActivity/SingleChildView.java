@@ -56,7 +56,7 @@ public class SingleChildView extends AppCompatActivity {
         Log.d("SingleChild", kindName + " " + this.kindID);
     }
 
-    private  void init(final DbKindDatensatz kind){
+    private void init(final DbKindDatensatz kind){
         Button buttonGuG = findViewById(R.id.gug);
         buttonGuG.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,4 +133,5 @@ public class SingleChildView extends AppCompatActivity {
         super.onResume();
         showKindUntersuchungen(kind);
     }
+    
 }
