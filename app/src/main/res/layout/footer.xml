@@ -31,19 +31,17 @@
         android:layout_marginTop="8dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rightFooterButton"
+        app:layout_constraintEnd_toStartOf="@+id/showNotificationsButton"
         app:layout_constraintStart_toEndOf="@+id/addChildButton"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/rightFooterButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/showNotificationsButton"
+        style="@style/ButtonShowNotifications"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
-        android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

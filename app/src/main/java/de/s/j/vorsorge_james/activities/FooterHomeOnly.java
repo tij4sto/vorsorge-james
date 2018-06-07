@@ -2,6 +2,7 @@ package de.s.j.vorsorge_james.activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,6 +17,7 @@ public final class FooterHomeOnly {
             @Override
             public void onClick(View v) {
                 activityContext.finish();
+                Log.d("footer", "click registered");
                 Intent openChildListViewActivity = new Intent(activityContext, ChildListViewActivity.class);
                 activityContext.startActivity(openChildListViewActivity);
             }

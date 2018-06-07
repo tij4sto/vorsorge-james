@@ -38,7 +38,7 @@ public class ChildListViewActivity extends AppCompatActivity {
 
         new Footer_insideListViewActivity(this);
 
-        Button startJobButton = findViewById(R.id.rightFooterButton);
+        Button startJobButton = findViewById(R.id.showNotificationsButton);
         startJobButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
