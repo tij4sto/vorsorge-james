@@ -36,7 +36,7 @@ public class DateFormatter {
         return calendar;
     }
 
-    public static boolean isAfterDay(Calendar cal1, Calendar cal2) {
+ /*   public static boolean isAfterDay(Calendar cal1, Calendar cal2) {
         if (cal1 == null || cal2 == null) {
             throw new IllegalArgumentException("The dates must not be null");
         }
@@ -45,6 +45,6 @@ public class DateFormatter {
         if (cal1.get(Calendar.YEAR) < cal2.get(Calendar.YEAR)) return false;
         if (cal1.get(Calendar.YEAR) > cal2.get(Calendar.YEAR)) return true;
         return cal1.get(Calendar.DAY_OF_YEAR) > cal2.get(Calendar.DAY_OF_YEAR);
-    }
+    }*/
 
 }

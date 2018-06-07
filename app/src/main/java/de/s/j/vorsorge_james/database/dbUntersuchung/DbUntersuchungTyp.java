@@ -63,6 +63,15 @@ public enum DbUntersuchungTyp {
         return untersuchungen;
     }
 
+    public static DbUntersuchungTyp getUntersuchungTypByID(int id){
+        for(DbUntersuchungTyp typ : DbUntersuchungTyp.values()){
+            if(typ.getId() == id){
+                return typ;
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns all Untersuchungen that are due within the next 40 days for a specified child.
      * @param kind Child that is expected to attend Untersuchungen

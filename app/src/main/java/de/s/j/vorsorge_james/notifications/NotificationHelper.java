@@ -7,7 +7,10 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+import java.util.List;
+
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 
 final class NotificationHelper {
 
@@ -19,50 +22,24 @@ final class NotificationHelper {
         notificationManager =  (NotificationManager) activity.getSystemService(Context.NOTIFICATION_SERVICE);
     }
 
-    void sendSampleNotification(String message){
-        sendSampleNotification(activity, message);
-    }
-
     void sendBenoetigteUntersuchungNotification (KindBenoetigteUntersuchungMap allBenoetigteUntersuchungen){
         final int uniqueID = 67539650;
         NotificationBuilder builder = new Notification_Untersuchung(activity, allBenoetigteUntersuchungen);
-
-            if (Build.VERSION.SDK_INT >= 26 ){
-                notificationManager.createNotificationChannel(builder.getNotificationChannel());
-            }
-
-
-
+        setChannel(builder);
         notificationManager.notify(uniqueID, builder.build());
     }
 
-    void sendSampleNotification(Context activityContext, String message){
-        final int uniqueID = 34657;
-
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(activityContext, "vorsorge-james-notification-channel");
-        notificationBuilder.setAutoCancel(true);
-        notificationBuilder.setSmallIcon(R.drawable.ic_launcher_background);
-        notificationBuilder.setTicker(message);
-        notificationBuilder.setWhen(System.currentTimeMillis());
-        notificationBuilder.setContentTitle("Sample Notification");
-        notificationBuilder.setContentText(message);
-
-
-
-        notificationManager.notify(uniqueID, notificationBuilder.build());
-        Log.d("MyAlarm", "Notification built");
+    void sendAnnounceAppointmentsNotification(List<DbKindHatUntersuchungDatensatz> appointmentsToAnnounce){
+        final int uniqueID = 9878965;
+        NotificationBuilder builder = new Notification_Termin(activity, appointmentsToAnnounce);
+        setChannel(builder);
+        notificationManager.notify(uniqueID, builder.build());
     }
 
-    public void sendAnotherSample(String message){
-        final int uniqueID = 11112;
-
-        NotificationBuilder notificationBuilder =
-                new Notification_Termin(activity);
-
-
-        notificationManager.notify(uniqueID, notificationBuilder.build());
-        Log.d("MyAlarm", "Notification built");
+    private void setChannel(NotificationBuilder builder){
+        if (Build.VERSION.SDK_INT >= 26 ){
+            notificationManager.createNotificationChannel(builder.getNotificationChannel());
+        }
     }
 
     private NotificationCompat.Builder makeBuilder(){

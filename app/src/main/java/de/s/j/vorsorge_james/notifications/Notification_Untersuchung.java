@@ -21,7 +21,7 @@ import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
 final class Notification_Untersuchung extends NotificationBuilder {
 
-    protected static final String channelId = "vorsorge-james-notification-channel";
+    protected static final String channelId = "vorsorge-james-nf-channel-screenings";
 
     private KindBenoetigteUntersuchungMap untersuchungMap;
     private LinkedList<DbKindDatensatz> kinder;
@@ -42,7 +42,7 @@ final class Notification_Untersuchung extends NotificationBuilder {
 
     @Override
     protected void setupSubClass() {
-        setTicker("" + untersuchungMap.size());
+        setTicker("Es werden demnächst " + untersuchungMap.size() + " Untersuchungen fällig.");
         setSmallIcon(R.drawable.ic_launcher_background);
         setContentTitle("Es stehen Untersuchungen an.");
 
@@ -52,8 +52,8 @@ final class Notification_Untersuchung extends NotificationBuilder {
         kinder = new LinkedList<>(untersuchungMap.keySet());
         Log.d("MyAlarm", "Anzahl Kinder mit Untersuchungen: " + kinder.size());
         if(kinder.size() == 1){
-
             for(DbKindDatensatz kind : kinder){
+                setContentTitle("Eine Untersuchung für " + kind.getName() +  "wird fällig.");
                 List<DbUntersuchungDatensatz> untersuchungen = untersuchungMap.get(kind);
                 Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungen.size());
                 if(untersuchungen.size() == 1){
@@ -82,9 +82,6 @@ final class Notification_Untersuchung extends NotificationBuilder {
 
             setContentText("Kinder haben Untersuchungen");
         }
-
-
-
     }
 
     @Override

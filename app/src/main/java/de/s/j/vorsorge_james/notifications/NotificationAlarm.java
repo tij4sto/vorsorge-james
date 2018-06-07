@@ -6,16 +6,16 @@ import android.content.Intent;
 import android.util.Log;
 
 import java.text.ParseException;
-import java.time.Instant;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
-import de.s.j.vorsorge_james.hilfsklassen.DateFormatter;
 
 /**
  * Custon alarm, that triggers a notification to be built.
@@ -41,28 +41,58 @@ public class NotificationAlarm extends BroadcastReceiver {
         }
 
         List<DbKindHatUntersuchungDatensatz> alleTermine = dataSource.getKindHatUntersuchungListe();
+        List<DbKindHatUntersuchungDatensatz> appointmentsToAnnounce = new LinkedList<>();
+
         for(DbKindHatUntersuchungDatensatz termin : alleTermine){
-            Date dateAsString = new Date(termin.getTermin());
-       /*     Log.d("MyAlarm", "Date as String: " + termin.getTermin());
-            Log.d("MyAlarm", "Date of Appointment " + termin.getIdKind() + " " + dateAsString.toString());
-            Log.d("MyAlarm", "Today: " + Calendar.getInstance().getTime().toString());*/
-            //Date today = Date.from(Instant.);
             try {
                 Calendar today = Calendar.getInstance();
-                Calendar minusAppointment = DateFormatter.parseStringToCalendar(termin.getTermin());
-                minusAppointment.add(Calendar.DAY_OF_MONTH, -3);
-                boolean reminderIsDue = DateFormatter.isAfterDay(today, minusAppointment);
-                Log.d("MyAlarm", "Today: " + today.getTime().toString() + " is after " + minusAppointment.getTime().toString() + " == " +reminderIsDue);
+                Calendar appointment = getDateOfAppointment(termin.getTermin());
+                Calendar reminderDate = getDateOfReminder(termin.getTermin());
+
+            /*    SimpleDateFormat stringToDate = new SimpleDateFormat("MM/dd/yyyy");
+                Date appointment = stringToDate.parse(termin.getTermin());
+                Log.d("MyAlarm", termin.getTermin() + " parsed to: " + appointment.toString());
+               // Calendar
+
+                Calendar minusAppointment = Calendar.getInstance();
+                minusAppointment.setTime(appointment);
+                minusAppointment.add(Calendar.YEAR, 2000);
+                Log.d("MyAlarm", "As Calendar: " + minusAppointment.getTime().toString());
+
+                minusAppointment.add(Calendar.DAY_OF_MONTH, -3);*/
+                boolean reminderIsDue = today.after(reminderDate) && today.before(appointment);
+                if(reminderIsDue){
+                    appointmentsToAnnounce.add(termin);
+                }
+                Log.d("MyAlarm", "Today: " + today.getTime().toString() + " is after " + reminderDate.getTime().toString() + " == " +reminderIsDue);
             } catch (ParseException e){
                 Log.d("MyAlarm", "Exception: " + e.getMessage());
 
             }
 
         }
-
+        Log.d("MyAlarm", "Number of Appointments to announce: " + appointmentsToAnnounce.size());
+        if(appointmentsToAnnounce.size() > 0){
+            notificationHelper.sendAnnounceAppointmentsNotification(appointmentsToAnnounce);
+        }
         Log.d("NotificationAlarm", "NotificationAlarm triggered");
 
         // notificationHelper.sendSampleNotification(dataSource.toString());
         // notificationHelper.sendAnotherSample("Another notification");
+    }
+
+    private static Calendar getDateOfAppointment(String string) throws ParseException {
+        SimpleDateFormat stringToDate = new SimpleDateFormat("MM/dd/yyyy");
+        Date appointment = stringToDate.parse(string);
+        Calendar appointmentAsCalendar = Calendar.getInstance();
+        appointmentAsCalendar.setTime(appointment);
+        appointmentAsCalendar.add(Calendar.YEAR, 2000);
+        return appointmentAsCalendar;
+    }
+
+    private static Calendar getDateOfReminder(String string) throws ParseException {
+        Calendar appointment = getDateOfAppointment(string);
+        appointment.add(Calendar.DAY_OF_YEAR, -3);
+        return appointment;
     }
 }
