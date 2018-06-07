@@ -85,7 +85,7 @@ public class DbAccess {
         }
     }
 
-    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, int kg) {
+    public boolean saveGewichtUndGroesseInDb(int idKind, String datum, int cm, float kg) {
         this.open();
         ContentValues values = new ContentValues();
         values.put("_id_kind", idKind);

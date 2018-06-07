@@ -88,7 +88,7 @@ public class ChartViewActivity extends AppCompatActivity {
 
         graphGroesse.addSeries(groesseGraph);
         graphGroesse.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "cm"));
-        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 4); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGroesse.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGroesse.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGroesse.getViewport().setXAxisBoundsManual(true);
@@ -117,7 +117,7 @@ public class ChartViewActivity extends AppCompatActivity {
 
         graphGewicht.addSeries(gewichtGraph);
         graphGewicht.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "kg"));
-        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 4); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGewicht.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGewicht.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGewicht.getViewport().setXAxisBoundsManual(true);

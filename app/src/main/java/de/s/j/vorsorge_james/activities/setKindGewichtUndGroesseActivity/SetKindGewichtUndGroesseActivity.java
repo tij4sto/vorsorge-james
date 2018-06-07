@@ -75,7 +75,7 @@ public class SetKindGewichtUndGroesseActivity extends AppCompatActivity {
                             String kgs = etGewicht.getText().toString().replace(",", ".");
                             float kg = Float.parseFloat(kgs);
                             if(kg > 300) kg = kg / 1000;
-                            if(saveGewichtUndGroesse(idKind, SetKindGewichtUndGroesseActivity.this.datum, (int) cm, (int) kg)){
+                            if(saveGewichtUndGroesse(idKind, SetKindGewichtUndGroesseActivity.this.datum, (int) cm, kg)){
                                 SetKindGewichtUndGroesseActivity.this.finish();
                             }
 
@@ -126,7 +126,7 @@ public class SetKindGewichtUndGroesseActivity extends AppCompatActivity {
         });
     }
 
-    private boolean saveGewichtUndGroesse(int idK, String date, int cm, int kg){
+    private boolean saveGewichtUndGroesse(int idK, String date, int cm, float kg){
         List<DbKindHatGewichtUndGroesse> list = datasource.getGewichtGroesseListe(idK);
         for(DbKindHatGewichtUndGroesse item : list){
             if(item.getDate().equalsIgnoreCase(date) && item.getId() == idK)

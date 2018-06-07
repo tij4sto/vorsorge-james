@@ -23,11 +23,6 @@
     <color name="sunnyGreenLight">#f1fb84</color>
     <color name="sunnyGreenLightest">#F7FEB3</color>
 
-<<<<<<< HEAD
     <color name="orange">#FFFF8800</color>
     <color name="green">#FF669900</color>
-=======
-    <color name="orange">#ff8800</color>
->>>>>>> Dev-Jannis
-
 </resources>
