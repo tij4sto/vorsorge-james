@@ -45,6 +45,14 @@
 
     <style name="ButtonAddChild">
         <item name="android:background">@drawable/plus</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_width">44dp</item>
+    </style>
+
+    <style name="ButtonShowNotifications">
+        <item name="android:background">@drawable/note</item>
+        <item name="android:layout_height">44dp</item>
+        <item name="android:layout_width">44dp</item>
     </style>
 
     <style name="homeButton">
