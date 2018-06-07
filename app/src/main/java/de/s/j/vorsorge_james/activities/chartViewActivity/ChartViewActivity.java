@@ -93,6 +93,7 @@ public class ChartViewActivity extends AppCompatActivity {
         graphGroesse.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGroesse.getViewport().setXAxisBoundsManual(true);
         graphGroesse.getGridLabelRenderer().setHumanRounding(false);
+        graphGroesse.getGridLabelRenderer().setPadding(50);
 
         LineGraphSeries<DataPoint> gewichtGraph = new LineGraphSeries<>();
         for(int i = 0; i < liste.size(); i++){
@@ -121,6 +122,7 @@ public class ChartViewActivity extends AppCompatActivity {
         graphGewicht.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGewicht.getViewport().setXAxisBoundsManual(true);
         graphGewicht.getGridLabelRenderer().setHumanRounding(false);
+        graphGewicht.getGridLabelRenderer().setPadding(40);
 
     }
 

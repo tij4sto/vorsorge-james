@@ -15,12 +15,14 @@
         <!-- ACTUAL MAIN ACTIVITY -->
         <activity
             android:name=".activities.childListViewActivity.ChildListViewActivity"
-            android:launchMode="singleInstance">
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait">
 
 
 
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"
+                    />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -46,32 +48,37 @@
                 </intent-filter>
             </receiver>
 
-        <activity android:name=".activities.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity">
+        <activity android:name=".activities.setKindGewichtUndGroesseActivity.SetKindGewichtUndGroesseActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.chartViewActivity.ChartViewActivity">
+        <activity android:name=".activities.chartViewActivity.ChartViewActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
         <activity android:name=".activities.singleUntersuchungViewActivity.SingleUntersuchungView"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.singleChildViewActivity.SingleChildView">
+        <activity android:name=".activities.singleChildViewActivity.SingleChildView"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.addChildActivity.AddChildActivity">
+        <activity android:name=".activities.addChildActivity.AddChildActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.DEFAULT" />
             </intent-filter>
