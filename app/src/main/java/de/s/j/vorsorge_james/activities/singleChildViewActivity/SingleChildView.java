@@ -14,6 +14,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.activities.Footer;
 import de.s.j.vorsorge_james.activities.chartViewActivity.ChartViewActivity;
 import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
 import de.s.j.vorsorge_james.database.DbAccess;
@@ -42,6 +43,7 @@ public class SingleChildView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         this.dataSource = new DbAccess(this);
         setContentView(R.layout.activity_single_child_view);
+        new Footer(this);
 
         //Handling Event Data
         this.intent = getIntent();

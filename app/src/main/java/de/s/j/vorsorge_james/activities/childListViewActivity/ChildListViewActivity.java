@@ -6,20 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.util.Calendar;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
+import de.s.j.vorsorge_james.activities.Footer;
 import de.s.j.vorsorge_james.activities.addChildActivity.AddChildActivity;
-import de.s.j.vorsorge_james.notifications.FireingTime;
-import de.s.j.vorsorge_james.notifications.NotificationAlarmManager;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.activities.Footer_insideListViewActivity;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
 import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
 
@@ -36,36 +32,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_child_list_view);
         this.dataSource = new DbAccess(this);
-    /*    try {
-            showChildren();
-        } catch (Exception e) {
-            Log.d("MyAlarm", "Within onCreate");
-            Intent openAddChildActivity = new Intent(this, AddChildActivity.class);
-            this.startActivity(openAddChildActivity);
-        }
-*/
-
-        new Footer_insideListViewActivity(this);
-
-        Button startJobButton = findViewById(R.id.showNotificationsButton);
-        startJobButton.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Calendar calendar = Calendar.getInstance();
-                Calendar startTime = FireingTime.getTime();
-                Log.d("MyAlarm", "" + calendar.getTime() + " " + startTime.getTime());
-                new NotificationAlarmManager(ChildListViewActivity.this).start();
-            }
-        });
-
-        Button middle = findViewById(R.id.homeButton);
-        middle.setOnClickListener(new Button.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            new NotificationAlarmManager(ChildListViewActivity.this).cancel();
-            }
-        });
-
+        new Footer(this);
     }
 
     @Override
@@ -74,7 +41,6 @@ public class ChildListViewActivity extends AppCompatActivity {
         try {
             showChildren();
         } catch (Exception e) {
-            Log.d("MyAlarm", "Fire toast");
             Toast.makeText(this, "Sie müssen ein Kind hinzufügen, bevor Sie die App nutzen können.", Toast.LENGTH_LONG).show();
             Intent openAddChildActivity = new Intent(this, AddChildActivity.class);
             this.startActivity(openAddChildActivity);

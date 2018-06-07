@@ -9,6 +9,7 @@ import android.widget.Button;
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.addChildActivity.AddChildActivity;
 import de.s.j.vorsorge_james.activities.childListViewActivity.ChildListViewActivity;
+import de.s.j.vorsorge_james.notifications.NotificationAccess;
 
 public final class Footer {
 
@@ -28,6 +29,7 @@ public final class Footer {
         addChildButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent openAddChildActivity = new Intent(activityContext, AddChildActivity.class);
                 activityContext.startActivity(openAddChildActivity);
             }
@@ -37,7 +39,9 @@ public final class Footer {
         notificationButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                NotificationAccess notificationAccess = new NotificationAccess(activityContext);
+                notificationAccess.showAppointmentsNotification();
+                notificationAccess.showScreeningsNotification();
             }
         });
     }
