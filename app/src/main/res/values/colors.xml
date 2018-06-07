@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#3fb541</color>
-    <color name="colorPrimaryDark">#23641e</color>
+    <color name="colorPrimaryDark">#7023641e</color>
     <color name="colorAccent">#ffb348</color>
 
-    <color name="greenDarkest">#1B2D02</color>
-    <color name="greenDark">#4A7016</color>
-    <color name="greenMedium">#80af3f</color>
-    <color name="greenLight">#60bbea7b</color>
-    <color name="greenLightest">#DAF9AF</color>
+    <color name="greenDarkest">#1b2d02</color>
+    <color name="greenDark">#4a7016</color>
+    <color name="greenMedium">#9980af3f</color>
+    <color name="greenLight">#50bbea7b</color>
+    <color name="greenLightest">#daf9af</color>
 
     <color name="tealDarkest">#02240E</color>
     <color name="tealDark">#125A2A</color>
@@ -19,11 +19,15 @@
 
     <color name="sunnyGreenDarkest">#2D3103</color>
     <color name="sunnyGreenDark">#707918</color>
-    <color name="sunnyGreenMedium">#B2BC44</color>
-    <color name="sunnyGreenLight">#F1FB84</color>
+    <color name="sunnyGreenMedium">#b2bc44</color>
+    <color name="sunnyGreenLight">#f1fb84</color>
     <color name="sunnyGreenLightest">#F7FEB3</color>
 
+<<<<<<< HEAD
     <color name="orange">#FFFF8800</color>
     <color name="green">#FF669900</color>
+=======
+    <color name="orange">#ff8800</color>
+>>>>>>> Dev-Jannis
 
 </resources>

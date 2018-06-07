@@ -18,6 +18,9 @@ import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchun
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
 
+/**
+ * Die Klasse um die Datenbankzugriffe zu ermöglichen.
+ */
 public class DbAccess {
     private static final String LOG_TAG = DbAccess.class.getSimpleName();
 
@@ -226,6 +229,12 @@ public class DbAccess {
         }
     }
 
+    /**
+     *
+     * @param idK id des Kindes
+     * @param idU id der Untersuchung
+     * @return gibt true, wenn Kind in Untersuchung eingetragen ist.
+     */
     public boolean isKindInUntersuchung(int idK, int idU){
         for(DbKindHatUntersuchungDatensatz data : getKindHatUntersuchungListe()){
             if(idK == data.getIdKind() && idU == data.getIdUnterschung()) return true;
