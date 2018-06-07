@@ -50,7 +50,7 @@ final class Notification_Termin extends NotificationBuilder {
             setContentTitle("Termine stehen");
         }
 
-        setSmallIcon(R.drawable.ic_launcher_background);
+        setSmallIcon(R.drawable.vorsorge_james_icon_small);
 
 
     }

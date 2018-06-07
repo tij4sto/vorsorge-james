@@ -160,6 +160,7 @@
                         android:layout_marginTop="16dp"
                         android:text="Adresse des Arztes (optional)"
                         android:textSize="18sp"
+                        android:visibility="gone"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/arzt" />
 
@@ -174,6 +175,7 @@
                         android:ems="10"
                         android:hint="Postleitzahl"
                         android:inputType="textPersonName"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -190,6 +192,7 @@
                         android:ems="10"
                         android:hint="Straße"
                         android:inputType="textPersonName"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
@@ -206,6 +209,7 @@
                         android:ems="10"
                         android:hint="Hausnummer"
                         android:inputType="textPersonName"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
