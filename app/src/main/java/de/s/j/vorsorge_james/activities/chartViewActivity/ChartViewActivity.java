@@ -15,6 +15,7 @@ import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -88,12 +89,12 @@ public class ChartViewActivity extends AppCompatActivity {
 
         graphGroesse.addSeries(groesseGraph);
         graphGroesse.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "cm"));
-        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGroesse.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 3 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGroesse.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGroesse.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGroesse.getViewport().setXAxisBoundsManual(true);
         graphGroesse.getGridLabelRenderer().setHumanRounding(false);
-        graphGroesse.getGridLabelRenderer().setPadding(50);
+        graphGroesse.getGridLabelRenderer().setPadding(40);
 
         LineGraphSeries<DataPoint> gewichtGraph = new LineGraphSeries<>();
         for(int i = 0; i < liste.size(); i++){
@@ -117,7 +118,7 @@ public class ChartViewActivity extends AppCompatActivity {
 
         graphGewicht.addSeries(gewichtGraph);
         graphGewicht.getGridLabelRenderer().setLabelFormatter(new CustomLabelFormatter(this , "kg"));
-        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 4 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
+        graphGewicht.getGridLabelRenderer().setNumHorizontalLabels(liste.size() < 3 ? liste.size() : 3); //4 bei 4 Zoll. Je größer  desto mehr.
         graphGewicht.getViewport().setMinX(new Date(liste.get(0).getDate()).getTime());
         graphGewicht.getViewport().setMaxX(new Date(liste.get(liste.size()-1).getDate()).getTime());
         graphGewicht.getViewport().setXAxisBoundsManual(true);
@@ -140,6 +141,8 @@ public class ChartViewActivity extends AppCompatActivity {
 
         protected String label;
 
+        protected SimpleDateFormat customDateFormat;
+
         /**
          * create the formatter with the Android default date format to convert
          * the x-values.
@@ -150,6 +153,7 @@ public class ChartViewActivity extends AppCompatActivity {
             mDateFormat = android.text.format.DateFormat.getDateFormat(context);
             mCalendar = Calendar.getInstance();
             this.label = label;
+            customDateFormat = new SimpleDateFormat("dd.MM.yy");
         }
 
         /**
@@ -176,7 +180,7 @@ public class ChartViewActivity extends AppCompatActivity {
             if (isValueX) {
                 // format as date
                 mCalendar.setTimeInMillis((long) value);
-                return mDateFormat.format(mCalendar.getTimeInMillis());
+                return customDateFormat.format(mCalendar.getTimeInMillis());
             } else {
                 return super.formatLabel(value, isValueX) + " " + label;
             }

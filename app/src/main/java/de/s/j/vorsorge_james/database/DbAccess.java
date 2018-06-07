@@ -112,7 +112,7 @@ public class DbAccess {
         int idK = c.getInt(idIdK);
         String datum = c.getString(idDatum);
         int cm = c.getInt(idCm);
-        int kg = c.getInt(idKg);
+        float kg = c.getFloat(idKg);
 
         DbKindHatGewichtUndGroesse data = new DbKindHatGewichtUndGroesse(idK, datum, cm, kg);
         return data;
