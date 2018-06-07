@@ -32,7 +32,7 @@ public class ChildListViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_child_list_view);
+        setContentView(R.layout.child_list_view);
         this.dataSource = new DbAccess(this);
         showChildren();
 
