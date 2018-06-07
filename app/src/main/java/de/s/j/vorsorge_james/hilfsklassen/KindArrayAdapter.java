@@ -46,7 +46,7 @@ public class KindArrayAdapter extends ArrayAdapter<DbKindDatensatz> {
         TextView tvName = (TextView) listItem.findViewById(R.id.name);
         TextView tvGeburtstag = (TextView) listItem.findViewById(R.id.geburtstag);
         tvName.setText(kind.getName());
-        tvGeburtstag.setText(DateFormatter.formatDate(kind.getDatum()));
+        tvGeburtstag.setText("Geburtstag: " + DateFormatter.formatDate(kind.getDatum()));
 
         return listItem;
     }
