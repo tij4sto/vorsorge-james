@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -161,9 +163,19 @@ public class SingleUntersuchungView extends AppCompatActivity {
         }
 
         private boolean isFilled(){
-            return
-                    doctorTextFieldIsFilled() && dateTextFieldIsFilled() &&
-                    checkDatumIsValid(new Date(textFieldDate.getText().toString()));
+
+            // TODO: REPLACE DATE WITH CALENDAR
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                Date date = format.parse(textFieldDate.getText().toString());
+                return
+                        doctorTextFieldIsFilled() && dateTextFieldIsFilled() &&
+                                checkDatumIsValid(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return false;
         }
 
         private boolean dateTextFieldIsFilled(){

@@ -49,9 +49,11 @@ public class NotificationAlarm extends BroadcastReceiver {
             //Date today = Date.from(Instant.);
             try {
                 Calendar today = Calendar.getInstance();
+
+                Log.d("MyAlarm", "Termin als String: " + termin.getTermin());
                 Calendar minusAppointment = DateFormatter.parseStringToCalendar(termin.getTermin());
-                minusAppointment.add(Calendar.DAY_OF_MONTH, -3);
-                boolean reminderIsDue = DateFormatter.isAfterDay(today, minusAppointment);
+                minusAppointment.add(Calendar.DAY_OF_YEAR, -3);
+                boolean reminderIsDue = today.after(minusAppointment);
                 Log.d("MyAlarm", "Today: " + today.getTime().toString() + " is after " + minusAppointment.getTime().toString() + " == " +reminderIsDue);
             } catch (ParseException e){
                 Log.d("MyAlarm", "Exception: " + e.getMessage());
