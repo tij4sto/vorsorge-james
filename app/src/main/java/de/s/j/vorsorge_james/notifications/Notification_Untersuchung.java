@@ -25,6 +25,7 @@ final class Notification_Untersuchung extends NotificationBuilder {
 
     private KindBenoetigteUntersuchungMap untersuchungMap;
     private LinkedList<DbKindDatensatz> kinder;
+    private LinkedList<DbUntersuchungDatensatz> untersuchungen;
 
     public Notification_Untersuchung(@NonNull Context context, KindBenoetigteUntersuchungMap untersuchungMap) {
         super(context, channelId);
@@ -44,41 +45,44 @@ final class Notification_Untersuchung extends NotificationBuilder {
     protected void setupSubClass() {
         setTicker("Es werden demnächst " + untersuchungMap.size() + " Untersuchungen fällig.");
         setSmallIcon(R.drawable.vorsorge_james_icon_small);
-        setContentTitle("Es stehen Untersuchungen an.");
+
 
         int color = context.getResources().getColor(R.color.orange);
         setColor(color);
 
         kinder = new LinkedList<>(untersuchungMap.keySet());
+        untersuchungen = new LinkedList<>();
+       // untersuchungen.addAll(untersuchungMap.values());
         Log.d("MyAlarm", "Anzahl Kinder mit Untersuchungen: " + kinder.size());
         if(kinder.size() == 1){
             for(DbKindDatensatz kind : kinder){
-                setContentTitle("Eine Untersuchung für " + kind.getName() +  "wird fällig.");
+                setContentTitle("Eine Untersuchung für " + kind.getName() +  " wird fällig.");
                 List<DbUntersuchungDatensatz> untersuchungen = untersuchungMap.get(kind);
                 Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungen.size());
                 if(untersuchungen.size() == 1){
-                    setContentText(kind.getName() + " hat eine Untersuchung am " + untersuchungen.get(0));
+                    setContentText("zwischen " + DbUntersuchungTyp.getZeitraumString(untersuchungen.get(0), kind));
                 } else {
                     setContentText(kind.getName() + " hat Untersuchungen");
                 }
             }
         } else {
+            setContentTitle("Untersuchungen werden fällig.");
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
             for(DbKindDatensatz kind : kinder){
                 List<DbUntersuchungDatensatz> untersuchungenDesKindes = untersuchungMap.get(kind);
                 if(untersuchungenDesKindes.size() == 1){
                     DbUntersuchungDatensatz untersuchung = untersuchungenDesKindes.get(0);
-                    inboxStyle.addLine(kind.getName() + " hat Untersuchung " + untersuchung.getName() + " " +DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
+                    inboxStyle.addLine("Für " + kind.getName() + " wird Untersuchung fällig:");
+                    inboxStyle.addLine("   " +untersuchung.getName() + " " + DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
                 } else {
-                    inboxStyle.addLine(kind.getName() + " hat Untersuchungen:");
+                    inboxStyle.addLine("Für " + kind.getName() + " werden Untersuchungen fällig:");
                     for(DbUntersuchungDatensatz untersuchung : untersuchungenDesKindes){
                         Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungenDesKindes.size());
-                        inboxStyle.addLine(untersuchung.getName() + " " + DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
+                        inboxStyle.addLine("   " +untersuchung.getName() + " " + DbUntersuchungTyp.getZeitraumString(untersuchung, kind));
                     }
                 }
             }
             setStyle(inboxStyle);
-
 
             setContentText("Kinder haben Untersuchungen");
         }

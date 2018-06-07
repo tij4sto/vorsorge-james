@@ -18,6 +18,7 @@ import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
+import de.s.j.vorsorge_james.hilfsklassen.DateFormatter;
 
 final class Notification_Termin extends NotificationBuilder {
 
@@ -61,7 +62,7 @@ final class Notification_Termin extends NotificationBuilder {
         NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
         ArrayList<String> childNames = new ArrayList<>();
         for(DbKindHatUntersuchungDatensatz appointment : appointments){
-            String dateOfAppointment = formatDate(appointment.getTermin());
+            String dateOfAppointment = DateFormatter.formatDateStringFromDb(appointment.getTermin());
             String screeningName = DbUntersuchungTyp.getUntersuchungTypByID(appointment.getIdUnterschung()).getName();
             String childName = dataSource.getKindDatensatzById(appointment.getIdKind()).getName();
 
@@ -96,7 +97,7 @@ final class Notification_Termin extends NotificationBuilder {
      */
     private void setupForJustOneAppointment(){
         DbKindHatUntersuchungDatensatz appointment = appointments.getFirst();
-        String dateOfAppointment = formatDate(appointment.getTermin());
+        String dateOfAppointment = DateFormatter.formatDateStringFromDb(appointment.getTermin());
         String screeningName = DbUntersuchungTyp.getUntersuchungTypByID(appointment.getIdUnterschung()).getName();
         String childName = dataSource.getKindDatensatzById(appointment.getIdKind()).getName();
 
@@ -120,21 +121,7 @@ final class Notification_Termin extends NotificationBuilder {
 
     }
 
-    /**
-     * Refactors a date as String from format MM/dd/yy to
-     * dd.MM.yy.
-     * @param date Example: "06/23/18"
-     * @return Example: "23.06.18"
-     */
-    protected static String formatDate(String date){
-        String [] part = date.split("/");
-        StringBuilder builder = new StringBuilder(part[1]);
-        builder.append('.');
-        builder.append(part[0]);
-        builder.append('.');
-        builder.append(part[2]);
-        return builder.toString();
-    }
+
 
     @Override
     protected Intent makeOpenActivityIntent() {
