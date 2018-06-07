@@ -1,11 +1,14 @@
 package de.s.j.vorsorge_james.activities.addChildActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
@@ -29,7 +32,6 @@ public final class AddChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child);
         setupFields();
         dbAccess = new DbAccess(this);
-        new FooterHomeOnly(this);
     }
 
     private void setupFields(){
