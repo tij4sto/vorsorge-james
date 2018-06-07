@@ -43,7 +43,7 @@ final class Notification_Untersuchung extends NotificationBuilder {
     @Override
     protected void setupSubClass() {
         setTicker("Es werden demnächst " + untersuchungMap.size() + " Untersuchungen fällig.");
-        setSmallIcon(R.drawable.ic_launcher_background);
+        setSmallIcon(R.drawable.vorsorge_james_icon_small);
         setContentTitle("Es stehen Untersuchungen an.");
 
         int color = context.getResources().getColor(R.color.orange);
