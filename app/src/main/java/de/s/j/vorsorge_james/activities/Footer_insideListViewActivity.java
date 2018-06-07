@@ -14,7 +14,7 @@ public final class Footer_insideListViewActivity {
         OnClickSetter.openAddChildActivity(addChildButton);
 
         // TODO: Remove notification manual trigger
-        final Button noteButton = activityContext.findViewById(R.id.button3);
+        final Button noteButton = activityContext.findViewById(R.id.homeButton);
         noteButton.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {

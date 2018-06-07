@@ -49,7 +49,7 @@ public class ChildListViewActivity extends AppCompatActivity {
             }
         });
 
-        Button middle = findViewById(R.id.button3);
+        Button middle = findViewById(R.id.homeButton);
         middle.setOnClickListener(new Button.OnClickListener() {
             @Override
             public void onClick(View v) {
