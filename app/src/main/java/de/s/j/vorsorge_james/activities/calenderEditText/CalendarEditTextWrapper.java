@@ -34,7 +34,7 @@ public final class CalendarEditTextWrapper {
      * @param calendar Date to put into the text field
      */
     void setDate(Calendar calendar) {
-        String myFormat = "dd/MM/yyyy"; //In which you need put here
+        String myFormat = "MM/dd/yy"; //In which you need put here
         SimpleDateFormat format = new SimpleDateFormat(myFormat, Locale.GERMAN);
         editText.setText(format.format(calendar.getTime()));
     }

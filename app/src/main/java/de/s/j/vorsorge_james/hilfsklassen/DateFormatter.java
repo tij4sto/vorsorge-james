@@ -33,9 +33,18 @@ public class DateFormatter {
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         calendar.setTime(sdf.parse(string));
-    //    calendar.add(Calendar.MONTH, -1);
         return calendar;
     }
 
+    public static boolean isAfterDay(Calendar cal1, Calendar cal2) {
+        if (cal1 == null || cal2 == null) {
+            throw new IllegalArgumentException("The dates must not be null");
+        }
+        if (cal1.get(Calendar.ERA) < cal2.get(Calendar.ERA)) return false;
+        if (cal1.get(Calendar.ERA) > cal2.get(Calendar.ERA)) return true;
+        if (cal1.get(Calendar.YEAR) < cal2.get(Calendar.YEAR)) return false;
+        if (cal1.get(Calendar.YEAR) > cal2.get(Calendar.YEAR)) return true;
+        return cal1.get(Calendar.DAY_OF_YEAR) > cal2.get(Calendar.DAY_OF_YEAR);
+    }
 
 }
