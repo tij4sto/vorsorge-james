@@ -62,7 +62,7 @@
     </style>
 
     <style name="footer">
-        <item name="android:background">@color/greenMedium</item>
+        <item name="android:background">@color/greenMediumNonTransparent</item>
     </style>
 
     <style name="standardButton">

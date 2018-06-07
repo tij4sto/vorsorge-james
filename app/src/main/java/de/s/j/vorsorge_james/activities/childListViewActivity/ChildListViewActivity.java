@@ -45,9 +45,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         }
 */
 
-        Footer_insideListViewActivity f = new Footer_insideListViewActivity(this);
-        Button homeButton = findViewById(R.id.homeButton);
-        homeButton.setVisibility(View.INVISIBLE);
+        new Footer_insideListViewActivity(this);
 
         Button startJobButton = findViewById(R.id.showNotificationsButton);
         startJobButton.setOnClickListener(new Button.OnClickListener() {

@@ -24,6 +24,11 @@ public class NotificationAlarm extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
+        NotificationAccess access = new NotificationAccess(context);
+        access.showAppointmentNotification();
+        access.showScreeningNotification();
+        access.showScreeningNotification();
+        
         NotificationHelper notificationHelper = new NotificationHelper(context);
 
         DbAccess dataSource = new DbAccess(context);

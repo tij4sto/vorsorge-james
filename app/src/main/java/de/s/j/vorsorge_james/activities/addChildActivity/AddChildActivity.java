@@ -1,19 +1,15 @@
 package de.s.j.vorsorge_james.activities.addChildActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import de.s.j.vorsorge_james.R;
 import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
 import de.s.j.vorsorge_james.database.DbAccess;
-import de.s.j.vorsorge_james.activities.FooterHomeOnly;
 
 /**
  * Created by Frieza on 22.05.2018.

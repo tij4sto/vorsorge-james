@@ -17,11 +17,10 @@ import java.util.Date;
 import java.util.List;
 
 import de.s.j.vorsorge_james.R;
-import de.s.j.vorsorge_james.activities.FooterHomeOnly;
+import de.s.j.vorsorge_james.activities.Footer;
 import de.s.j.vorsorge_james.activities.calenderEditText.CalendarEditTextWrapper;
 import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
-import de.s.j.vorsorge_james.database.dbKindHatGewichtUndGroesse.DbKindHatGewichtUndGroesse;
 import de.s.j.vorsorge_james.database.dbKindHatUntersuchung.DbKindHatUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungDatensatz;
 import de.s.j.vorsorge_james.database.dbUntersuchung.DbUntersuchungTyp;
@@ -45,7 +44,7 @@ public class SingleUntersuchungView extends AppCompatActivity {
         setContentView(R.layout.activity_single_untersuchung_view);
         formular = new SetUntersuchungFormular(this);
         formular.loadDoctorInformation();
-        new FooterHomeOnly(this);
+        new Footer(this);
         this.dataSource = new DbAccess(this);
 
         //Handling Event Data

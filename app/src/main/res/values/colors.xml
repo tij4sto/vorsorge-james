@@ -7,6 +7,7 @@
     <color name="greenDarkest">#1b2d02</color>
     <color name="greenDark">#4a7016</color>
     <color name="greenMedium">#9980af3f</color>
+    <color name="greenMediumNonTransparent">#80af3f</color>
     <color name="greenLight">#50bbea7b</color>
     <color name="greenLightest">#daf9af</color>
 
