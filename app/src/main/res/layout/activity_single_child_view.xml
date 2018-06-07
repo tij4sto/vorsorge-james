@@ -44,6 +44,7 @@
 
         <Button
             android:id="@+id/loeschen"
+            style="@style/standardButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -78,6 +79,7 @@
 
         <Button
             android:id="@+id/gug"
+            style="@style/standardButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
@@ -95,6 +97,7 @@
 
         <Button
             android:id="@+id/show_graph"
+            style="@style/standardButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
