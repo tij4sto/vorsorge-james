@@ -29,7 +29,6 @@ public final class AddChildActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_child);
         setupFields();
         dbAccess = new DbAccess(this);
-        new FooterHomeOnly(this);
     }
 
     private void setupFields(){
