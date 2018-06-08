@@ -16,8 +16,8 @@ public final class FireingTime {
 
         Calendar fireingTime = Calendar.getInstance();
         if(FIX){
-            fireingTime.set(Calendar.HOUR_OF_DAY, 2);
-            fireingTime.set(Calendar.MINUTE, 32);
+            fireingTime.set(Calendar.HOUR_OF_DAY, 10);
+            fireingTime.set(Calendar.MINUTE, 00);
 
             Calendar today = Calendar.getInstance();
             if(fireingTime.before(today)){
