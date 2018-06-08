@@ -272,13 +272,11 @@
 
     <include
         android:id="@+id/footer"
-        layout="@layout/footer_home_only"
+        layout="@layout/footer"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </include>
+        app:layout_constraintStart_toStartOf="parent"></include>
 
 </android.support.constraint.ConstraintLayout>
