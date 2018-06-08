@@ -18,13 +18,13 @@ public final class NotificationAlarmManager {
     public NotificationAlarmManager(Context context) {
         this.manager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         this.context = context;
-        Log.d("NotificationAlarm", "NotificationAlarmManager initialized");
+        Log.d("MyAlarm", "NotificationAlarmManager initialized");
     }
 
     public void start(){
         PendingIntent alarmIntent = makeAlarmIntent();
-        manager.setRepeating(AlarmManager.RTC_WAKEUP, FireingTime.getTime().getTimeInMillis(), (1000 * 30), alarmIntent);
-        Log.d("NotificationAlarm", "NotificationAlarmManager started");
+        manager.setRepeating(AlarmManager.RTC_WAKEUP, FireingTime.getTime().getTimeInMillis(), AlarmManager.INTERVAL_DAY, alarmIntent);
+        Log.d("MyAlarm", "NotificationAlarmManager started");
         enableBootReciever(true);
     }
 
@@ -42,7 +42,7 @@ public final class NotificationAlarmManager {
 
     public void cancel(){
         PendingIntent pendingIntent = makeAlarmIntent();
-        Log.d("NotificationAlarm", "NotificationAlarmManager stopped");
+        Log.d("MyAlarm", "NotificationAlarmManager stopped");
         manager.cancel(pendingIntent);
         enableBootReciever(false);
 
@@ -61,12 +61,12 @@ public final class NotificationAlarmManager {
             pm.setComponentEnabledSetting(receiver,
                     PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
                     PackageManager.DONT_KILL_APP);
-            Log.d("NotificationAlarm", "Enabled BootReceiver");
+            Log.d("MyAlarm", "Enabled BootReceiver");
         } else {
             pm.setComponentEnabledSetting(receiver,
                     PackageManager.COMPONENT_ENABLED_STATE_DISABLED,
                     PackageManager.DONT_KILL_APP);
-            Log.d("NotificationAlarm", "Disabled BootReceiver");
+            Log.d("MyAlarm", "Disabled BootReceiver");
         }
 
     }

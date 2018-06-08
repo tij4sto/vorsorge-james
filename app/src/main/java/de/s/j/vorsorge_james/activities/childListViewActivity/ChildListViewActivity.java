@@ -18,6 +18,7 @@ import de.s.j.vorsorge_james.database.DbAccess;
 import de.s.j.vorsorge_james.database.dbKind.DbKindDatensatz;
 import de.s.j.vorsorge_james.hilfsklassen.KindArrayAdapter;
 import de.s.j.vorsorge_james.activities.singleChildViewActivity.SingleChildView;
+import de.s.j.vorsorge_james.notifications.NotificationAlarmManager;
 
 /**
  * Created by Frieza on 03.05.2018.
@@ -33,6 +34,7 @@ public class ChildListViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_child_list_view);
         this.dataSource = new DbAccess(this);
         new Footer(this);
+        new NotificationAlarmManager(this).start();
     }
 
     @Override

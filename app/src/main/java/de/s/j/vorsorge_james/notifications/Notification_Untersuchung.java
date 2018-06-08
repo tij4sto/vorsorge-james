@@ -51,25 +51,28 @@ final class Notification_Untersuchung extends NotificationBuilder {
         setColor(color);
 
         kinder = new LinkedList<>(untersuchungMap.keySet());
-        untersuchungen = new LinkedList<>();
-       // untersuchungen.addAll(untersuchungMap.values());
         Log.d("MyAlarm", "Anzahl Kinder mit Untersuchungen: " + kinder.size());
         if(kinder.size() == 1){
             for(DbKindDatensatz kind : kinder){
-                setContentTitle("Eine Untersuchung für " + kind.getName() +  " wird fällig.");
+
                 List<DbUntersuchungDatensatz> untersuchungen = untersuchungMap.get(kind);
                 Log.d("MyAlarm", "Anzahl Untersuchungen für " + kind.getName() + ": " + untersuchungen.size());
+                setTicker("Es werden demnächst " + untersuchungen.size() + " Untersuchungen fällig.");
                 if(untersuchungen.size() == 1){
+                    setContentTitle("Eine Untersuchung für " + kind.getName() +  " wird fällig.");
                     setContentText("zwischen " + DbUntersuchungTyp.getZeitraumString(untersuchungen.get(0), kind));
                 } else {
-                    setContentText(kind.getName() + " hat Untersuchungen");
+                    setContentText("Neue Untersuchungen:");
+                    setContentTitle(untersuchungen.size() + " Untersuchungen für " + kind.getName() +  " werden fällig.");
                 }
             }
         } else {
             setContentTitle("Untersuchungen werden fällig.");
             NotificationCompat.InboxStyle inboxStyle = new NotificationCompat.InboxStyle();
+            int numberOfScreenings = 0;
             for(DbKindDatensatz kind : kinder){
                 List<DbUntersuchungDatensatz> untersuchungenDesKindes = untersuchungMap.get(kind);
+                numberOfScreenings += untersuchungenDesKindes.size();
                 if(untersuchungenDesKindes.size() == 1){
                     DbUntersuchungDatensatz untersuchung = untersuchungenDesKindes.get(0);
                     inboxStyle.addLine("Für " + kind.getName() + " wird Untersuchung fällig:");
@@ -83,8 +86,8 @@ final class Notification_Untersuchung extends NotificationBuilder {
                 }
             }
             setStyle(inboxStyle);
-
-            setContentText("Kinder haben Untersuchungen");
+            setTicker("Es werden demnächst " + numberOfScreenings + " Untersuchungen fällig.");
+            setContentText(untersuchungMap.size() + " Untersuchungen werden fällig.");
         }
     }
 
